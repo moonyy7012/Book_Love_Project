@@ -1,6 +1,16 @@
 <resources>
     <string name="app_name">BookLove-Android</string>
     <string name="app_title">BOOK Love</string>
+    <string name="app_title_ko">부끄럽</string>
     <string name="signUp"><u>회원가입</u></string>
+    <string name="logIn">로그인</string>
+    <string name="socialLogIn">소셜 로그인</string>
+    <string name="guide_gender">성별을 선택해주세요.</string>
+    <string name="male">남성</string>
+    <string name="female">여성</string>
+    <string name="step1">STEP1</string>
+    <string name="step2">STEP2</string>
+    <string name="step3">STEP3</string>
+    <string name="next_step">다음 단계로 →</string>
 
 </resources>
