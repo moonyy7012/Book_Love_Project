@@ -134,7 +134,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:fontFamily="@font/kopubworld_dotum_bold"
-            android:text="소셜 로그인"
+            android:text="@string/or_login"
             android:textSize="15sp" />
 
         <View
