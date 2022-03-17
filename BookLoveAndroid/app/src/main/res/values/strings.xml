@@ -5,7 +5,8 @@
     <string name="signUp"><u>회원가입</u></string>
     <string name="logIn">로그인</string>
     <string name="socialLogIn">소셜 로그인</string>
-    <string name="guide_gender">성별을 선택해주세요.</string>
+    <string name="findTaste">나의 취향 찾기</string>
+    <string name="guide_gender">성별을 선택해주세요</string>
     <string name="male">남성</string>
     <string name="female">여성</string>
     <string name="step1">STEP1</string>

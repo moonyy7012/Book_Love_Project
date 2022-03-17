@@ -22,10 +22,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="411dp"
-        android:layout_height="160dp"
+        android:layout_height="200dp"
         android:gravity="center"
         android:background="@drawable/top_sheet_layout"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,38 +36,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="112dp"
             android:fontFamily="@font/cafe24surround"
-            android:gravity="center_horizontal|top"
-            android:text="@string/app_title_ko"
+            android:gravity="center"
+            android:text="@string/findTaste"
             android:textColor="@color/dark_white"
-            android:textSize="50sp"
+            android:textSize="40sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.338"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/some_id2"
-            android:layout_width="178dp"
-            android:layout_height="36dp"
-            android:layout_below="@+id/some_id"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="219dp"
-            android:layout_marginTop="5dp"
-            android:fontFamily="@font/cafe24surround"
-            android:gravity="center_horizontal|top"
-            android:text="@string/app_title"
-            android:textColor="@color/gray"
-            android:textSize="24sp"
-            android:textStyle="italic"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.862"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/some_id" />
 
-
-    </RelativeLayout>
+    </LinearLayout>
 
 
     <FrameLayout
