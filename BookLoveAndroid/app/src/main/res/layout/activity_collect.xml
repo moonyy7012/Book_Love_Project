@@ -4,25 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E5E2FF"
     tools:context=".activity.CollectActivity">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/loginButton2"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/dark_box_rectangle"
-        android:fontFamily="@font/kopubworld_dotum_medium"
-        android:text="@string/next_step"
-        android:textColor="@color/white"
-        android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/linearLayout2"
         android:layout_width="411dp"
         android:layout_height="200dp"
@@ -36,30 +21,56 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_marginLeft="112dp"
             android:fontFamily="@font/cafe24surround"
-            android:gravity="center"
-            android:text="@string/findTaste"
-            android:textColor="@color/dark_white"
-            android:textSize="40sp"
+            android:gravity="center_horizontal|top"
+            android:text="부끄럽"
+            android:textColor="#9289C7"
+            android:textSize="50sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.338"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/some_id2"
+            android:layout_width="178dp"
+            android:layout_height="36dp"
+            android:layout_below="@+id/some_id"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="219dp"
+            android:layout_marginTop="45dp"
+            android:fontFamily="@font/cafe24surround"
+            android:gravity="center_horizontal|top"
+            android:text="BookLove"
+            android:textColor="#72434040"
+            android:textSize="24sp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.862"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/some_id" />
 
-    </LinearLayout>
 
+    </RelativeLayout>
 
-    <FrameLayout
-        android:id="@+id/frameLayout"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/photos_viewpager"
         android:layout_width="match_parent"
-        android:layout_height="460dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
-
-    </FrameLayout>
+        <com.google.android.material.tabs.TabLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:tabBackground="@drawable/tab_selector"
+            app:tabGravity="center"
+            app:tabIndicatorHeight="0dp" />
+    </androidx.viewpager.widget.ViewPager>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
