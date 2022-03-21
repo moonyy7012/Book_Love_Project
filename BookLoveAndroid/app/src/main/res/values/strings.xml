@@ -11,8 +11,15 @@
     <string name="socialLogIn">소셜 로그인</string>
     <string name="findTaste">나의 취향 찾기</string>
     <string name="guide_gender">성별을 선택해주세요</string>
+    <string name="guide_age">연령대를 선택해주세요</string>
     <string name="male">남성</string>
     <string name="female">여성</string>
+    <string name="teenager">10대 이하</string>
+    <string name="twenties">20대</string>
+    <string name="thirties">30대</string>
+    <string name="fourties">40대</string>
+    <string name="fifties">50대 이상</string>
+
     <string name="step1">STEP1</string>
     <string name="step2">STEP2</string>
     <string name="step3">STEP3</string>

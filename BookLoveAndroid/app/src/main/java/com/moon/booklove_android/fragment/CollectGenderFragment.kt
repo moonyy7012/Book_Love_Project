@@ -47,7 +47,7 @@ class CollectGenderFragment  : Fragment(){
         }
 
         nextButton.setOnClickListener {
-
+            (activity as CollectActivity).openFragment(2)
         }
 
     }

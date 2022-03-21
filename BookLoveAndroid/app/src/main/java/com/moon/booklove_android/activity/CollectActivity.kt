@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import com.moon.booklove_android.R
 import com.moon.booklove_android.databinding.ActivityCollectBinding
+import com.moon.booklove_android.fragment.CollectAgeFragment
 import com.moon.booklove_android.fragment.CollectGenderFragment
+import com.moon.booklove_android.fragment.CollectInterestFragment
 
 class CollectActivity : AppCompatActivity() {
 
@@ -19,5 +21,14 @@ class CollectActivity : AppCompatActivity() {
 
     }
 
+    fun openFragment(num: Int){
+        val transaction = supportFragmentManager.beginTransaction()
+        when(num){
+            1 -> transaction.replace(R.id.frameLayout, CollectGenderFragment())
+            2 -> transaction.replace(R.id.frameLayout, CollectAgeFragment())
+            3 -> transaction.replace(R.id.frameLayout, CollectInterestFragment())
+        }
+        transaction.commit()
+    }
 
 }

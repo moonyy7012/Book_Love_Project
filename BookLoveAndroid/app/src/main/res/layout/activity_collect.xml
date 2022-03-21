@@ -55,6 +55,8 @@
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="430dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/nextStepButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
