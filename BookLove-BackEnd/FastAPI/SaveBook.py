@@ -8,7 +8,7 @@ def saveBook():
     maxResult = 50
     queryType = ["ItemNewAll", "ItemNewSpecial", "Bestseller"]
     key = "ttbpmw71301115001"
-    dataList = ['title', 'link', 'categoryId', 'priceSales', 'isbn', 'author', 'categoryName', 'salesPoint']
+    dataList = ['title', 'link', 'categoryId', 'priceSales', 'isbn', 'author', 'categoryName']
     dataLen = len(dataList)
     pageNum = 20 #가져올 페이지
     bookResult= []
@@ -18,11 +18,10 @@ def saveBook():
         response = requests.get(url)
         responseJson = json.loads(response.text) #response를 json으로 변환
         itemList = responseJson
-        #print(url)
         #책리스트 초기화
         bookList = [[0] * dataLen for _ in range(maxResult)]
         for i in range(maxResult):
-            for j in range(dataLen):
+            for j in range(7):
                 bookList[i][j] = itemList['item'][i][dataList[j]]
 
         if page ==1 :
@@ -30,10 +29,7 @@ def saveBook():
         else :
             bookResult+=bookList
     df = pd.DataFrame(bookResult,
-                      columns=['title', 'link', 'categoryId', 'priceSales', 'isbn', 'author', 'categoryName', 'salesPoint'])
+                      columns=['title', 'link', 'categoryId', 'priceSales', 'isbn', 'author', 'categoryName'])
     df.to_csv('test.csv', index=False, encoding='cp949')
-    return bookResult
 
-
-result = saveBook()
-# print(result)
+saveBook()
