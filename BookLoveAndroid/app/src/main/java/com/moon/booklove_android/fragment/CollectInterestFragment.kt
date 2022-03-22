@@ -41,20 +41,8 @@ class CollectInterestFragment  : Fragment(){
 
         init()
 
-        binding.chipGroup.setOnCheckedChangeListener { group, checkedId ->
-            //여기 들어가지 못 하는 이유는???
-
-
-            Log.d(TAG, "onViewCreated1: ")
-            val chip: Chip? = group.findViewById(checkedId)
-            chip?.let {chipView ->
-                checkedInterest.add(chip.text.toString())
-                Log.d(TAG, "onViewCreated: ")
-            } ?: kotlin.run {
-            }
-        }
-
         nextButton.setOnClickListener {
+            checkedInterest = binding.chipGroup.getCheckedChipIds()
             Log.d(TAG, "onViewCreated: ${checkedInterest}")
         }
 

@@ -12,7 +12,7 @@ class ApplicationClass : Application() {
 //        lateinit var playerRecyclerViewAdapter: PlayerRecyclerViewAdapter
 
         var interest: MutableList<String> = mutableListOf("소설", "에세이")
-        var checkedInterest = mutableListOf<String>()
+        var checkedInterest = mutableListOf<Int>()
     }
 
     override fun onCreate() {
