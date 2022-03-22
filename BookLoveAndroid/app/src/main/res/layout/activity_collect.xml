@@ -26,9 +26,8 @@
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@drawable/top_sheet_layout"
         android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/top_sheet_layout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
