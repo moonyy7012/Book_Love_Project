@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
 import com.moon.booklove_android.R
@@ -13,6 +15,7 @@ import com.moon.booklove_android.databinding.FragmentCollectAgeBinding
 class CollectAgeFragment  : Fragment(){
     private lateinit var binding: FragmentCollectAgeBinding
     private lateinit var nextButton: AppCompatButton
+    var isClicked = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,12 +50,19 @@ class CollectAgeFragment  : Fragment(){
         }
 
         nextButton.setOnClickListener {
-            (activity as CollectActivity).openFragment(3)
+            //companion object에 age 저장
+
+            if(isClicked){
+                (activity as CollectActivity).openFragment(3)
+            }else{
+                Toast.makeText(context, "연령대를 선택해주세요", Toast.LENGTH_SHORT).show()
+            }
         }
 
     }
 
     private fun clickButton(clickedButton: AppCompatButton){
+        isClicked = true
         binding.teenagerButton.setBackgroundResource(R.drawable.light_box_rectangle)
         binding.twentiesButton.setBackgroundResource(R.drawable.light_box_rectangle)
         binding.thirtiesButton.setBackgroundResource(R.drawable.light_box_rectangle)

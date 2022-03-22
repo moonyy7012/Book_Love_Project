@@ -1,5 +1,6 @@
 package com.moon.booklove_android.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.chip.Chip
 import com.moon.booklove_android.R
 import com.moon.booklove_android.activity.CollectActivity
+import com.moon.booklove_android.activity.MainActivity
 import com.moon.booklove_android.config.ApplicationClass.Companion.checkedInterest
 import com.moon.booklove_android.config.ApplicationClass.Companion.interest
 import com.moon.booklove_android.databinding.FragmentCollectInterestBinding
@@ -44,6 +46,11 @@ class CollectInterestFragment  : Fragment(){
         nextButton.setOnClickListener {
             checkedInterest = binding.chipGroup.getCheckedChipIds()
             Log.d(TAG, "onViewCreated: ${checkedInterest}")
+
+            //companion object에 저장한 세 항목(성별, 연령대, 관심사)을 Rest Api로 여기서 post
+
+            val mainIntent = Intent(context, MainActivity::class.java)
+            startActivity(mainIntent)
         }
 
     }
