@@ -12,6 +12,7 @@
     <string name="findTaste">나의 취향 찾기</string>
     <string name="guide_gender">성별을 선택해주세요</string>
     <string name="guide_age">연령대를 선택해주세요</string>
+    <string name="guide_interest">관심사를 선택해주세요</string>
     <string name="male">남성</string>
     <string name="female">여성</string>
     <string name="teenager">10대 이하</string>

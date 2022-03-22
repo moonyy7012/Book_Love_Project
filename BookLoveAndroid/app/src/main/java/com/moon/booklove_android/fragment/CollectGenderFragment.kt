@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
@@ -15,6 +16,7 @@ import com.moon.booklove_android.databinding.FragmentCollectGenderBinding
 class CollectGenderFragment  : Fragment(){
     private lateinit var binding: FragmentCollectGenderBinding
     private lateinit var nextButton: AppCompatButton
+    var isClicked = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +35,7 @@ class CollectGenderFragment  : Fragment(){
         nextButton = (activity as CollectActivity).findViewById(R.id.nextStepButton)
         binding.maleButton.apply {
             setOnClickListener {
+                isClicked = true
                 setBackgroundResource(R.drawable.dark_box_rectangle)
                 binding.femaleButton.setBackgroundResource(R.drawable.light_box_rectangle)
                 nextButton.setBackgroundResource(R.drawable.complete_rectangle)
@@ -40,6 +43,7 @@ class CollectGenderFragment  : Fragment(){
         }
         binding.femaleButton.apply {
             setOnClickListener {
+                isClicked = true
                 setBackgroundResource(R.drawable.dark_box_rectangle)
                 binding.maleButton.setBackgroundResource(R.drawable.light_box_rectangle)
                 nextButton.setBackgroundResource(R.drawable.complete_rectangle)
@@ -47,7 +51,13 @@ class CollectGenderFragment  : Fragment(){
         }
 
         nextButton.setOnClickListener {
-            (activity as CollectActivity).openFragment(2)
+            //companion object에 gender 저장
+
+            if(isClicked){
+                (activity as CollectActivity).openFragment(2)
+            }else{
+                Toast.makeText(context, "성별을 선택해주세요", Toast.LENGTH_SHORT).show()
+            }
         }
 
     }
