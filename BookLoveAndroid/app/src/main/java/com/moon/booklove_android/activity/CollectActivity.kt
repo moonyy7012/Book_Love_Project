@@ -10,6 +10,7 @@ class CollectActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityCollectBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.someId2.text = intent.getStringExtra("name").toString()
     }
 
 
