@@ -15,7 +15,7 @@ class CollectActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityCollectBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.someId2.text = intent.getStringExtra("name").toString()
+        //binding.someId2.text = intent.getStringExtra("name").toString()
 
         val transaction = supportFragmentManager.beginTransaction().replace(R.id.frameLayout, CollectGenderFragment())
         transaction.commit()

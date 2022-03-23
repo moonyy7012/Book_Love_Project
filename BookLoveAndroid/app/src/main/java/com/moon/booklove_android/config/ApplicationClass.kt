@@ -1,6 +1,8 @@
 package com.moon.booklove_android.config
 
 import android.app.Application
+import com.kakao.sdk.common.KakaoSdk
+import com.moon.booklove_android.R
 
 class ApplicationClass : Application() {
 
@@ -17,7 +19,7 @@ class ApplicationClass : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
+        KakaoSdk.init(this, "d4e7ef1673fec6a777393689a82748d7")
         // 앱이 처음 생성되는 순간, retrofit 인스턴스를 생성
 //        retrofit = Retrofit.Builder()
 //            .baseUrl(SERVER_URL)
