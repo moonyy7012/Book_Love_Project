@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="#ffffff"
+    android:elevation="0dp"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:id="@+id/btn_bottom_navi_home_tab"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:srcCompat="@drawable/selector_bottom_home" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/btn_bottom_navi_search_tab"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerInParent="true"
+            app:srcCompat="@drawable/selector_bottom_search" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/btn_bottom_navi_list_tab"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerInParent="true"
+            app:srcCompat="@drawable/selector_bottom_list" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/btn_bottom_navi_favorite_tab"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerInParent="true"
+            app:srcCompat="@drawable/selector_bottom_heart" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/btn_bottom_navi_mypage_tab"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:srcCompat="@drawable/selector_bottom_person" />
+    </RelativeLayout>
+
+
+
+</LinearLayout>
