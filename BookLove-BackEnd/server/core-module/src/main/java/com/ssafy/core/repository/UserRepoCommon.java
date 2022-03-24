@@ -14,7 +14,6 @@ public interface UserRepoCommon {
 
     User findByUserId(String id);
 
-
     void deleteUser(User user);
 
 }

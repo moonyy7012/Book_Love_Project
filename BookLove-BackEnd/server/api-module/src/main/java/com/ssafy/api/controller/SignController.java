@@ -7,11 +7,13 @@ import com.ssafy.api.dto.req.UserInfoReqDTO;
 import com.ssafy.api.dto.res.LoginResDTO;
 import com.ssafy.api.dto.res.UserIdResDTO;
 import com.ssafy.api.dto.res.UserInfoResDTO;
+import com.ssafy.api.service.CategoryService;
 import com.ssafy.api.service.SignService;
 import com.ssafy.api.service.common.ResponseService;
 import com.ssafy.api.service.common.SingleResult;
 import com.ssafy.core.code.JoinCode;
 import com.ssafy.core.entity.User;
+import com.ssafy.core.entity.UserCategory;
 import com.ssafy.core.exception.ApiMessageException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -29,7 +31,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-@Api(tags = {"01. 가입"})
+@Api(tags = {"01. 가입, 로그인"})
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -40,11 +42,12 @@ public class SignController {
     private final PasswordEncoder passwordEncoder;
     private final ResponseService responseService;
     private final JwtTokenProvider jwtTokenProvider;
+    private final CategoryService categoryService;
 
-    // 회원가입
+    // 일반 회원가입(ID, PW만 입력)
     @ApiOperation(value = "회원가입", notes = "회원가입")
     @PostMapping(value = "/user", produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody SingleResult<UserIdResDTO> userSignUp(@Valid SignUpReqDTO req) throws Exception{
+    public @ResponseBody boolean userSignUp(@Valid SignUpReqDTO req) throws Exception{
         // uid 중복되는 값이 존재하는지 확인 (uid = 고유한 값)
         User uidChk = signService.findByUid(req.getUid());
         if(uidChk != null)
@@ -53,17 +56,15 @@ public class SignController {
         // DB에 저장할 User Entity 세팅
         User user = User.builder()
                 .id(req.getUid())
-                .type(JoinCode.valueOf(req.getType()))
-                .nickname(req.getNickname())
+                .type(JoinCode.valueOf("none"))
+                .nickname("")
                 .password(passwordEncoder.encode(req.getPassword()))
-                .gender(req.getGender())
-                .age(req.getAge())
-
+                .gender("")
+                .age(0)
+                .isCheck(false)
                 // 기타 필요한 값 세팅
                 .roles(Collections.singletonList("ROLE_USER"))
                 .build(); // 인증된 회원인지 확인하기 위한 JWT 토큰에 사용될 데이터
-
-        System.out.println(user.toString());
         // 회원가입 (User Entity 저장)
         long userId = signService.userSignUp(user);
 
@@ -71,9 +72,9 @@ public class SignController {
         if(userId <= 0)
             throw new ApiMessageException("회원가입에 실패했습니다. 다시 시도해 주세요.");
 
-        return responseService.getSingleResult(UserIdResDTO.builder().id(userId).build());
+        return true;
     }
-    //아이디 중복 체크
+    //아이디 중복 체크 true->중복X false->중복O
     @ApiOperation(value = "ID중복체크", notes = "ID중복체크")
     @PostMapping(value = "/user/idcheck/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody Boolean checkId(@PathVariable String userId)throws Exception{
@@ -86,7 +87,7 @@ public class SignController {
 
     }
 
-
+    //회원정보 수정(카테고리제외)
     @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "JWT Token", required = true, dataType = "string", paramType = "header")})
     @ApiOperation(value = "회원 정보 수정", notes = "회원 정보 수정")
     @PutMapping(value = "/user/info", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -124,33 +125,32 @@ public class SignController {
 
     /////////////
 
+    //
     @ApiOperation(value = "로그인", notes = "로그인")
     @GetMapping(value = "/user", produces = MediaType.APPLICATION_JSON_VALUE)
-
     public @ResponseBody SingleResult<LoginResDTO> userLogin(@Valid LoginReqDTO req) throws Exception{
         // uid 중복되는 값이 존재하는지 확인 (uid = 고유한 값)\
-        User user = signService.findUserByUidType(req.getEmail(), JoinCode.valueOf(req.getType()));
+        User user = signService.findUserByUidType(req.getId(), JoinCode.valueOf(req.getType()));
         if(user == null){
             throw new ApiMessageException("아이디가 틀렸다");
         } else if(!passwordEncoder.matches(req.getPassword(), user.getPassword())){
             throw new ApiMessageException("비밀번호가 틀렸다");
         }
+        List<UserCategory> userCategoryList = categoryService.getUserCategoryByUserId(user.getUserId());
         LoginResDTO dto = LoginResDTO.builder()
                 .id(user.getId())
+                .nickname(user.getNickname())
+                .age(user.getAge())
+                .gender(user.getGender())
+                .userCategoryList(userCategoryList)
                 .build();
         List<String> list = Arrays.asList("ROLE_USER");
         dto.setToken(jwtTokenProvider.createToken(String.valueOf(user.getUserId()), list));
 
         user.updateToken(req.getToken());
         signService.saveUser(user);
-
-
         return responseService.getSingleResult(dto);
-
-
     }
-
-
 
 
 

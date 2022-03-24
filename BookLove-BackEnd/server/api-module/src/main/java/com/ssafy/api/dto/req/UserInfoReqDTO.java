@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Builder
 @Getter
@@ -23,13 +24,8 @@ public class UserInfoReqDTO {
     @ApiModelProperty(value = "gender", required = true, example = "남자")
     private String gender;
 
-    @NotBlank
+    @NotNull
     @ApiModelProperty(value = "age", required = true, example = "26")
     private int age;
-
-
-
-
-
 
 }

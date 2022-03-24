@@ -14,12 +14,12 @@ import javax.validation.constraints.Pattern;
 @AllArgsConstructor
 public class LoginReqDTO {
     @NotBlank
-    @ApiModelProperty(value = "uid (일반회원:email주소, sns로그인:email주소)", required = true, example = "test")
-    private String email;
+    @ApiModelProperty(value = "uid ", required = true, example = "test")
+    private String id;
 
     @NotNull
     @Pattern(regexp = "^(none|sns)$")
-    @ApiModelProperty(value = "로그인 타입 (none, sns)", required = true, example = "sns")
+    @ApiModelProperty(value = "로그인 타입 (none, sns)", required = true, example = "none")
     private String type;
 
     @NotBlank

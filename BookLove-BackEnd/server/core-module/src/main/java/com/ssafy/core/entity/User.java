@@ -12,8 +12,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -64,7 +62,9 @@ public class User extends BaseEntity implements UserDetails {
     @Column(nullable = false, length = 255)
     private String password;
 
-
+    // 회원 선호정보 입력여부
+    @Column(nullable = false, length = 64)
+    private boolean isCheck;
     // 장비 푸시용 토큰
     @Column(length = 255)
     private String token;
@@ -129,20 +129,26 @@ public class User extends BaseEntity implements UserDetails {
     }
 
     public void updateGender(String gender){
+
         this.gender=gender;
     }
     public void updateAge(int age){
+
         this.age=age;
     }
 
     public void updatePwd(String password){
+
         this.password=password;
     }
 
-
-
     public void updateToken(String token){
+
         this.token = token;
+    }
+
+    public void updateIsChecked(boolean isCheck){
+        this.isCheck = isCheck;
     }
 
 }
