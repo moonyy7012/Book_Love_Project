@@ -2,14 +2,19 @@ package com.moon.booklove_android.config
 
 import android.app.Application
 import com.kakao.sdk.common.KakaoSdk
-import com.moon.booklove_android.R
+import com.moon.booklove_android.util.PreferenceUtil
+import com.moon.booklove_android.util.RetrofitInterceptor
+import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class ApplicationClass : Application() {
 
     companion object{
-//        const val SERVER_URL = "https://i6d208.p.ssafy.io:8185/"
-//        lateinit var retrofit: Retrofit
-//        lateinit var prefs: PreferenceUtil
+        const val SERVER_URL = "https://192.168.0.9/"
+        lateinit var retrofit: Retrofit
+        var jwtaccess: String = ""
+        lateinit var prefs: PreferenceUtil
 //        lateinit var recyclerView: RecyclerView
 //        lateinit var playerRecyclerViewAdapter: PlayerRecyclerViewAdapter
 
@@ -19,13 +24,27 @@ class ApplicationClass : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        KakaoSdk.init(this, "d4e7ef1673fec6a777393689a82748d7")
-        // 앱이 처음 생성되는 순간, retrofit 인스턴스를 생성
-//        retrofit = Retrofit.Builder()
-//            .baseUrl(SERVER_URL)
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .build()
 
-//        prefs = PreferenceUtil(applicationContext)
+        KakaoSdk.init(this, "d4e7ef1673fec6a777393689a82748d7")
+
+        prefs = PreferenceUtil(applicationContext)
+        if (prefs.getJWTRefresh()!=null){
+            jwtaccess = prefs.getJWTAccess()!!
+        }
+
+        // 앱이 처음 생성되는 순간, retrofit 인스턴스를 생성
+        retrofit = Retrofit.Builder()
+            .baseUrl(SERVER_URL)
+            .client(provideOkHttpClient(RetrofitInterceptor()))
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
     }
+
+    private fun provideOkHttpClient(interceptor: RetrofitInterceptor): OkHttpClient
+            = OkHttpClient.Builder().run {
+        addInterceptor(interceptor)
+        build()
+    }
+
 }

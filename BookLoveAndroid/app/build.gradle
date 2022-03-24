@@ -58,4 +58,10 @@ dependencies {
 
     // 카카오 로그인
     implementation "com.kakao.sdk:v2-user:2.9.0"
+
+    // Retrofit을 사용하기 위한 Dependency 추가
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+
+    // gson이용
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 }
