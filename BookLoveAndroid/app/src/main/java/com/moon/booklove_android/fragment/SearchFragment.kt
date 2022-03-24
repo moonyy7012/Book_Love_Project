@@ -5,6 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.moon.booklove_android.adapter.BookCategoryAdapter
+import com.moon.booklove_android.config.getRecomm
+import com.moon.booklove_android.config.getSearch
 import com.moon.booklove_android.databinding.FragmentSearchBinding
 
 
@@ -27,7 +30,11 @@ class SearchFragment  : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        val bookCategoryAdapter = BookCategoryAdapter()
+        bookCategoryAdapter.submitList(getSearch())
+        binding.outerRecyclerView.adapter = bookCategoryAdapter
     }
 
 }
+
+
