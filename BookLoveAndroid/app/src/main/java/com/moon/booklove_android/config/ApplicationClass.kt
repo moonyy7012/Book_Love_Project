@@ -13,6 +13,7 @@ class ApplicationClass : Application() {
 
         var interest: MutableList<String> = mutableListOf("소설", "에세이")
         var checkedInterest = mutableListOf<Int>()
+        var recommand: MutableList<String> = mutableListOf("같은 나이대의 사람들이 관심 있어요", "같은 성별의 사람들이 관심 있어요", "같은 장르의 책인데 한 번 보시겠어요?")
     }
 
     override fun onCreate() {

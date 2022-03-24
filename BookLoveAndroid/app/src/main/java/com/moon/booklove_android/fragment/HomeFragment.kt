@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.moon.booklove_android.adapter.BookCategoryAdapter
+import com.moon.booklove_android.config.getData
 import com.moon.booklove_android.databinding.FragmentHomeBinding
 
 
@@ -27,7 +29,9 @@ class HomeFragment  : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        val bookCategoryAdapter = BookCategoryAdapter()
+        bookCategoryAdapter.submitList(getData())
+        binding.outerRecyclerView.adapter = bookCategoryAdapter
     }
 
 }
