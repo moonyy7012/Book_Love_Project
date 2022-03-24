@@ -56,14 +56,12 @@ public class SignController {
                 .type(JoinCode.valueOf(req.getType()))
                 .nickname(req.getNickname())
                 .password(passwordEncoder.encode(req.getPassword()))
-                .gender(req.getGender())
-                .age(req.getAge())
-
+                .gender("")
+                .age(0)
+                .isCheck(false)
                 // 기타 필요한 값 세팅
                 .roles(Collections.singletonList("ROLE_USER"))
                 .build(); // 인증된 회원인지 확인하기 위한 JWT 토큰에 사용될 데이터
-
-        System.out.println(user.toString());
         // 회원가입 (User Entity 저장)
         long userId = signService.userSignUp(user);
 
@@ -126,10 +124,9 @@ public class SignController {
 
     @ApiOperation(value = "로그인", notes = "로그인")
     @GetMapping(value = "/user", produces = MediaType.APPLICATION_JSON_VALUE)
-
     public @ResponseBody SingleResult<LoginResDTO> userLogin(@Valid LoginReqDTO req) throws Exception{
         // uid 중복되는 값이 존재하는지 확인 (uid = 고유한 값)\
-        User user = signService.findUserByUidType(req.getEmail(), JoinCode.valueOf(req.getType()));
+        User user = signService.findUserByUidType(req.getId(), JoinCode.valueOf(req.getType()));
         if(user == null){
             throw new ApiMessageException("아이디가 틀렸다");
         } else if(!passwordEncoder.matches(req.getPassword(), user.getPassword())){
@@ -137,20 +134,17 @@ public class SignController {
         }
         LoginResDTO dto = LoginResDTO.builder()
                 .id(user.getId())
+                .nickname(user.getNickname())
+                .age(user.getAge())
+                .gender(user.getGender())
                 .build();
         List<String> list = Arrays.asList("ROLE_USER");
         dto.setToken(jwtTokenProvider.createToken(String.valueOf(user.getUserId()), list));
 
         user.updateToken(req.getToken());
         signService.saveUser(user);
-
-
         return responseService.getSingleResult(dto);
-
-
     }
-
-
 
 
 

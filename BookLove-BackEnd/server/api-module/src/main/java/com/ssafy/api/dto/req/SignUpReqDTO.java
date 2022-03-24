@@ -17,7 +17,7 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 public class SignUpReqDTO {
     @NotBlank
-    @ApiModelProperty(value = "uid (일반회원:아이디, sns로그인:uid값)", required = true, example = "kakao123")
+    @ApiModelProperty(value = "uid ", required = true, example = "kakao123")
     private String uid;
 
     @NotNull
@@ -33,11 +33,6 @@ public class SignUpReqDTO {
     private String nickname;
 
 
-    @ApiModelProperty(value = "성별", required = false, example = "남자")
-    private String gender;
-
-    @ApiModelProperty(value = "나이", required = true, example = "26")
-    private int age;
 
 
 

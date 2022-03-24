@@ -51,8 +51,7 @@ out/
 
 *.log
 .DS_Store
-application-local.yml
-application-alpha.yml
+
 application-real.yml
 application-aws.yml
 application-credentials.yml
