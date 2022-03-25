@@ -1,5 +1,6 @@
 package com.ssafy.api.dto.req;
 
+import com.ssafy.core.entity.Category;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 

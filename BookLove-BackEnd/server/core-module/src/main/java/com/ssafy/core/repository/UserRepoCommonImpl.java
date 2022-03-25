@@ -29,6 +29,8 @@ public class UserRepoCommonImpl implements UserRepoCommon{
                 .select(QUser.user)
                 .from(QUser.user)
                 .where(QUser.user.id.eq(id), QUser.user.type.eq(type))
+                .leftJoin(QUser.user.categories, QCategory.category)
+                .fetchJoin()
                 .fetchFirst();
 
         return result;
@@ -36,7 +38,7 @@ public class UserRepoCommonImpl implements UserRepoCommon{
 
 
     @Override
-    public User findByUserId(String id){
+    public User findById(String id){
         User result = queryFactory
                 .select(QUser.user)
                 .from(QUser.user)

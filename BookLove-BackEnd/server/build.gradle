@@ -70,8 +70,7 @@ project(":core-module") {
         // S3
         implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-aws', version: '2.2.1.RELEASE'
 
-//        runtime('com.h2database:h2')
-//        runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+
         runtimeOnly 'mysql:mysql-connector-java'
 //        testImplementation("org.springframework.boot:spring-boot-starter-test")
 
@@ -131,5 +130,8 @@ project(":api-module") {
         implementation group: 'commons-io', name: 'commons-io', version: '2.4'
         implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+        // WebClient
+        implementation 'org.springframework.boot:spring-boot-starter-webflux'
+        implementation 'org.projectreactor:reactor-spring:1.0.1.RELEASE'
     }
 }
