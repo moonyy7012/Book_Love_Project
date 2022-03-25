@@ -190,9 +190,9 @@ public class SignController {
 
     @ApiImplicitParams({@ApiImplicitParam(name = "header", value = "refresh Token", required = true, dataType = "string", paramType = "header")})
     @ApiOperation(value = "접근 토큰 재발급", notes = "접근 토큰 재발급")
-    @PutMapping(value = "/user/refresh", produces = MediaType.APPLICATION_JSON_VALUE, headers = "header")
-    public @ResponseBody SingleResult<TokensResDTO> refreshToken(@RequestHeader HttpHeaders header) throws Exception {
-        String refreshToken = header.getFirst("header");
+    @PutMapping(value = "/user/refresh", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody SingleResult<TokensResDTO> refreshToken(HttpServletRequest request) throws Exception {
+        String refreshToken = request.getHeader("header");
         User user = signService.findUserByRefreshToken(refreshToken);
 
         TokensResDTO tokensResDTO = TokensResDTO.builder().build();

@@ -172,6 +172,10 @@ public class User extends BaseEntity implements UserDetails {
     }
 
     public List<String> changeToCategoryNameList() {
+        if (categories == null) {
+            return null;
+        }
+
         List<String> result  = new ArrayList<>();
 
         categories.forEach(x -> result.add(x.getName()));
