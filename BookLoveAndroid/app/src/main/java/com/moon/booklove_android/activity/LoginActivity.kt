@@ -1,6 +1,7 @@
 package com.moon.booklove_android.activity
 
 import android.app.Activity
+import android.app.Application
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -21,6 +22,7 @@ import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 import com.moon.booklove_android.R
+import com.moon.booklove_android.config.ApplicationClass.Companion.initRetrofit
 import com.moon.booklove_android.config.ApplicationClass.Companion.prefs
 import com.moon.booklove_android.databinding.ActivityLoginBinding
 import com.moon.booklove_android.dto.*
@@ -86,6 +88,7 @@ class LoginActivity : AppCompatActivity() {
                 if (it.isSuccess) {
                     val account = task.getResult(ApiException::class.java)!!
                     prefs.setJWTAccess(account.idToken.toString())
+                    initRetrofit()
                     socialSignUp()
                 } else {
                     Log.e("Value", "error")
@@ -123,6 +126,7 @@ class LoginActivity : AppCompatActivity() {
 //                            }
 //                        }
                     prefs.setJWTAccess(token.accessToken)
+                    initRetrofit()
                     socialSignUp()
                 }
             }

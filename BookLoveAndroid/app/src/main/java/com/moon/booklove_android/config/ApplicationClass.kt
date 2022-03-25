@@ -20,6 +20,19 @@ class ApplicationClass : Application() {
 
         var interest: MutableList<String> = mutableListOf("소설", "에세이")
         var checkedInterest = mutableListOf<Int>()
+        fun initRetrofit(){
+            retrofit = Retrofit.Builder()
+                .baseUrl(SERVER_URL)
+                .client(provideOkHttpClient(RetrofitInterceptor()))
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+        }
+
+        fun provideOkHttpClient(interceptor: RetrofitInterceptor): OkHttpClient
+                = OkHttpClient.Builder().run {
+            addInterceptor(interceptor)
+            build()
+        }
     }
 
     override fun onCreate() {
@@ -33,18 +46,21 @@ class ApplicationClass : Application() {
         }
 
         // 앱이 처음 생성되는 순간, retrofit 인스턴스를 생성
-        retrofit = Retrofit.Builder()
-            .baseUrl(SERVER_URL)
-            .client(provideOkHttpClient(RetrofitInterceptor()))
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+        initRetrofit()
 
     }
 
-    private fun provideOkHttpClient(interceptor: RetrofitInterceptor): OkHttpClient
-            = OkHttpClient.Builder().run {
-        addInterceptor(interceptor)
-        build()
-    }
-
+//    private fun provideOkHttpClient(interceptor: RetrofitInterceptor): OkHttpClient
+//            = OkHttpClient.Builder().run {
+//        addInterceptor(interceptor)
+//        build()
+//    }
+//
+//    fun initRetrofit(){
+//        retrofit = Retrofit.Builder()
+//            .baseUrl(SERVER_URL)
+//            .client(provideOkHttpClient(RetrofitInterceptor()))
+//            .addConverterFactory(GsonConverterFactory.create())
+//            .build()
+//    }
 }
