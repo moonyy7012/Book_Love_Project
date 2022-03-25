@@ -44,7 +44,6 @@ public class UserRepoCommonImpl implements UserRepoCommon{
                 .from(QUser.user)
                 .where(QUser.user.id.eq(id))
                 .fetchOne();
-
         return result;
     }
 
