@@ -146,7 +146,7 @@ public class SignController {
                 .nickname(user.getNickname())
                 .age(user.getAge())
                 .gender(user.getGender())
-                .userCategoryList(user.getCategories())
+                .userCategoryList(user.changeToCategoryNameList())
                 .isChecked(user.isChecked())
                 .build();
 
@@ -173,7 +173,7 @@ public class SignController {
                 .nickname(user.getNickname())
                 .age(user.getAge())
                 .gender(user.getGender())
-                .userCategoryList(user.getCategories())
+                .userCategoryList(user.changeToCategoryNameList())
                 .isChecked(user.isChecked())
                 .build();
 

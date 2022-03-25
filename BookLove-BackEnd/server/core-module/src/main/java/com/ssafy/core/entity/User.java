@@ -171,4 +171,12 @@ public class User extends BaseEntity implements UserDetails {
         this.categories.addAll(categories);
     }
 
+    public List<String> changeToCategoryNameList() {
+        List<String> result  = new ArrayList<>();
+
+        categories.forEach(x -> result.add(x.getName()));
+
+        return result;
+    }
+
 }

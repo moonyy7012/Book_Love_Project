@@ -71,7 +71,7 @@ public class SignService {
         User user = userRepository.findById(userId).orElseThrow( () -> new ApiMessageException("존재하지 않는 회원정보입니다.") );
         user.updateAge(req.getAge());
         user.updateGender(req.getGender());
-        user.updateCategory(req.getCategories());
+    //    user.updateCategory(req.getCategories()); 여기는 Category 정보 DB에 넣으면 String으로 Category찾아서 넣는 걸로 수정해야 할 것 같아요. 임시 주석
         return user;
     }
 
@@ -83,7 +83,7 @@ public class SignService {
         }
         user.updateAge(req.getAge());
         user.updateGender(req.getGender());
-        user.updateCategory(req.getCategories());
+  //      user.updateCategory(req.getCategories()); 여기는 Category 정보 DB에 넣으면 String으로 Category찾아서 넣는 걸로 수정해야 할 것 같아요. 임시 주석
 
         return user;
     }

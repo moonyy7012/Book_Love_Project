@@ -27,7 +27,7 @@ public class LoginResDTO {
     private String gender;
 
     @ApiModelProperty(value = "회원 선호 카테고리", required = false, example = "")
-    private List<Category> userCategoryList;
+    private List<String> userCategoryList;
 
     @ApiModelProperty(value = "회원 정보 수집 여부", required = true, example = "")
     private boolean isChecked;

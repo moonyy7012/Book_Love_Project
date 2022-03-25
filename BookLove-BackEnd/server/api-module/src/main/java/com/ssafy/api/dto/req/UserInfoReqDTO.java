@@ -24,5 +24,5 @@ public class UserInfoReqDTO {
     private int age;
 
     @ApiModelProperty(value = "category", required = true, example = "소설")
-    private List<Category> categories;
+    private List<String> categories;
 }
