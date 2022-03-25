@@ -63,10 +63,8 @@ public class SignService {
     }
 
     @Transactional(readOnly = false)
-    public User updateUser(long id, UserUpdateInfoReqDTO req){
+    public User updateUser(long id, UserInfoReqDTO req){
         User user = userRepository.findById(id).orElseThrow( () -> new ApiMessageException("존재하지 않는 회원정보입니다.") );
-        user.updateNickname(req.getNickname());
-        user.updatePwd(req.getPassword());
         user.updateAge(req.getAge());
         user.updateGender(req.getGender());
         user.updateCategory(req.getCategories());

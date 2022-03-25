@@ -8,6 +8,7 @@ import com.ssafy.api.dto.req.UserUpdateInfoReqDTO;
 import com.ssafy.api.dto.res.LoginResDTO;
 import com.ssafy.api.dto.res.UserInfoResDTO;
 import com.ssafy.api.service.SignService;
+import com.ssafy.api.service.common.CommonResult;
 import com.ssafy.api.service.common.ResponseService;
 import com.ssafy.api.service.common.SingleResult;
 import com.ssafy.core.code.JoinCode;
@@ -45,7 +46,8 @@ public class SignController {
     // 일반 회원가입(ID, PW만 입력)
     @ApiOperation(value = "회원가입", notes = "회원가입")
     @PostMapping(value = "/user", produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody boolean userSignUp(@Valid SignUpReqDTO req) throws Exception{
+    public @ResponseBody
+    CommonResult userSignUp(@Valid SignUpReqDTO req) throws Exception{
         // uid 중복되는 값이 존재하는지 확인 (uid = 고유한 값)
         User uidChk = signService.findByUid(req.getUid());
         if(uidChk != null)
@@ -68,46 +70,47 @@ public class SignController {
         if(userId <= 0)
             throw new ApiMessageException("회원가입에 실패했습니다. 다시 시도해 주세요.");
 
-        return true;
+        return responseService.getSuccessResult();
     }
     //retrun true -> 추가정보 입력완료 false-> 카테고리 미입력
     @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "JWT Token", required = true, dataType = "string", paramType = "header")})
     @ApiOperation(value = "추가정보 입력", notes = "추가정보 입력")
     @PostMapping(value = "/user/info", produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody boolean inputInfo(@Valid UserInfoReqDTO req, HttpServletRequest request)throws Exception {
+    public @ResponseBody SingleResult<Boolean> inputInfo(@Valid UserInfoReqDTO req, HttpServletRequest request)throws Exception {
         String token = jwtTokenProvider.resolveToken(request);
         String userPk = jwtTokenProvider.getUserPk(token);
         User user = signService.enrollUserInfo(Long.parseLong(userPk), req);
         signService.saveUser(user);
-        return user.isCheck();
+        boolean isCheck = user.isCheck();
+        return responseService.getSingleResult(isCheck);
 
     }
 
     //아이디 중복 체크 true->중복X false->중복O
     @ApiOperation(value = "ID중복체크", notes = "ID중복체크")
     @PostMapping(value = "/user/idcheck/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody Boolean checkId(@PathVariable String userId)throws Exception{
+    public @ResponseBody SingleResult<Boolean> checkId(@PathVariable String userId)throws Exception{
         User uidChk = signService.findByUid(userId);
+        boolean isOverlap = false;
         if(uidChk == null){
-            return true;
-        }else{
-            return false;
+            isOverlap=true;
         }
+        return responseService.getSingleResult(isOverlap);
 
     }
 
-    //회원정보 수정(카테고리제외)
-    @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "JWT Token", required = true, dataType = "string", paramType = "header")})
-    @ApiOperation(value = "회원 정보 수정", notes = "회원 정보 수정")
-    @PutMapping(value = "/user/info", produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody
-    SingleResult<UserInfoResDTO> updateUser(@Valid UserUpdateInfoReqDTO req, HttpServletRequest request) throws Exception {
-        String token = jwtTokenProvider.resolveToken(request);
-        String userPk = jwtTokenProvider.getUserPk(token);
-        User user = signService.updateUser(Long.parseLong(userPk), req);
-        signService.saveUser(user);
-        return responseService.getSingleResult(UserInfoResDTO.builder().id(user.getUserId()).build());
-    }
+//    //회원정보 수정
+//    @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "JWT Token", required = true, dataType = "string", paramType = "header")})
+//    @ApiOperation(value = "회원 정보 수정", notes = "회원 정보 수정")
+//    @PutMapping(value = "/user/info", produces = MediaType.APPLICATION_JSON_VALUE)
+//    public @ResponseBody
+//    CommonResult updateUser(@Valid UserInfoReqDTO req, HttpServletRequest request) throws Exception {
+//        String token = jwtTokenProvider.resolveToken(request);
+//        String userPk = jwtTokenProvider.getUserPk(token);
+//        User user = signService.updateUser(Long.parseLong(userPk), req);
+//        signService.saveUser(user);
+//        return responseService.getSuccessResult();
+//    }
 
     //userId로 회원정보 조회
     @ApiOperation(value = "회원 정보", notes = "회원 정보")
@@ -122,13 +125,12 @@ public class SignController {
     @ApiOperation(value = "회원 정보 삭제", notes = "회원 정보 삭제")
     @DeleteMapping(value = "/user/delete/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    SingleResult<UserInfoResDTO> deleteUser(@PathVariable long userId) throws Exception {
+    CommonResult deleteUser(@PathVariable long userId) throws Exception {
         User user = signService.findUserById(userId);
         signService.deleteUser(user);
-        return responseService.getSingleResult(UserInfoResDTO.builder().id(user.getUserId()).build());
+        return responseService.getSuccessResult();
     }
 
-    /////////////
 
     //
     @ApiOperation(value = "로그인", notes = "로그인")
