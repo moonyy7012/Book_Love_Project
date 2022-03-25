@@ -4,16 +4,14 @@ import com.ssafy.api.config.security.JwtTokenProvider;
 import com.ssafy.api.dto.req.LoginReqDTO;
 import com.ssafy.api.dto.req.SignUpReqDTO;
 import com.ssafy.api.dto.req.UserInfoReqDTO;
+import com.ssafy.api.dto.req.UserUpdateInfoReqDTO;
 import com.ssafy.api.dto.res.LoginResDTO;
-import com.ssafy.api.dto.res.UserIdResDTO;
 import com.ssafy.api.dto.res.UserInfoResDTO;
-import com.ssafy.api.service.CategoryService;
 import com.ssafy.api.service.SignService;
 import com.ssafy.api.service.common.ResponseService;
 import com.ssafy.api.service.common.SingleResult;
 import com.ssafy.core.code.JoinCode;
 import com.ssafy.core.entity.User;
-import com.ssafy.core.entity.UserCategory;
 import com.ssafy.core.exception.ApiMessageException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -42,7 +40,7 @@ public class SignController {
     private final PasswordEncoder passwordEncoder;
     private final ResponseService responseService;
     private final JwtTokenProvider jwtTokenProvider;
-    private final CategoryService categoryService;
+
 
     // 일반 회원가입(ID, PW만 입력)
     @ApiOperation(value = "회원가입", notes = "회원가입")
@@ -52,16 +50,14 @@ public class SignController {
         User uidChk = signService.findByUid(req.getUid());
         if(uidChk != null)
             throw new ApiMessageException("중복된 uid값의 회원이 존재합니다.");
-
         // DB에 저장할 User Entity 세팅
         User user = User.builder()
                 .id(req.getUid())
                 .type(JoinCode.valueOf("none"))
-                .nickname("")
+                .nickname(req.getNickname())
                 .password(passwordEncoder.encode(req.getPassword()))
-                .gender("")
-                .age(0)
                 .isCheck(false)
+                .categories(null)
                 // 기타 필요한 값 세팅
                 .roles(Collections.singletonList("ROLE_USER"))
                 .build(); // 인증된 회원인지 확인하기 위한 JWT 토큰에 사용될 데이터
@@ -74,6 +70,19 @@ public class SignController {
 
         return true;
     }
+    //retrun true -> 추가정보 입력완료 false-> 카테고리 미입력
+    @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "JWT Token", required = true, dataType = "string", paramType = "header")})
+    @ApiOperation(value = "추가정보 입력", notes = "추가정보 입력")
+    @PostMapping(value = "/user/info", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody boolean inputInfo(@Valid UserInfoReqDTO req, HttpServletRequest request)throws Exception {
+        String token = jwtTokenProvider.resolveToken(request);
+        String userPk = jwtTokenProvider.getUserPk(token);
+        User user = signService.enrollUserInfo(Long.parseLong(userPk), req);
+        signService.saveUser(user);
+        return user.isCheck();
+
+    }
+
     //아이디 중복 체크 true->중복X false->중복O
     @ApiOperation(value = "ID중복체크", notes = "ID중복체크")
     @PostMapping(value = "/user/idcheck/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -92,17 +101,12 @@ public class SignController {
     @ApiOperation(value = "회원 정보 수정", notes = "회원 정보 수정")
     @PutMapping(value = "/user/info", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    SingleResult<UserInfoResDTO> updateUser(@Valid UserInfoReqDTO req, HttpServletRequest request) throws Exception {
+    SingleResult<UserInfoResDTO> updateUser(@Valid UserUpdateInfoReqDTO req, HttpServletRequest request) throws Exception {
         String token = jwtTokenProvider.resolveToken(request);
-        String user = jwtTokenProvider.getUserPk(token);
-        User user1 = signService.findUserById(Long.parseLong(user));
-        user1.updateNickname(req.getNickname());
-        user1.updatePwd(passwordEncoder.encode(req.getPassword()));
-        user1.updateGender(req.getGender());
-        user1.updateAge(req.getAge());
-        user1.updateIsChecked(true);
-        signService.saveUser(user1);
-        return responseService.getSingleResult(UserInfoResDTO.builder().id(user1.getUserId()).build());
+        String userPk = jwtTokenProvider.getUserPk(token);
+        User user = signService.updateUser(Long.parseLong(userPk), req);
+        signService.saveUser(user);
+        return responseService.getSingleResult(UserInfoResDTO.builder().id(user.getUserId()).build());
     }
 
     //userId로 회원정보 조회
@@ -137,14 +141,25 @@ public class SignController {
         } else if(!passwordEncoder.matches(req.getPassword(), user.getPassword())){
             throw new ApiMessageException("비밀번호가 틀렸다");
         }
-        List<UserCategory> userCategoryList = categoryService.getUserCategoryByUserId(user.getUserId());
-        LoginResDTO dto = LoginResDTO.builder()
-                .id(user.getId())
-                .nickname(user.getNickname())
-                .age(user.getAge())
-                .gender(user.getGender())
-                .userCategoryList(userCategoryList)
-                .build();
+        LoginResDTO dto;
+        if(user.isCheck()){
+            dto = LoginResDTO.builder()
+                    .id(user.getUserId())
+                    .nickname(user.getNickname())
+                    .age(user.getAge())
+                    .gender(user.getGender())
+                    .userCategoryList(user.getCategories())
+                    .build();
+        }
+        else{
+            dto = LoginResDTO.builder()
+                    .id(user.getUserId())
+                    .nickname(user.getNickname())
+                    .age(user.getAge())
+                    .gender(user.getGender())
+                    .build();
+        }
+
         List<String> list = Arrays.asList("ROLE_USER");
         dto.setToken(jwtTokenProvider.createToken(String.valueOf(user.getUserId()), list));
         user.updateToken(req.getToken());

@@ -1,6 +1,7 @@
 package com.ssafy.api.service;
 
 import com.ssafy.api.dto.req.UserInfoReqDTO;
+import com.ssafy.api.dto.req.UserUpdateInfoReqDTO;
 import com.ssafy.core.code.JoinCode;
 import com.ssafy.core.code.YNCode;
 import com.ssafy.core.entity.User;
@@ -62,14 +63,30 @@ public class SignService {
     }
 
     @Transactional(readOnly = false)
-    public User updateUser(long id, UserInfoReqDTO req){
+    public User updateUser(long id, UserUpdateInfoReqDTO req){
         User user = userRepository.findById(id).orElseThrow( () -> new ApiMessageException("존재하지 않는 회원정보입니다.") );
         user.updateNickname(req.getNickname());
         user.updatePwd(req.getPassword());
         user.updateAge(req.getAge());
         user.updateGender(req.getGender());
+        user.updateCategory(req.getCategories());
         return user;
     }
+
+    @Transactional(readOnly = false)
+    public User enrollUserInfo(long id, UserInfoReqDTO req){
+        User user = userRepository.findById(id).orElseThrow( () -> new ApiMessageException("존재하지 않는 회원정보입니다.") );
+        if(!req.getCategories().isEmpty()){
+            user.updateIsChecked(true);
+        }
+        user.updateAge(req.getAge());
+        user.updateGender(req.getGender());
+        user.updateCategory(req.getCategories());
+
+        return user;
+    }
+
+
 
     @Transactional(readOnly = false)
     public void deleteUser(User user){
