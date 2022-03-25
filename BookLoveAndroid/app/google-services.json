@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "462578879774-kovulh11b2e3smh4k98kpiofccjaokum.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.moon.booklove_android",
+            "certificate_hash": "7749bcb1abf32db0b80424fee3ec9be49dc3dc07"
+          }
+        },
+        {
           "client_id": "462578879774-jfvjbn7h8m911flh34n4vrmn8ev8a6it.apps.googleusercontent.com",
           "client_type": 3
         }

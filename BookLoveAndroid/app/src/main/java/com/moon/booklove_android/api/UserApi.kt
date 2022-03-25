@@ -15,7 +15,7 @@ interface UserApi {
     fun normalLogin(@Body normalLoginReqDTO: NormalLoginReqDTO): Call<SingleResult<NormalLoginResDTO>>
 
     // 소셜 로그인
-    @POST("api/nickname")
+    @GET("api/nickname")
     fun socialSignUp(): Call<SingleResult<SocialLoginResDTO>>
 
     // 아이디 중복체크 (일반 로그인)

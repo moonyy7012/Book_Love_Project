@@ -87,13 +87,16 @@ class LoginActivity : AppCompatActivity() {
             result?.let {
                 if (it.isSuccess) {
                     val account = task.getResult(ApiException::class.java)!!
+                    Log.i("TAGG", account.idToken.toString())
                     prefs.setJWTAccess(account.idToken.toString())
                     initRetrofit()
                     socialSignUp()
                 } else {
-                    Log.e("Value", "error")
+                    Log.e("TAGG", "error")
                 }
             }
+        } else {
+            Log.e("TAGG", "error2")
         }
     }
 
@@ -111,8 +114,8 @@ class LoginActivity : AppCompatActivity() {
                     // 카카오톡에 연결된 카카오계정이 없는 경우, 카카오계정으로 로그인 시도
                     UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
                 } else if (token != null) {
-//                        Log.i("TAG", "카카오톡으로 로그인 성공 ${token.accessToken}")
-//                        Log.d("TAGGG", "카카오톡으로 로그인 성공 ${token}")
+                        Log.i("TAG", "카카오톡으로 로그인 성공 ${token.accessToken}")
+                        Log.d("TAGGG", "카카오톡으로 로그인 성공 ${token}")
 //                        //lateinit var kakaouser: SocialLoginReqDTO
 //
 //                        UserApiClient.instance.me { user, error ->
@@ -138,25 +141,28 @@ class LoginActivity : AppCompatActivity() {
     private fun socialSignUp() {
         UserService().socialSignUp(object : RetrofitCallback<SingleResult<SocialLoginResDTO>> {
             override fun onSuccess(code: Int, responseData: SingleResult<SocialLoginResDTO>) {
-                if (responseData.data.id > 0L) {
+              //  if (responseData.data.id > 0L) {
                     Toast.makeText(this@LoginActivity, "회원 가입 성공!", Toast.LENGTH_SHORT).show()
                     //바로 로그인
-                    prefs.setJWTAccess(responseData.data.jwtAccess)
-                    prefs.setJWTRefresh(responseData.data.jwtRefresh)
+               //     prefs.setJWTAccess(responseData.data.jwtAccess)
+               //     prefs.setJWTRefresh(responseData.data.jwtRefresh)
                     val intent = Intent(this@LoginActivity, CollectActivity::class.java)
                     startActivity(intent)
-                } else {
-                    Toast.makeText(this@LoginActivity, "문제가 발생하였습니다. 다시 시도해주세요.",
-                        Toast.LENGTH_SHORT).show()
-                }
+          //      } else {
+         //           Log.i("TAGG", responseData.toString())
+         //           Toast.makeText(this@LoginActivity, "문제가 발생하였습니다. 다시 시도해주세요.",
+         //               Toast.LENGTH_SHORT).show()
+         //       }
             }
 
             override fun onFailure(code: Int) {
+                Log.i("TAGG", ""+code+" ")
                 Toast.makeText(this@LoginActivity, "문제가 발생하였습니다. 다시 시도해주세요.", Toast.LENGTH_SHORT)
                     .show()
             }
 
             override fun onError(t: Throwable) {
+                Log.i("TAGG",t.toString())
                 Toast.makeText(this@LoginActivity, "문제가 발생하였습니다. 다시 시도해주세요.", Toast.LENGTH_SHORT)
                     .show()
             }
