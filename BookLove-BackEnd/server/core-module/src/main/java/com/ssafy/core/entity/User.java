@@ -12,8 +12,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -53,20 +51,26 @@ public class User extends BaseEntity implements UserDetails {
     private String nickname;
 
     // 회원 성별
-    @Column(nullable = false, length = 64)
+    @Column( length = 64)
     private String gender;
 
     // 회원 나이
-    @Column(nullable = false, length = 64)
+    @Column( length = 64)
     private int age;
     // 비밀번호
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(nullable = false, length = 255)
     private String password;
 
+    // 카테고리
+    @Column( length = 255)
+    @ElementCollection
+    private List<String> categories;
+
     // 회원 선호정보 입력여부
     @Column(nullable = false, length = 64)
     private boolean isCheck;
+
     // 장비 푸시용 토큰
     @Column(length = 255)
     private String token;
@@ -147,6 +151,17 @@ public class User extends BaseEntity implements UserDetails {
     public void updateToken(String token){
 
         this.token = token;
+    }
+
+    public void updateIsChecked(boolean isCheck){
+
+        this.isCheck = isCheck;
+    }
+
+    public void updateCategory(List<String> categories){
+        this.categories.clear();
+        this.categories.addAll(categories);
+
     }
 
 }

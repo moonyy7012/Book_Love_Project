@@ -20,22 +20,13 @@ public class SignUpReqDTO {
     @ApiModelProperty(value = "uid ", required = true, example = "kakao123")
     private String uid;
 
-    @NotNull
-    @Pattern(regexp = "^(none|sns)$")
-    @ApiModelProperty(value = "회원가입 타입 (none, sns)", required = true, example = "sns")
-    private String type;
-
     @NotBlank
     @ApiModelProperty(value = "비밀번호", required = true, example = "123")
     private String password;
 
-    @ApiModelProperty(value = "이름", required = false, example = "카카오")
+    @NotBlank
+    @ApiModelProperty(value = "닉네임", required = true, example = "닉네임")
     private String nickname;
-
-
-
-
-
 
 
 }

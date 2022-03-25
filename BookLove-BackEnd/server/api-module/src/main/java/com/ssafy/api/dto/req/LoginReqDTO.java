@@ -19,7 +19,7 @@ public class LoginReqDTO {
 
     @NotNull
     @Pattern(regexp = "^(none|sns)$")
-    @ApiModelProperty(value = "로그인 타입 (none, sns)", required = true, example = "sns")
+    @ApiModelProperty(value = "로그인 타입 (none, sns)", required = true, example = "none")
     private String type;
 
     @NotBlank
