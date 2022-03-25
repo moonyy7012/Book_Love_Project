@@ -50,7 +50,7 @@ public class CategoryController {
 
         long userCategoryId = categoryService.enrollCategory(userCategory);
         if(userCategoryId<=0){
-            throw new ApiMessageException("회원가입에 실패했습니다. 다시 시도해 주세요.");
+            throw new ApiMessageException("카테고리등록에 실패했습니다");
         }
         return true;
     }

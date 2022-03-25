@@ -100,6 +100,7 @@ public class SignController {
         user1.updatePwd(passwordEncoder.encode(req.getPassword()));
         user1.updateGender(req.getGender());
         user1.updateAge(req.getAge());
+        user1.updateIsChecked(true);
         signService.saveUser(user1);
         return responseService.getSingleResult(UserInfoResDTO.builder().id(user1.getUserId()).build());
     }
@@ -146,7 +147,6 @@ public class SignController {
                 .build();
         List<String> list = Arrays.asList("ROLE_USER");
         dto.setToken(jwtTokenProvider.createToken(String.valueOf(user.getUserId()), list));
-
         user.updateToken(req.getToken());
         signService.saveUser(user);
         return responseService.getSingleResult(dto);
