@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
-import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
@@ -27,7 +26,8 @@ public class JwtTokenProvider { // JWT 토큰을 생성 및 검증 모듈
     @Value("${spring.jwt.secret}")
     private String secretKey;
 
-    private long tokenValidMilisecond = 1000L * 60 * 60 * 24 * 30; // 30일만 토큰 유효
+    private long accessTokenValidMilisecond = 1000L * 60 * 60 * 24 * 1; // 1일만 토큰 유효
+    private long refreshTokenValidMilisecond = 1000L * 60 * 60 * 24 * 10; // 10일만 토큰 유효
 
     private final UserDetailsService userDetailsService;
 
@@ -37,7 +37,7 @@ public class JwtTokenProvider { // JWT 토큰을 생성 및 검증 모듈
     }
 
     // Jwt 토큰 생성
-    public String createToken(String userPk, List<String> roles) {
+    public String createAccessToken(String userPk, List<String> roles) {
         Claims claims = Jwts.claims().setSubject(userPk);
         claims.put("roles", roles);
         claims.put("userPk", userPk);
@@ -45,7 +45,27 @@ public class JwtTokenProvider { // JWT 토큰을 생성 및 검증 모듈
         return Jwts.builder()
                 .setClaims(claims) // 데이터
                 .setIssuedAt(now) // 토큰 발행일자
-                .setExpiration(new Date(now.getTime() + tokenValidMilisecond)) // set Expire Time
+                .setExpiration(new Date(now.getTime() + accessTokenValidMilisecond)) // set Expire Time
+                .signWith(SignatureAlgorithm.HS256, secretKey) // 암호화 알고리즘, secret값 세팅
+                .compact();
+    }
+
+    // 로그인시 RefreshToken 발급
+    public String createRefreshToken() {
+        Date now = new Date();
+        return Jwts.builder()
+                .setIssuedAt(now) // 토큰 발행일자
+                .setExpiration(new Date(now.getTime() + refreshTokenValidMilisecond)) // set Expire Time
+                .signWith(SignatureAlgorithm.HS256, secretKey) // 암호화 알고리즘, secret값 세팅
+                .compact();
+    }
+
+    // AccessToken 만료 후 다시 요청시 Refresh Token 발급
+    public String createRefreshToken(String jwtToken) {
+        Date now = new Date();
+        return Jwts.builder()
+                .setIssuedAt(now) // 토큰 발행일자
+                .setExpiration(Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwtToken).getBody().getExpiration()) // set Expire Time
                 .signWith(SignatureAlgorithm.HS256, secretKey) // 암호화 알고리즘, secret값 세팅
                 .compact();
     }

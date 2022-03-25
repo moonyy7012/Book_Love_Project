@@ -8,8 +8,8 @@ import lombok.Getter;
 // 가입 타입으로 사용될 코드값
 public enum JoinCode implements BaseEnumCode<String> {
 
-    none("none"),
-    sns("sns"),
+    NONE("NONE"),
+    KAKAO("KAKAO"),
     NULL("");
 
     private final String value;

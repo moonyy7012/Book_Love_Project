@@ -1,15 +1,19 @@
 package com.ssafy.api.service;
 
 import com.ssafy.api.dto.req.UserInfoReqDTO;
-import com.ssafy.api.dto.req.UserUpdateInfoReqDTO;
+import com.ssafy.api.dto.res.SocialUserResponseDTO;
 import com.ssafy.core.code.JoinCode;
-import com.ssafy.core.code.YNCode;
 import com.ssafy.core.entity.User;
 import com.ssafy.core.exception.ApiMessageException;
 import com.ssafy.core.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
+
+import java.util.Collections;
 
 
 @Service
@@ -37,8 +41,8 @@ public class SignService {
      * @return
      * @throws Exception
      */
-    public User findByUid(String id) throws Exception{
-        return userRepository.findByUserId(id);
+    public User findById(String id) throws Exception{
+        return userRepository.findById(id);
     }
 
 
@@ -53,8 +57,8 @@ public class SignService {
         return signUpUser.getUserId();
     }
 
-    public User findUserByUidType(String email, JoinCode type){
-        return userRepository.findUserLogin(email, type);
+    public User findUserByIdType(String id, JoinCode type){
+        return userRepository.findUserLogin(id, type);
     }
 
     @Transactional(readOnly = false)
@@ -63,8 +67,8 @@ public class SignService {
     }
 
     @Transactional(readOnly = false)
-    public User updateUser(long id, UserInfoReqDTO req){
-        User user = userRepository.findById(id).orElseThrow( () -> new ApiMessageException("존재하지 않는 회원정보입니다.") );
+    public User updateUser(long userId, UserInfoReqDTO req){
+        User user = userRepository.findById(userId).orElseThrow( () -> new ApiMessageException("존재하지 않는 회원정보입니다.") );
         user.updateAge(req.getAge());
         user.updateGender(req.getGender());
         user.updateCategory(req.getCategories());
@@ -72,8 +76,8 @@ public class SignService {
     }
 
     @Transactional(readOnly = false)
-    public User enrollUserInfo(long id, UserInfoReqDTO req){
-        User user = userRepository.findById(id).orElseThrow( () -> new ApiMessageException("존재하지 않는 회원정보입니다.") );
+    public User enrollUserInfo(long userId, UserInfoReqDTO req){
+        User user = userRepository.findById(userId).orElseThrow( () -> new ApiMessageException("존재하지 않는 회원정보입니다.") );
         if(!req.getCategories().isEmpty()){
             user.updateIsChecked(true);
         }
@@ -84,16 +88,45 @@ public class SignService {
         return user;
     }
 
-
-
     @Transactional(readOnly = false)
     public void deleteUser(User user){
         userRepository.deleteUser(user);
         userRepository.delete(user);
     }
 
+    @Transactional(readOnly = false)
+    public User socialLogin(String accessToken) {
+        SocialUserResponseDTO socialUser = WebClient.create().get()
+                .uri("https://kapi.kakao.com/v2/user/me")
+                .headers(h -> h.setBearerAuth(accessToken))
+                .retrieve()
+                .onStatus(HttpStatus::is4xxClientError, response -> Mono.error(new ApiMessageException(401, "소셜 토큰이 유효하지 않습니다.")))
+                .onStatus(HttpStatus::is5xxServerError, response -> Mono.error(new ApiMessageException("내부 서버 에러")))
+                .bodyToMono(SocialUserResponseDTO.class)
+                .block();
 
+        User user = userRepository.findUserLogin(socialUser.getId(), JoinCode.KAKAO);
 
+        if (user == null) {
+            user = User.builder()
+                    .id(socialUser.getId())
+                    .type(JoinCode.KAKAO)
+                    .nickname(socialUser.getProperties().getNickname())
+                    .isChecked(false)
+                    .roles(Collections.singletonList("ROLE_USER"))
+                    .build();
+
+            user = userRepository.save(user);
+        }
+
+        return user;
+    }
+
+    public User findUserByRefreshToken(String token) {
+        User user = userRepository.findUserByRefreshToken(token).orElseThrow(() -> new ApiMessageException(401, "존재하지 않는 토큰 정보입니다.") );
+
+        return user;
+    }
 }
 
 

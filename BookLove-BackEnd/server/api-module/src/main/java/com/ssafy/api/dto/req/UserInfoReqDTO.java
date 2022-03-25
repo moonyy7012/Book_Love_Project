@@ -1,5 +1,6 @@
 package com.ssafy.api.dto.req;
 
+import com.ssafy.core.entity.Category;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
@@ -23,5 +24,5 @@ public class UserInfoReqDTO {
     private int age;
 
     @ApiModelProperty(value = "category", required = true, example = "소설")
-    private List<String> categories;
+    private List<Category> categories;
 }

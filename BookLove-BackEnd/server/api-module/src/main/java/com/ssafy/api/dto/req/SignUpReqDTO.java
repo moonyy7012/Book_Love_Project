@@ -17,8 +17,8 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 public class SignUpReqDTO {
     @NotBlank
-    @ApiModelProperty(value = "uid ", required = true, example = "kakao123")
-    private String uid;
+    @ApiModelProperty(value = "id", required = true, example = "kakao123")
+    private String id;
 
     @NotBlank
     @ApiModelProperty(value = "비밀번호", required = true, example = "123")

@@ -51,30 +51,36 @@ public class User extends BaseEntity implements UserDetails {
     private String nickname;
 
     // 회원 성별
-    @Column( length = 64)
+    @Column(length = 64)
     private String gender;
 
     // 회원 나이
-    @Column( length = 64)
+    @Column(length = 64)
     private int age;
+
     // 비밀번호
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @Column(nullable = false, length = 255)
+    @Column(length = 255)
     private String password;
 
     // 카테고리
-    @Column( length = 255)
-    @ElementCollection
-    private List<String> categories;
+    @ManyToMany
+    @JoinTable(name = "category_user",
+            joinColumns = @JoinColumn(name = "category_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private List<Category> categories;
 
     // 회원 선호정보 입력여부
     @Column(nullable = false, length = 64)
-    private boolean isCheck;
+    private boolean isChecked;
 
-    // 장비 푸시용 토큰
+    // 접근용 토큰
     @Column(length = 255)
-    private String token;
+    private String accessToken;
 
+    // 재발급용 토큰
+    @Column(length = 255)
+    private String refreshToken;
 
     // =================================================================================================
     // JWT
@@ -148,20 +154,21 @@ public class User extends BaseEntity implements UserDetails {
         this.password=password;
     }
 
-    public void updateToken(String token){
-
-        this.token = token;
+    public void updateAccessToken(String token){
+        this.accessToken = token;
     }
 
-    public void updateIsChecked(boolean isCheck){
-
-        this.isCheck = isCheck;
+    public void updateRefreshToken(String token){
+        this.refreshToken = token;
     }
 
-    public void updateCategory(List<String> categories){
+    public void updateIsChecked(boolean isChecked){
+        this.isChecked = isChecked;
+    }
+
+    public void updateCategory(List<Category> categories){
         this.categories.clear();
         this.categories.addAll(categories);
-
     }
 
 }

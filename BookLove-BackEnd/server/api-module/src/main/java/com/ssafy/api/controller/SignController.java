@@ -4,9 +4,8 @@ import com.ssafy.api.config.security.JwtTokenProvider;
 import com.ssafy.api.dto.req.LoginReqDTO;
 import com.ssafy.api.dto.req.SignUpReqDTO;
 import com.ssafy.api.dto.req.UserInfoReqDTO;
-import com.ssafy.api.dto.req.UserUpdateInfoReqDTO;
 import com.ssafy.api.dto.res.LoginResDTO;
-import com.ssafy.api.dto.res.UserInfoResDTO;
+import com.ssafy.api.dto.res.TokensResDTO;
 import com.ssafy.api.service.SignService;
 import com.ssafy.api.service.common.CommonResult;
 import com.ssafy.api.service.common.ResponseService;
@@ -20,6 +19,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -49,17 +49,16 @@ public class SignController {
     public @ResponseBody
     CommonResult userSignUp(@Valid SignUpReqDTO req) throws Exception{
         // uid 중복되는 값이 존재하는지 확인 (uid = 고유한 값)
-        User uidChk = signService.findByUid(req.getUid());
+        User uidChk = signService.findById(req.getId());
         if(uidChk != null)
             throw new ApiMessageException("중복된 uid값의 회원이 존재합니다.");
         // DB에 저장할 User Entity 세팅
         User user = User.builder()
-                .id(req.getUid())
-                .type(JoinCode.valueOf("none"))
+                .id(req.getId())
+                .type(JoinCode.NONE)
                 .nickname(req.getNickname())
                 .password(passwordEncoder.encode(req.getPassword()))
-                .isCheck(false)
-                .categories(null)
+                .isChecked(false)
                 // 기타 필요한 값 세팅
                 .roles(Collections.singletonList("ROLE_USER"))
                 .build(); // 인증된 회원인지 확인하기 위한 JWT 토큰에 사용될 데이터
@@ -81,22 +80,21 @@ public class SignController {
         String userPk = jwtTokenProvider.getUserPk(token);
         User user = signService.enrollUserInfo(Long.parseLong(userPk), req);
         signService.saveUser(user);
-        boolean isCheck = user.isCheck();
+        boolean isCheck = user.isChecked();
         return responseService.getSingleResult(isCheck);
-
     }
 
     //아이디 중복 체크 true->중복O false->중복X
     @ApiOperation(value = "ID중복체크", notes = "ID중복체크")
-    @PostMapping(value = "/user/idcheck/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody SingleResult<Boolean> checkId(@PathVariable String userId)throws Exception{
-        User uidChk = signService.findByUid(userId);
-        boolean isOverlap = true;
-        if(uidChk == null){
-            isOverlap=false;
-        }
-        return responseService.getSingleResult(isOverlap);
+    @PostMapping(value = "/user/idcheck/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody SingleResult<Boolean> checkId(@PathVariable String id)throws Exception{
+        User uidChk = signService.findById(id);
 
+        boolean isOverlaped = true;
+        if (uidChk == null) {
+            isOverlaped = false;
+        }
+        return responseService.getSingleResult(isOverlaped);
     }
 
 //    //회원정보 수정
@@ -118,7 +116,6 @@ public class SignController {
     public @ResponseBody SingleResult infoUser(@PathVariable long userId) throws Exception {
         User user = signService.findUserById(userId);
         return responseService.getSingleResult(user);
-
     }
 
     //회원 삭제
@@ -135,40 +132,82 @@ public class SignController {
     //
     @ApiOperation(value = "로그인", notes = "로그인")
     @GetMapping(value = "/user", produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody SingleResult<LoginResDTO> userLogin(@Valid LoginReqDTO req) throws Exception{
+    public @ResponseBody SingleResult<LoginResDTO> userLogin(@Valid LoginReqDTO req) throws Exception {
         // uid 중복되는 값이 존재하는지 확인 (uid = 고유한 값)\
-        User user = signService.findUserByUidType(req.getId(), JoinCode.valueOf(req.getType()));
-        if(user == null){
+        User user = signService.findUserByIdType(req.getId(), JoinCode.NONE);
+        if (user == null) {
             throw new ApiMessageException("아이디가 틀렸다");
-        } else if(!passwordEncoder.matches(req.getPassword(), user.getPassword())){
+        } else if (!passwordEncoder.matches(req.getPassword(), user.getPassword())) {
             throw new ApiMessageException("비밀번호가 틀렸다");
         }
-        LoginResDTO dto;
-        if(user.isCheck()){
-            dto = LoginResDTO.builder()
-                    .id(user.getUserId())
-                    .nickname(user.getNickname())
-                    .age(user.getAge())
-                    .gender(user.getGender())
-                    .userCategoryList(user.getCategories())
-                    .build();
-        }
-        else{
-            dto = LoginResDTO.builder()
-                    .id(user.getUserId())
-                    .nickname(user.getNickname())
-                    .age(user.getAge())
-                    .gender(user.getGender())
-                    .build();
-        }
+
+        LoginResDTO dto = LoginResDTO.builder()
+                .userId(user.getUserId())
+                .nickname(user.getNickname())
+                .age(user.getAge())
+                .gender(user.getGender())
+                .userCategoryList(user.getCategories())
+                .isChecked(user.isChecked())
+                .build();
 
         List<String> list = Arrays.asList("ROLE_USER");
-        dto.setToken(jwtTokenProvider.createToken(String.valueOf(user.getUserId()), list));
-        user.updateToken(req.getToken());
+        dto.setAccessToken(jwtTokenProvider.createAccessToken(String.valueOf(user.getUserId()), list));
+        dto.setRefreshToken(jwtTokenProvider.createRefreshToken());
+
+        user.updateAccessToken(dto.getAccessToken());
+        user.updateRefreshToken(dto.getRefreshToken());
+
         signService.saveUser(user);
+
         return responseService.getSingleResult(dto);
     }
 
+    @ApiImplicitParams({@ApiImplicitParam(name = "header", value = "Kakao Token", required = true, dataType = "string", paramType = "header")})
+    @ApiOperation(value = "소셜 로그인", notes = "소셜 로그인")
+    @PostMapping(value = "/user/social", produces = MediaType.APPLICATION_JSON_VALUE, headers = "header")
+    public @ResponseBody SingleResult<LoginResDTO> socialLogin(@RequestHeader HttpHeaders header) throws Exception {
+        User user = signService.socialLogin(header.getFirst("header"));
 
+        LoginResDTO dto = LoginResDTO.builder()
+                .userId(user.getUserId())
+                .nickname(user.getNickname())
+                .age(user.getAge())
+                .gender(user.getGender())
+                .userCategoryList(user.getCategories())
+                .isChecked(user.isChecked())
+                .build();
 
+        List<String> list = Arrays.asList("ROLE_USER");
+        dto.setAccessToken(jwtTokenProvider.createAccessToken(String.valueOf(user.getUserId()), list));
+        dto.setRefreshToken(jwtTokenProvider.createRefreshToken());
+
+        user.updateAccessToken(dto.getAccessToken());
+        user.updateRefreshToken(dto.getRefreshToken());
+        signService.saveUser(user);
+
+        return responseService.getSingleResult(dto);
+    }
+
+    @ApiImplicitParams({@ApiImplicitParam(name = "header", value = "refresh Token", required = true, dataType = "string", paramType = "header")})
+    @ApiOperation(value = "접근 토큰 재발급", notes = "접근 토큰 재발급")
+    @PutMapping(value = "/user/refresh", produces = MediaType.APPLICATION_JSON_VALUE, headers = "header")
+    public @ResponseBody SingleResult<TokensResDTO> refreshToken(@RequestHeader HttpHeaders header) throws Exception {
+        String refreshToken = header.getFirst("header");
+        User user = signService.findUserByRefreshToken(refreshToken);
+
+        TokensResDTO tokensResDTO = TokensResDTO.builder().build();
+        if (jwtTokenProvider.validateToken(user.getRefreshToken())) {
+            List<String> list = Arrays.asList("ROLE_USER");
+            tokensResDTO.setAccessToken(jwtTokenProvider.createAccessToken(String.valueOf(user.getUserId()), list));
+            tokensResDTO.setRefreshToken(jwtTokenProvider.createRefreshToken(refreshToken));
+
+            user.updateAccessToken(tokensResDTO.getAccessToken());
+            user.updateRefreshToken(tokensResDTO.getRefreshToken());
+            signService.saveUser(user);
+        } else {
+            throw new ApiMessageException(401, "유효하지 않은 토큰 정보입니다.");
+        }
+
+        return responseService.getSingleResult(tokensResDTO);
+    }
 }
