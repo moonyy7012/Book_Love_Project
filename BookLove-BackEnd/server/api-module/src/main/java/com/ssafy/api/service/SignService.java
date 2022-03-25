@@ -3,8 +3,10 @@ package com.ssafy.api.service;
 import com.ssafy.api.dto.req.UserInfoReqDTO;
 import com.ssafy.api.dto.res.SocialUserResponseDTO;
 import com.ssafy.core.code.JoinCode;
+import com.ssafy.core.entity.Category;
 import com.ssafy.core.entity.User;
 import com.ssafy.core.exception.ApiMessageException;
+import com.ssafy.core.repository.CategoryRepository;
 import com.ssafy.core.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -13,7 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 
 @Service
@@ -21,7 +25,7 @@ import java.util.Collections;
 @Transactional
 public class SignService {
     private final UserRepository userRepository;
-
+    private final CategoryRepository categoryRepository;
 
     /**
      * id로 회원정보 조회
@@ -71,19 +75,32 @@ public class SignService {
         User user = userRepository.findById(userId).orElseThrow( () -> new ApiMessageException("존재하지 않는 회원정보입니다.") );
         user.updateAge(req.getAge());
         user.updateGender(req.getGender());
-    //    user.updateCategory(req.getCategories()); 여기는 Category 정보 DB에 넣으면 String으로 Category찾아서 넣는 걸로 수정해야 할 것 같아요. 임시 주석
+        List<Category> categoryList = new ArrayList<>();
+        for(int i = 0 ; i < req.getCategories().size() ; i++){
+            categoryList.add(
+                    categoryRepository.findCategoryByName(req.getCategories().get(i))
+            );
+        }
+        user.updateCategory(categoryList);
         return user;
     }
 
     @Transactional(readOnly = false)
     public User enrollUserInfo(long userId, UserInfoReqDTO req){
         User user = userRepository.findById(userId).orElseThrow( () -> new ApiMessageException("존재하지 않는 회원정보입니다.") );
+
         if(!req.getCategories().isEmpty()){
             user.updateIsChecked(true);
         }
         user.updateAge(req.getAge());
         user.updateGender(req.getGender());
-  //      user.updateCategory(req.getCategories()); 여기는 Category 정보 DB에 넣으면 String으로 Category찾아서 넣는 걸로 수정해야 할 것 같아요. 임시 주석
+        List<Category> categoryList = new ArrayList<>();
+        for(int i = 0 ; i < req.getCategories().size() ; i++){
+            categoryList.add(
+                    categoryRepository.findCategoryByName(req.getCategories().get(i))
+            );
+        }
+        user.updateCategory(categoryList);
 
         return user;
     }
@@ -127,6 +144,8 @@ public class SignService {
 
         return user;
     }
+
+
 }
 
 
