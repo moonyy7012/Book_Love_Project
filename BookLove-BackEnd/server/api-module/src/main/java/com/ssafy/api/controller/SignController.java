@@ -164,9 +164,9 @@ public class SignController {
 
     @ApiImplicitParams({@ApiImplicitParam(name = "header", value = "Kakao Token", required = true, dataType = "string", paramType = "header")})
     @ApiOperation(value = "소셜 로그인", notes = "소셜 로그인")
-    @PostMapping(value = "/user/social", produces = MediaType.APPLICATION_JSON_VALUE, headers = "header")
-    public @ResponseBody SingleResult<LoginResDTO> socialLogin(@RequestHeader HttpHeaders header) throws Exception {
-        User user = signService.socialLogin(header.getFirst("header"));
+    @PostMapping(value = "/user/social", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody SingleResult<LoginResDTO> socialLogin(HttpServletRequest request) throws Exception {
+        User user = signService.socialLogin(request.getHeader("header"));
 
         LoginResDTO dto = LoginResDTO.builder()
                 .userId(user.getUserId())
