@@ -86,14 +86,14 @@ public class SignController {
 
     }
 
-    //아이디 중복 체크 true->중복X false->중복O
+    //아이디 중복 체크 true->중복O false->중복X
     @ApiOperation(value = "ID중복체크", notes = "ID중복체크")
     @PostMapping(value = "/user/idcheck/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody SingleResult<Boolean> checkId(@PathVariable String userId)throws Exception{
         User uidChk = signService.findByUid(userId);
-        boolean isOverlap = false;
+        boolean isOverlap = true;
         if(uidChk == null){
-            isOverlap=true;
+            isOverlap=false;
         }
         return responseService.getSingleResult(isOverlap);
 
