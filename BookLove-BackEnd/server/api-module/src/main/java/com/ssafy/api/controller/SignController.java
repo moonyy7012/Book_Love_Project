@@ -164,9 +164,9 @@ public class SignController {
 
     @ApiImplicitParams({@ApiImplicitParam(name = "header", value = "Kakao Token", required = true, dataType = "string", paramType = "header")})
     @ApiOperation(value = "소셜 로그인", notes = "소셜 로그인")
-    @PostMapping(value = "/user/social", produces = MediaType.APPLICATION_JSON_VALUE, headers = "header")
-    public @ResponseBody SingleResult<LoginResDTO> socialLogin(@RequestHeader HttpHeaders header) throws Exception {
-        User user = signService.socialLogin(header.getFirst("header"));
+    @PostMapping(value = "/user/social", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody SingleResult<LoginResDTO> socialLogin(HttpServletRequest request) throws Exception {
+        User user = signService.socialLogin(request.getHeader("header"));
 
         LoginResDTO dto = LoginResDTO.builder()
                 .userId(user.getUserId())
@@ -190,9 +190,9 @@ public class SignController {
 
     @ApiImplicitParams({@ApiImplicitParam(name = "header", value = "refresh Token", required = true, dataType = "string", paramType = "header")})
     @ApiOperation(value = "접근 토큰 재발급", notes = "접근 토큰 재발급")
-    @PutMapping(value = "/user/refresh", produces = MediaType.APPLICATION_JSON_VALUE, headers = "header")
-    public @ResponseBody SingleResult<TokensResDTO> refreshToken(@RequestHeader HttpHeaders header) throws Exception {
-        String refreshToken = header.getFirst("header");
+    @PutMapping(value = "/user/refresh", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody SingleResult<TokensResDTO> refreshToken(HttpServletRequest request) throws Exception {
+        String refreshToken = request.getHeader("header");
         User user = signService.findUserByRefreshToken(refreshToken);
 
         TokensResDTO tokensResDTO = TokensResDTO.builder().build();
