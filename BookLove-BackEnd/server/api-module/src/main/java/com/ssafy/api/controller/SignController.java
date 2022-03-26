@@ -86,7 +86,7 @@ public class SignController {
 
     //아이디 중복 체크 true->중복O false->중복X
     @ApiOperation(value = "ID중복체크", notes = "ID중복체크")
-    @PostMapping(value = "/user/idcheck/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/user/idcheck/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody SingleResult<Boolean> checkId(@PathVariable String id)throws Exception{
         User uidChk = signService.findById(id);
 
