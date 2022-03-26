@@ -35,3 +35,12 @@ fun getSearch(): ArrayList<BookCategory> {
 
     return bookCategory
 }
+
+fun getGenre(): ArrayList<Book> {
+    val books = arrayListOf<Book>()
+    for (a in 0..30) {
+        books += Book(a, "Book Title $a", R.drawable.ic_baseline_book_24)
+    }
+
+    return books
+}
