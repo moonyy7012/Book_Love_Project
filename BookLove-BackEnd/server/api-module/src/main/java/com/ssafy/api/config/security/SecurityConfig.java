@@ -33,6 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers("/css/**", "/js/**", "/img/**", "/lib/**");
         web.ignoring().antMatchers("/v2/api-docs", "/swagger-resources/**",
                 "/swagger-ui.html", "/webjars/**", "/swagger/**");
+        web.ignoring().antMatchers("/api/user/social", "/api/user/refresh");
     }
 
 
@@ -51,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests()
                     // permitAll() 처리한 경로의 API는 JWT 값이 없어도 실행 가능
-                    .antMatchers("/api/user/idcheck/**", "/api/user/","/api/user/social", "/api/user/refresh").permitAll()
+                    .antMatchers("/api/user/idcheck/**", "/api/user").permitAll()
                     .antMatchers("/docs/**").permitAll()
                     .anyRequest().hasRole("USER")
                 .and()
