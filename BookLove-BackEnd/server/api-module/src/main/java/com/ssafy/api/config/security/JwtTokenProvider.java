@@ -60,16 +60,6 @@ public class JwtTokenProvider { // JWT 토큰을 생성 및 검증 모듈
                 .compact();
     }
 
-    // AccessToken 만료 후 다시 요청시 Refresh Token 발급
-    public String createRefreshToken(String jwtToken) {
-        Date now = new Date();
-        return Jwts.builder()
-                .setIssuedAt(now) // 토큰 발행일자
-                .setExpiration(Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwtToken).getBody().getExpiration()) // set Expire Time
-                .signWith(SignatureAlgorithm.HS256, secretKey) // 암호화 알고리즘, secret값 세팅
-                .compact();
-    }
-
     // Jwt 토큰으로 인증 정보를 조회
     public Authentication getAuthentication(String token) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUserPk(token));

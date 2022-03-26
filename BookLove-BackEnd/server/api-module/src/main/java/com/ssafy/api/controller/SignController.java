@@ -162,11 +162,11 @@ public class SignController {
         return responseService.getSingleResult(dto);
     }
 
-    @ApiImplicitParams({@ApiImplicitParam(name = "header", value = "Kakao Token", required = true, dataType = "string", paramType = "header")})
+    @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "Kakao Token", required = true, dataType = "string", paramType = "header")})
     @ApiOperation(value = "소셜 로그인", notes = "소셜 로그인")
     @PostMapping(value = "/user/social", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody SingleResult<LoginResDTO> socialLogin(HttpServletRequest request) throws Exception {
-        User user = signService.socialLogin(request.getHeader("header"));
+        User user = signService.socialLogin(request.getHeader("X-Auth-Token"));
 
         LoginResDTO dto = LoginResDTO.builder()
                 .userId(user.getUserId())
@@ -188,24 +188,24 @@ public class SignController {
         return responseService.getSingleResult(dto);
     }
 
-    @ApiImplicitParams({@ApiImplicitParam(name = "header", value = "refresh Token", required = true, dataType = "string", paramType = "header")})
+    @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "refresh Token", required = true, dataType = "string", paramType = "header")})
     @ApiOperation(value = "접근 토큰 재발급", notes = "접근 토큰 재발급")
     @PutMapping(value = "/user/refresh", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody SingleResult<TokensResDTO> refreshToken(HttpServletRequest request) throws Exception {
-        String refreshToken = request.getHeader("header");
+        String refreshToken = request.getHeader("X-Auth-Token");
         User user = signService.findUserByRefreshToken(refreshToken);
 
         TokensResDTO tokensResDTO = TokensResDTO.builder().build();
         if (jwtTokenProvider.validateToken(user.getRefreshToken())) {
             List<String> list = Arrays.asList("ROLE_USER");
             tokensResDTO.setAccessToken(jwtTokenProvider.createAccessToken(String.valueOf(user.getUserId()), list));
-            tokensResDTO.setRefreshToken(jwtTokenProvider.createRefreshToken(refreshToken));
+            tokensResDTO.setRefreshToken(jwtTokenProvider.createRefreshToken());
 
             user.updateAccessToken(tokensResDTO.getAccessToken());
             user.updateRefreshToken(tokensResDTO.getRefreshToken());
             signService.saveUser(user);
         } else {
-            throw new ApiMessageException(401, "유효하지 않은 토큰 정보입니다.");
+            throw new ApiMessageException(-9999, "알 수 없는 오류가 발생하였습니다.");
         }
 
         return responseService.getSingleResult(tokensResDTO);
