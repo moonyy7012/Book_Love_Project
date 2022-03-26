@@ -6,6 +6,8 @@
 <!--    밑줄 있는 형태의 회원가입 -->
     <string name="signUp_u"><u>회원가입</u></string>
 
+    <string name="kakao_native_key">d4e7ef1673fec6a777393689a82748d7</string>
+    <string name="kakao_manifest_key">kakaod4e7ef1673fec6a777393689a82748d7</string>
     <string name="signUp">회원가입</string>
     <string name="logIn">로그인</string>
     <string name="socialLogIn">소셜 로그인</string>

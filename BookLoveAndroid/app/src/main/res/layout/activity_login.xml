@@ -62,7 +62,7 @@
         app:layout_constraintTop_toBottomOf="@+id/some_id2" />
 
     <EditText
-        android:id="@+id/idEditText2"
+        android:id="@+id/passwordEditText"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_alignParentLeft="true"
@@ -95,7 +95,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idEditText2" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
 
 
     <TextView
@@ -149,6 +149,7 @@
         android:layout_width="match_parent"
         android:layout_height="90dp"
         android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
