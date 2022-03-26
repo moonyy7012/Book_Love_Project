@@ -11,7 +11,7 @@ fun getRecomm(): ArrayList<BookCategory> {
     for (a in 0..2) {
         val bookList = arrayListOf<Book>()
         for(b in 0..5) {
-            val book = Book(b, "Book Title $b", R.drawable.ic_baseline_book_24)
+            val book = Book(b, "Book Title $b", R.drawable.ic_baseline_book_24, "재밌는 책입니다.")
             bookList += book
         }
 
@@ -26,7 +26,7 @@ fun getSearch(): ArrayList<BookCategory> {
     for (a in 0..2) {
         val bookList = arrayListOf<Book>()
         for(b in 0..5) {
-            val book = Book(b, "Book Title $b", R.drawable.ic_baseline_book_24)
+            val book = Book(b, "Book Title $b", R.drawable.ic_baseline_book_24, "재밌는 책입니다.")
             bookList += book
         }
 
@@ -39,7 +39,7 @@ fun getSearch(): ArrayList<BookCategory> {
 fun getGenre(): ArrayList<Book> {
     val books = arrayListOf<Book>()
     for (a in 0..30) {
-        books += Book(a, "Book Title $a", R.drawable.ic_baseline_book_24)
+        books += Book(a, "Book Title $a", R.drawable.ic_baseline_book_24, "재밌는 책입니다.")
     }
 
     return books
