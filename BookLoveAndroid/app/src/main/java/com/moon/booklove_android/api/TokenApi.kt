@@ -8,7 +8,7 @@ import retrofit2.http.*
 interface TokenApi {
 
     // 토큰 재발급
-    @POST("api/token")
+    @POST("api/user/refresh")
     fun reissuance(): Call<SingleResult<ReissuanceResDTO>>
 
 }

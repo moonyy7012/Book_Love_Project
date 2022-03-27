@@ -12,15 +12,13 @@ import androidx.fragment.app.Fragment
 import com.moon.booklove_android.R
 import com.moon.booklove_android.activity.CollectActivity
 import com.moon.booklove_android.databinding.FragmentCollectGenderBinding
+import com.moon.booklove_android.enum.enumGender
 
 class CollectGenderFragment  : Fragment(){
     private lateinit var binding: FragmentCollectGenderBinding
     private lateinit var nextButton: AppCompatButton
     var isClicked = false
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    lateinit var selectedGender: enumGender
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +34,7 @@ class CollectGenderFragment  : Fragment(){
         binding.maleButton.apply {
             setOnClickListener {
                 isClicked = true
+                selectedGender = enumGender.MAN
                 setBackgroundResource(R.drawable.dark_box_rectangle)
                 binding.femaleButton.setBackgroundResource(R.drawable.light_box_rectangle)
                 nextButton.setBackgroundResource(R.drawable.complete_rectangle)
@@ -44,6 +43,7 @@ class CollectGenderFragment  : Fragment(){
         binding.femaleButton.apply {
             setOnClickListener {
                 isClicked = true
+                selectedGender = enumGender.WOMAN
                 setBackgroundResource(R.drawable.dark_box_rectangle)
                 binding.maleButton.setBackgroundResource(R.drawable.light_box_rectangle)
                 nextButton.setBackgroundResource(R.drawable.complete_rectangle)
@@ -54,11 +54,15 @@ class CollectGenderFragment  : Fragment(){
             //companion object에 gender 저장
 
             if(isClicked){
-                (activity as CollectActivity).openFragment(2)
+                when(selectedGender) {
+                    enumGender.MAN -> (activity as CollectActivity).openFragment(1, "Man", 0)
+                    enumGender.WOMAN -> (activity as CollectActivity).openFragment(1, "Woman", 0)
+                }
             }else{
                 Toast.makeText(context, "성별을 선택해주세요", Toast.LENGTH_SHORT).show()
             }
         }
-
     }
+
+
 }

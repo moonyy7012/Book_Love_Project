@@ -76,8 +76,10 @@ public class SignController {
     @ApiOperation(value = "추가정보 입력", notes = "추가정보 입력")
     @PostMapping(value = "/user/info", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody SingleResult<Boolean> inputInfo(@Valid UserInfoReqDTO req, HttpServletRequest request)throws Exception {
+        System.out.print("123123"+req.getGender());
         String token = jwtTokenProvider.resolveToken(request);
         String userPk = jwtTokenProvider.getUserPk(token);
+        System.out.print("123123123"+req.toString());
         User user = signService.enrollUserInfo(Long.parseLong(userPk), req);
         signService.saveUser(user);
         boolean isCheck = user.isChecked();

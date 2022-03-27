@@ -31,11 +31,11 @@ import com.moon.booklove_android.util.RetrofitCallback
 
 class LoginActivity : AppCompatActivity() {
 
-    private val googleSignInIntent by lazy {
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id)).requestEmail().build()
-        GoogleSignIn.getClient(this, gso).signInIntent
-    }
+//    private val googleSignInIntent by lazy {
+//        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+//            .requestIdToken(getString(R.string.default_web_client_id)).requestEmail().build()
+//        GoogleSignIn.getClient(this, gso).signInIntent
+//    }
 
     // 카카오계정으로 로그인 공통 callback 구성
     // 카카오톡으로 로그인 할 수 없어 카카오계정으로 로그인할 경우 사용됨
@@ -60,8 +60,7 @@ class LoginActivity : AppCompatActivity() {
 //        Log.d("Hash", keyHash)
 
         binding.loginButton.setOnClickListener {
-            val user = NormalLoginReqDTO(binding.idEditText.text.toString(), binding.passwordEditText.text.toString())
-            normalLogin(user)
+            normalLogin(binding.idEditText.text.toString(), binding.passwordEditText.text.toString())
         }
 
         binding.signupTextView.setOnClickListener {
@@ -69,9 +68,9 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.googleIcon.setOnClickListener {
-            startActivityForResult(googleSignInIntent, RESULT_CODE)
-        }
+//        binding.googleIcon.setOnClickListener {
+//            startActivityForResult(googleSignInIntent, RESULT_CODE)
+//        }
 
         binding.kakaoIcon.setOnClickListener {
             kakaoLogin()
@@ -141,18 +140,25 @@ class LoginActivity : AppCompatActivity() {
     private fun socialSignUp() {
         UserService().socialSignUp(object : RetrofitCallback<SingleResult<SocialLoginResDTO>> {
             override fun onSuccess(code: Int, responseData: SingleResult<SocialLoginResDTO>) {
-              //  if (responseData.data.id > 0L) {
+                if (responseData.output == 1) {
                     Toast.makeText(this@LoginActivity, "회원 가입 성공!", Toast.LENGTH_SHORT).show()
                     //바로 로그인
-               //     prefs.setJWTAccess(responseData.data.jwtAccess)
-               //     prefs.setJWTRefresh(responseData.data.jwtRefresh)
-                    val intent = Intent(this@LoginActivity, CollectActivity::class.java)
-                    startActivity(intent)
-          //      } else {
-         //           Log.i("TAGG", responseData.toString())
-         //           Toast.makeText(this@LoginActivity, "문제가 발생하였습니다. 다시 시도해주세요.",
-         //               Toast.LENGTH_SHORT).show()
-         //       }
+                    Log.i("TAGG", responseData.data.toString())
+                    prefs.setJWTAccess(responseData.data.accessToken)
+                    prefs.setJWTRefresh(responseData.data.refreshToken)
+                    initRetrofit()
+                    if(responseData.data.checked){
+                        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                        startActivity(intent)
+                    }else{
+                        val intent = Intent(this@LoginActivity, CollectActivity::class.java)
+                        startActivity(intent)
+                    }
+                } else {
+                    Log.i("TAGG", responseData.toString())
+                    Toast.makeText(this@LoginActivity, "문제가 발생하였습니다. 다시 시도해주세요.",
+                        Toast.LENGTH_SHORT).show()
+                }
             }
 
             override fun onFailure(code: Int) {
@@ -169,16 +175,21 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 
-    private fun normalLogin(user: NormalLoginReqDTO) {
-        UserService().normalLogin(user, object : RetrofitCallback<SingleResult<NormalLoginResDTO>> {
+    private fun normalLogin(id:String, password:String) {
+        UserService().normalLogin(id, password, object : RetrofitCallback<SingleResult<NormalLoginResDTO>> {
             override fun onSuccess(code: Int, responseData: SingleResult<NormalLoginResDTO>) {
-                if (responseData.data.id > 0L) {
+                if (responseData.output==1) {
                     Toast.makeText(this@LoginActivity, "회원 가입 성공!", Toast.LENGTH_SHORT).show()
                     //바로 로그인
-                    prefs.setJWTAccess(responseData.data.jwtAccess)
-                    prefs.setJWTRefresh(responseData.data.jwtRefresh)
-                    val intent = Intent(this@LoginActivity, CollectActivity::class.java)
-                    startActivity(intent)
+                    prefs.setJWTAccess(responseData.data.accessToken)
+                    prefs.setJWTRefresh(responseData.data.refreshToken)
+                    if(responseData.data.checked){
+                        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                        startActivity(intent)
+                    }else{
+                        val intent = Intent(this@LoginActivity, CollectActivity::class.java)
+                        startActivity(intent)
+                    }
                 } else {
                     Toast.makeText(this@LoginActivity, "문제가 발생하였습니다. 다시 시도해주세요.1",
                         Toast.LENGTH_SHORT).show()

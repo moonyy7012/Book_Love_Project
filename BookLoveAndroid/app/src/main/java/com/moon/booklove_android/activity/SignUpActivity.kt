@@ -30,7 +30,7 @@ class SignUpActivity : AppCompatActivity() {
                 Toast.makeText(this,"아이디 중복을 확인하세요.",Toast.LENGTH_SHORT).show()
             }else{
                 val normalSignUpReqDTO: NormalSignUpReqDTO
-                = NormalSignUpReqDTO(-1,binding.idEditText.text.toString()
+                = NormalSignUpReqDTO(binding.idEditText.text.toString()
                     ,binding.pwEditText.text.toString(), binding.nickNameEditText.text.toString())
                 normalSignUp(normalSignUpReqDTO)
             }
@@ -42,9 +42,9 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun normalSignUp(normalSignUpReqDTO: NormalSignUpReqDTO) {
-        UserService().normalSignUp(normalSignUpReqDTO,object : RetrofitCallback<SingleResult<NormalSignUpResDTO>> {
-            override fun onSuccess(code: Int, responseData: SingleResult<NormalSignUpResDTO>) {
-                if (responseData.data.state) {
+        UserService().normalSignUp(normalSignUpReqDTO,object : RetrofitCallback<SingleResult<Any>> {
+            override fun onSuccess(code: Int, responseData: SingleResult<Any>) {
+                if (responseData.output==1) {
                     finish()
                 } else {
                     Toast.makeText(this@SignUpActivity, "문제가 발생하였습니다. 다시 시도해주세요.",
@@ -65,9 +65,9 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun checkID(userId: String) {
-        UserService().checkID(userId,object : RetrofitCallback<SingleResult<CheckIDResDTO>> {
-            override fun onSuccess(code: Int, responseData: SingleResult<CheckIDResDTO>) {
-                if (responseData.data.state) {
+        UserService().checkID(userId,object : RetrofitCallback<SingleResult<Any>> {
+            override fun onSuccess(code: Int, responseData: SingleResult<Any>) {
+                if (responseData.output==1) {
                     checkId = true
                 } else {
                     Toast.makeText(this@SignUpActivity, "문제가 발생하였습니다. 다시 시도해주세요.",

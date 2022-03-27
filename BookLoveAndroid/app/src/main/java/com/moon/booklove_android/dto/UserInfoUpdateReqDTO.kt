@@ -1,8 +1,8 @@
 package com.moon.booklove_android.dto
 
-//V
 data class UserInfoUpdateReqDTO(
-    var gender: String,
-    var ageaRange: String,
-    var genre: String
+
+    var age: Int,
+    var categories: ArrayList<String>,
+    var gender: String
 )

@@ -31,25 +31,31 @@
         app:layout_constraintStart_toEndOf="@+id/textView5"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="450dp"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical"
+        android:layout_height="0dp"
         android:paddingHorizontal="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3">
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipGroup"
+        <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="false">
+            android:layout_height="0dp"
+            android:orientation="vertical">
 
-        </com.google.android.material.chip.ChipGroup>
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="false">
+
+            </com.google.android.material.chip.ChipGroup>
 
 
+        </LinearLayout>
+    </ScrollView>
 
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

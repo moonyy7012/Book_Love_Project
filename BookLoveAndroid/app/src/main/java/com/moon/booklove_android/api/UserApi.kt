@@ -7,22 +7,24 @@ import retrofit2.http.*
 interface UserApi {
 
     // 일반 회원가입
-    @POST("api/nickname")
-    fun normalSignUp(@Body normalSignUpReqDTO: NormalSignUpReqDTO): Call<SingleResult<NormalSignUpResDTO>>
+    @POST("api/user")
+    fun normalSignUp(@Body normalSignUpReqDTO: NormalSignUpReqDTO): Call<SingleResult<Any>>
 
     // 일반 로그인
-    @POST("api/nickname")
-    fun normalLogin(@Body normalLoginReqDTO: NormalLoginReqDTO): Call<SingleResult<NormalLoginResDTO>>
+    @GET("api/user")
+    fun normalLogin(
+        @Query("id") id: String?,
+        @Query("password") password: String?): Call<SingleResult<NormalLoginResDTO>>
 
     // 소셜 로그인
-    @GET("api/nickname")
+    @POST("api/user/social")
     fun socialSignUp(): Call<SingleResult<SocialLoginResDTO>>
 
     // 아이디 중복체크 (일반 로그인)
-    @GET("api/nickname")
-    fun checkID(@Query("userid") userid: String?): Call<SingleResult<CheckIDResDTO>>
+    @GET("api/user/idcheck/{id}")
+    fun checkID(@Query("id") id: String?): Call<SingleResult<Any>>
 
     //회원정보 수정
-    @PUT("api/nickname")
-    fun userInfoUpdate(@Body body: UserInfoUpdateReqDTO): Call<SingleResult<UserInfoUpdateResDTO>>
+    @POST("api/user/info")
+    fun userInfoUpdate(@Body body: UserInfoUpdateReqDTO): Call<SingleResult<Any>>
 }

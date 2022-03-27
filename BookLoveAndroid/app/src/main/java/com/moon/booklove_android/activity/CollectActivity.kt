@@ -22,12 +22,11 @@ class CollectActivity : AppCompatActivity() {
 
     }
 
-    fun openFragment(num: Int){
+    fun openFragment(num: Int, gender:String, ageRange:Int){
         val transaction = supportFragmentManager.beginTransaction()
         when(num){
-            1 -> transaction.replace(R.id.frameLayout, CollectGenderFragment())
-            2 -> transaction.replace(R.id.frameLayout, CollectAgeFragment())
-            3 -> transaction.replace(R.id.frameLayout, CollectInterestFragment())
+            1 -> transaction.replace(R.id.frameLayout, CollectAgeFragment.newInstance(gender, ageRange))
+            2 -> transaction.replace(R.id.frameLayout, CollectInterestFragment.newInstance(gender, ageRange))
         }
         transaction.commit()
     }
