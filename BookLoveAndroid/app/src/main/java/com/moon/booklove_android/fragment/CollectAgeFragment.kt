@@ -1,21 +1,19 @@
 package com.moon.booklove_android.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
 import com.moon.booklove_android.R
 import com.moon.booklove_android.activity.CollectActivity
-import com.moon.booklove_android.config.ApplicationClass
+import com.moon.booklove_android.config.toast
 import com.moon.booklove_android.databinding.FragmentCollectAgeBinding
 import com.moon.booklove_android.enum.enumAgeRange
-import com.moon.booklove_android.enum.enumGender
 
 class CollectAgeFragment  : Fragment(){
+
     private lateinit var binding: FragmentCollectAgeBinding
     private lateinit var nextButton: AppCompatButton
     var isClicked = false
@@ -26,7 +24,6 @@ class CollectAgeFragment  : Fragment(){
         super.onCreate(savedInstanceState)
         if (arguments != null) {
             selectedGender = requireArguments().getString("gender").toString()
-            Log.d("CollectInterestFragment", "selectedGender: ${selectedGender}")
         }
     }
 
@@ -59,8 +56,6 @@ class CollectAgeFragment  : Fragment(){
         }
 
         nextButton.setOnClickListener {
-            //companion object에 age 저장
-
             if(isClicked){
                 when(selectedAgeRange) {
                     enumAgeRange.AgeRange_10 -> (activity as CollectActivity).openFragment(2,selectedGender, 10)
@@ -69,11 +64,8 @@ class CollectAgeFragment  : Fragment(){
                     enumAgeRange.AgeRange_40 -> (activity as CollectActivity).openFragment(2,selectedGender, 40)
                     enumAgeRange.AgeRange_50 -> (activity as CollectActivity).openFragment(2,selectedGender, 50)
                 }
-            }else{
-                Toast.makeText(context, "연령대를 선택해주세요", Toast.LENGTH_SHORT).show()
-            }
+            }else toast( "연령대를 선택해주세요",requireContext())
         }
-
     }
 
     private fun clickButton(clickedButton: AppCompatButton, enumAgeRange: enumAgeRange){
@@ -102,6 +94,4 @@ class CollectAgeFragment  : Fragment(){
                 }
             }
     }
-
-
 }

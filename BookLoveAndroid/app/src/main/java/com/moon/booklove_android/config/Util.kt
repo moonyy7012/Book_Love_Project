@@ -1,5 +1,7 @@
 package com.moon.booklove_android.config
 
+import android.content.Context
+import android.widget.Toast
 import com.moon.booklove_android.R
 import com.moon.booklove_android.config.ApplicationClass.Companion.recommand
 import com.moon.booklove_android.config.ApplicationClass.Companion.search
@@ -43,4 +45,8 @@ fun getGenre(): ArrayList<Book> {
     }
 
     return books
+}
+
+fun toast(text: String, context:Context) {
+    Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
 }

@@ -2,31 +2,27 @@ package com.moon.booklove_android.fragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.view.get
-import androidx.core.view.iterator
 import androidx.fragment.app.Fragment
 import com.google.android.material.chip.Chip
 import com.moon.booklove_android.R
 import com.moon.booklove_android.activity.CollectActivity
 import com.moon.booklove_android.activity.MainActivity
-import com.moon.booklove_android.config.ApplicationClass
+import com.moon.booklove_android.config.ApplicationClass.Companion.initRetrofit
 import com.moon.booklove_android.config.ApplicationClass.Companion.interest
+import com.moon.booklove_android.config.ApplicationClass.Companion.prefs
+import com.moon.booklove_android.config.toast
 import com.moon.booklove_android.databinding.FragmentCollectInterestBinding
+import com.moon.booklove_android.dto.ReissuanceResDTO
 import com.moon.booklove_android.dto.SingleResult
-import com.moon.booklove_android.dto.SocialLoginResDTO
 import com.moon.booklove_android.dto.UserInfoUpdateReqDTO
-import com.moon.booklove_android.enum.enumAgeRange
+import com.moon.booklove_android.service.TokenService
 import com.moon.booklove_android.service.UserService
 import com.moon.booklove_android.util.RetrofitCallback
-
-
-private const val TAG = "CollectInterestFragment"
 
 class CollectInterestFragment  : Fragment(){
     private lateinit var binding: FragmentCollectInterestBinding
@@ -54,8 +50,9 @@ class CollectInterestFragment  : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         nextButton = (activity as CollectActivity).findViewById(R.id.nextStepButton)
-        nextButton.setText("완료")
+        nextButton.text = "완료"
 
         init()
 
@@ -65,14 +62,6 @@ class CollectInterestFragment  : Fragment(){
             for(checkedCategory in checkedInterestIdx){
                  checkedInterestList.add(binding.chipGroup[checkedCategory-1].tag.toString())
             }
-            Log.d(TAG, "checkedInterestList: ${checkedInterestList}")
-            Log.d(TAG, "checkedInterestIdx: ${checkedInterestIdx}")
-
-            //companion object에 저장한 세 항목(성별, 연령대, 관심사)을 Rest Api로 여기서 post
-            Log.d(TAG, "111 selectedGender: ${selectedGender}")
-            Log.d(TAG, "111 selectedAgeRange: ${selectedAgeRange}")
-            Log.d(TAG, "111 checkedInterestList: ${checkedInterestList}")
-
             updateUserInfo(UserInfoUpdateReqDTO(selectedAgeRange,checkedInterestList, selectedGender))
         }
 
@@ -89,40 +78,45 @@ class CollectInterestFragment  : Fragment(){
                 }
             )
         }
-
     }
 
     private fun updateUserInfo(userInfoUpdateReqDTO: UserInfoUpdateReqDTO) {
         UserService().userInfoUpdate(userInfoUpdateReqDTO, object : RetrofitCallback<SingleResult<Any>> {
             override fun onSuccess(code: Int, responseData: SingleResult<Any>) {
-                Log.d(TAG, responseData.output.toString())
                 if (responseData.data==true) {
-                    Toast.makeText(requireContext(), "정보 저장 성공!", Toast.LENGTH_SHORT).show()
-                    //바로 로그인
-                    Log.i("TAGG", responseData.data.toString())
+                    toast("정보 저장 성공!", requireContext())
                     val mainIntent = Intent(requireContext(), MainActivity::class.java)
                     startActivity(mainIntent)
                 } else {
-                    Log.i("TAGG", responseData.toString())
-                    Toast.makeText(requireContext(), "문제가 발생하였습니다. 다시 시도해주세요.",
-                        Toast.LENGTH_SHORT).show()
+                    toast("문제가 발생하였습니다. 다시 시도해주세요.", requireContext())
                 }
             }
 
-            override fun onFailure(code: Int) {
-                Log.i("TAGG", ""+code+" ")
-                Toast.makeText(requireContext(), "문제가 발생하였습니다. 다시 시도해주세요.", Toast.LENGTH_SHORT)
-                    .show()
-            }
+            override fun onFailure(code: Int) { toast( "문제가 발생하였습니다. 다시 시도해주세요.",requireContext()) }
 
-            override fun onError(t: Throwable) {
-                Log.i("TAGG",t.toString())
-                Toast.makeText(requireContext(), "문제가 발생하였습니다. 다시 시도해주세요.", Toast.LENGTH_SHORT)
-                    .show()
+            override fun onError(t: Throwable) { toast("문제가 발생하였습니다. 다시 시도해주세요.", requireContext()) }
+
+            override fun onExpired(code: Int) {
+                super.onExpired(code)
+                TokenService().reissuance(object : RetrofitCallback<SingleResult<ReissuanceResDTO>> {
+                    override fun onSuccess(code: Int, responseData: SingleResult<ReissuanceResDTO>) {
+                        if (responseData.output==1) {
+                            prefs.setJWTAccess(responseData.data.accessToken)
+                            prefs.setJWTRefresh(responseData.data.refreshToken)
+                            initRetrofit()
+                            updateUserInfo(userInfoUpdateReqDTO)
+                        } else toast("문제가 발생하였습니다. 다시 시도해주세요.", requireContext())
+                    }
+
+                    override fun onFailure(code: Int) { toast("유효하지 못한 접근입니다.", requireContext()) }
+
+                    override fun onError(t: Throwable) { toast("유효하지 못한 접근입니다.", requireContext()) }
+
+                    override fun onExpired(code: Int) {}
+                })
             }
         })
     }
-
 
     companion object {
 

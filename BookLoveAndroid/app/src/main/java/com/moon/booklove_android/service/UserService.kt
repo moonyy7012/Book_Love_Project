@@ -19,7 +19,9 @@ class UserService {
                     if (res != null) {
                         callback.onSuccess(response.code(), res)
                     }
-                } else {
+                } else if(response.code() == 403){
+                    callback.onExpired(response.code())
+                }else {
                     callback.onFailure(response.code())
                 }
             }
@@ -39,7 +41,9 @@ class UserService {
                         if (res != null) {
                             callback.onSuccess(response.code(), res)
                         }
-                    } else {
+                    } else if(response.code() == 403){
+                        callback.onExpired(response.code())
+                    }else {
                         callback.onFailure(response.code())
                     }
                 }
@@ -59,7 +63,9 @@ class UserService {
                         if (res != null) {
                             callback.onSuccess(response.code(), res)
                         }
-                    } else {
+                    } else if(response.code() == 403){
+                        callback.onExpired(response.code())
+                    }else {
                         callback.onFailure(response.code())
                     }
                 }
@@ -79,7 +85,9 @@ class UserService {
                         if (res != null) {
                             callback.onSuccess(response.code(), res)
                         }
-                    } else {
+                    } else if(response.code() == 403){
+                        callback.onExpired(response.code())
+                    } else{
                         callback.onFailure(response.code())
                     }
                 }
@@ -98,7 +106,9 @@ class UserService {
                     if (res != null) {
                         callback.onSuccess(response.code(), res)
                     }
-                } else {
+                } else if(response.code() == 403){
+                    callback.onExpired(response.code())
+                }else {
                     callback.onFailure(response.code())
                 }
             }
