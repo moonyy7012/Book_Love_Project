@@ -43,87 +43,99 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/idEditText"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="80dp"
-        android:background="@drawable/rectangle"
-        android:fontFamily="@font/kopubworld_dotum_medium"
-        android:hint="   아이디"
-        android:textColorHint="#9289C7"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/some_id2" />
-
-    <EditText
-        android:id="@+id/passwordEditText"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/rectangle"
-        android:fontFamily="@font/kopubworld_dotum_medium"
-        android:hint="   비밀번호"
-        android:textColorHint="#9289C7"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idEditText" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/loginButton"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/complete_rectangle"
-        android:text="로그인"
-        android:textColor="#FFFFFF"
-        android:textSize="22sp"
-        android:fontFamily="@font/kopubworld_dotum_medium"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.478"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
-
-
-    <ImageButton
-        android:id="@+id/kakaoIcon"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/kakao_login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
-
-    <TextView
-        android:id="@+id/signupTextView"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:fontFamily="@font/kopubworld_dotum_medium"
-        android:text="@string/signUp_u"
-        android:textSize="18sp"
+        android:layout_marginTop="198dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/kakaoIcon" />
+        app:layout_constraintTop_toBottomOf="@+id/some_id2"
+        android:layout_marginBottom="48dp"
+        tools:ignore="MissingConstraints">
+
+        <EditText
+            android:id="@+id/idEditText"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="80dp"
+            android:background="@drawable/rectangle"
+            android:fontFamily="@font/kopubworld_dotum_medium"
+            android:hint="   아이디"
+            android:textColorHint="#9289C7"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/passwordEditText"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/rectangle"
+            android:fontFamily="@font/kopubworld_dotum_medium"
+            android:hint="   비밀번호"
+            android:textColorHint="#9289C7"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/idEditText" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/loginButton"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/complete_rectangle"
+            android:fontFamily="@font/kopubworld_dotum_medium"
+            android:text="로그인"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.478"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
+
+
+        <ImageButton
+            android:id="@+id/kakaoIcon"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/kakao_login"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+
+        <TextView
+            android:id="@+id/signupTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/kopubworld_dotum_medium"
+            android:text="@string/signUp_u"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/kakaoIcon" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

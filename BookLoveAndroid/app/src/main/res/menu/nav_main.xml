@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/selector_bottom_home"
+        android:title="@string/Home" />
+
+    <item
+        android:id="@id/searchFragment"
+        android:icon="@drawable/selector_bottom_search"
+        android:title="@string/Search" />
+
+    <item
+        android:id="@id/genreFragment"
+        android:icon="@drawable/selector_bottom_list"
+        android:title="@string/Category" />
+
+<!--    <item-->
+<!--        android:id="@id/thirdHomeScreen"-->
+<!--        android:icon="@drawable/selector_bottom_heart"-->
+<!--        android:title="@string/title_menu_third" />-->
+
+    <item
+        android:id="@id/myPageFragment"
+        android:icon="@drawable/selector_bottom_person"
+        android:title="@string/MyInfo" />
+</menu>
