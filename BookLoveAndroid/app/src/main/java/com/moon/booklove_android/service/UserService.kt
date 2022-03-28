@@ -1,5 +1,6 @@
 package com.moon.booklove_android.service
 
+import android.util.Log
 import com.moon.booklove_android.dto.*
 import com.moon.booklove_android.util.RetrofitCallback
 import com.moon.booklove_android.util.RetrofitUtil
@@ -9,28 +10,30 @@ import retrofit2.Response
 
 class UserService {
 
-    fun normalSignUp(normalSignUpReqDTO: NormalSignUpReqDTO, callback: RetrofitCallback<SingleResult<NormalSignUpResDTO>>) {
+    fun normalSignUp(normalSignUpReqDTO: NormalSignUpReqDTO, callback: RetrofitCallback<SingleResult<Any>>) {
         RetrofitUtil.userService.normalSignUp(normalSignUpReqDTO)
-            .enqueue(object : Callback<SingleResult<NormalSignUpResDTO>> {
-            override fun onResponse(call: Call<SingleResult<NormalSignUpResDTO>>, response: Response<SingleResult<NormalSignUpResDTO>>) {
+            .enqueue(object : Callback<SingleResult<Any>> {
+            override fun onResponse(call: Call<SingleResult<Any>>, response: Response<SingleResult<Any>>) {
                 val res = response.body()
                 if (response.code() == 200) {
                     if (res != null) {
                         callback.onSuccess(response.code(), res)
                     }
-                } else {
+                } else if(response.code() == 403){
+                    callback.onExpired(response.code())
+                }else {
                     callback.onFailure(response.code())
                 }
             }
 
-            override fun onFailure(call: Call<SingleResult<NormalSignUpResDTO>>, t: Throwable) {
+            override fun onFailure(call: Call<SingleResult<Any>>, t: Throwable) {
                 callback.onError(t)
             }
         })
     }
 
-    fun normalLogin(normalLoginReqDTO: NormalLoginReqDTO, callback: RetrofitCallback<SingleResult<NormalLoginResDTO>>) {
-        RetrofitUtil.userService.normalLogin(normalLoginReqDTO)
+    fun normalLogin(id:String, password:String, callback: RetrofitCallback<SingleResult<NormalLoginResDTO>>) {
+        RetrofitUtil.userService.normalLogin(id, password)
             .enqueue(object : Callback<SingleResult<NormalLoginResDTO>> {
                 override fun onResponse(call: Call<SingleResult<NormalLoginResDTO>>, response: Response<SingleResult<NormalLoginResDTO>>) {
                     val res = response.body()
@@ -38,7 +41,9 @@ class UserService {
                         if (res != null) {
                             callback.onSuccess(response.code(), res)
                         }
-                    } else {
+                    } else if(response.code() == 403){
+                        callback.onExpired(response.code())
+                    }else {
                         callback.onFailure(response.code())
                     }
                 }
@@ -58,7 +63,9 @@ class UserService {
                         if (res != null) {
                             callback.onSuccess(response.code(), res)
                         }
-                    } else {
+                    } else if(response.code() == 403){
+                        callback.onExpired(response.code())
+                    }else {
                         callback.onFailure(response.code())
                     }
                 }
@@ -69,40 +76,44 @@ class UserService {
             })
     }
 
-    fun checkID(userId: String, callback: RetrofitCallback<SingleResult<CheckIDResDTO>>) {
+    fun checkID(userId: String, callback: RetrofitCallback<SingleResult<Any>>) {
         RetrofitUtil.userService.checkID(userId)
-            .enqueue(object : Callback<SingleResult<CheckIDResDTO>> {
-                override fun onResponse(call: Call<SingleResult<CheckIDResDTO>>, response: Response<SingleResult<CheckIDResDTO>>) {
+            .enqueue(object : Callback<SingleResult<Any>> {
+                override fun onResponse(call: Call<SingleResult<Any>>, response: Response<SingleResult<Any>>) {
                     val res = response.body()
                     if (response.code() == 200) {
                         if (res != null) {
                             callback.onSuccess(response.code(), res)
                         }
-                    } else {
+                    } else if(response.code() == 403){
+                        callback.onExpired(response.code())
+                    } else{
                         callback.onFailure(response.code())
                     }
                 }
 
-                override fun onFailure(call: Call<SingleResult<CheckIDResDTO>>, t: Throwable) {
+                override fun onFailure(call: Call<SingleResult<Any>>, t: Throwable) {
                     callback.onError(t)
                 }
             })
     }
 
-    fun userInfoUpdate(userInfoUpdateReqDTO: UserInfoUpdateReqDTO, callback: RetrofitCallback<SingleResult<UserInfoUpdateResDTO>>) {
-        RetrofitUtil.userService.userInfoUpdate(userInfoUpdateReqDTO).enqueue(object : Callback<SingleResult<UserInfoUpdateResDTO>> {
-            override fun onResponse(call: Call<SingleResult<UserInfoUpdateResDTO>>, response: Response<SingleResult<UserInfoUpdateResDTO>>) {
+    fun userInfoUpdate(userInfoUpdateReqDTO: UserInfoUpdateReqDTO, callback: RetrofitCallback<SingleResult<Any>>) {
+        RetrofitUtil.userService.userInfoUpdate(userInfoUpdateReqDTO).enqueue(object : Callback<SingleResult<Any>> {
+            override fun onResponse(call: Call<SingleResult<Any>>, response: Response<SingleResult<Any>>) {
                 val res = response.body()
                 if (response.code() == 200) {
                     if (res != null) {
                         callback.onSuccess(response.code(), res)
                     }
-                } else {
+                } else if(response.code() == 403){
+                    callback.onExpired(response.code())
+                }else {
                     callback.onFailure(response.code())
                 }
             }
 
-            override fun onFailure(call: Call<SingleResult<UserInfoUpdateResDTO>>, t: Throwable) {
+            override fun onFailure(call: Call<SingleResult<Any>>, t: Throwable) {
                 callback.onError(t)
             }
         })

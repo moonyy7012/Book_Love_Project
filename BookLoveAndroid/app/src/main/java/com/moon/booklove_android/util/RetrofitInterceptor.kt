@@ -10,7 +10,7 @@ class RetrofitInterceptor: Interceptor {
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain) : Response = with(chain) {
         val newRequest = request().newBuilder()
-            .addHeader("header", prefs.getJWTAccess().toString())
+            .addHeader("X-AUTH-TOKEN", prefs.getJWTAccess().toString())
             .build()
         proceed(newRequest)
     }

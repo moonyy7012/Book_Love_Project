@@ -47,7 +47,7 @@ public class SignController {
     @ApiOperation(value = "회원가입", notes = "회원가입")
     @PostMapping(value = "/user", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    CommonResult userSignUp(@Valid SignUpReqDTO req) throws Exception{
+    CommonResult userSignUp(@Valid @RequestBody SignUpReqDTO req) throws Exception{
         // uid 중복되는 값이 존재하는지 확인 (uid = 고유한 값)
         User uidChk = signService.findById(req.getId());
         if(uidChk != null)
@@ -75,7 +75,7 @@ public class SignController {
     @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "JWT Token", required = true, dataType = "string", paramType = "header")})
     @ApiOperation(value = "추가정보 입력", notes = "추가정보 입력")
     @PostMapping(value = "/user/info", produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody SingleResult<Boolean> inputInfo(@Valid UserInfoReqDTO req, HttpServletRequest request)throws Exception {
+    public @ResponseBody SingleResult<Boolean> inputInfo(@Valid @RequestBody UserInfoReqDTO req, HttpServletRequest request)throws Exception {
         String token = jwtTokenProvider.resolveToken(request);
         String userPk = jwtTokenProvider.getUserPk(token);
         User user = signService.enrollUserInfo(Long.parseLong(userPk), req);

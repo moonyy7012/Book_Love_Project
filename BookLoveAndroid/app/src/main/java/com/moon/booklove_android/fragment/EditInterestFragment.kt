@@ -13,7 +13,6 @@ import com.google.android.material.chip.Chip
 import com.moon.booklove_android.R
 import com.moon.booklove_android.activity.CollectActivity
 import com.moon.booklove_android.activity.MainActivity
-import com.moon.booklove_android.config.ApplicationClass.Companion.checkedInterest
 import com.moon.booklove_android.config.ApplicationClass.Companion.interest
 import com.moon.booklove_android.databinding.FragmentCollectInterestBinding
 import com.moon.booklove_android.databinding.FragmentEditInterestBinding
@@ -24,6 +23,7 @@ private const val TAG = "CollectInterestFragment"
 class EditInterestFragment  : Fragment(){
     private lateinit var binding: FragmentEditInterestBinding
     private lateinit var nextButton: AppCompatButton
+    var checkedInterest = mutableListOf<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

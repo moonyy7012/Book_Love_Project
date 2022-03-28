@@ -1,12 +1,12 @@
 package com.moon.booklove_android.dto
 
-//V
 data class NormalLoginResDTO(
-    var id: Long,
+    var userId: Long,
     var nickname: String,
-    var ageRange: String,
+    var age: String,
     var gender: String,
-    var genre: String,
-    var jwtAccess: String,
-    var jwtRefresh: String
+    var checked: Boolean,
+    var userCategoryList: ArrayList<String>,
+    var accessToken: String,
+    var refreshToken: String
 )
