@@ -113,7 +113,15 @@ public class SignController {
     //userId로 회원정보 조회
     @ApiOperation(value = "회원 정보", notes = "회원 정보")
     @GetMapping(value = "/user/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody SingleResult infoUser(@PathVariable long userId) throws Exception {
+    public @ResponseBody SingleResult infoUser(@PathVariable long userId, HttpServletRequest request) throws Exception {
+
+        String token = jwtTokenProvider.resolveToken(request);
+        String userPk = jwtTokenProvider.getUserPk(token);
+        User user = signService.enrollUserInfo(Long.parseLong(userPk), req);
+        signService.saveUser(user);
+        boolean isCheck = user.isChecked();
+        return responseService.getSingleResult(isCheck);
+
         User user = signService.findUserById(userId);
         return responseService.getSingleResult(user);
     }
