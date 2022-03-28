@@ -150,12 +150,14 @@ public class SignController {
         }
 
         LoginResDTO dto = LoginResDTO.builder()
-                .userId(user.getUserId())
+                .id(user.getUserId())
                 .nickname(user.getNickname())
                 .age(user.getAge())
                 .gender(user.getGender())
                 .userCategoryList(user.changeToCategoryNameList())
                 .isChecked(user.isChecked())
+                .userId(user.getId())
+                .type(user.getType().toString())
                 .build();
 
         List<String> list = Arrays.asList("ROLE_USER");
@@ -177,12 +179,14 @@ public class SignController {
         User user = signService.socialLogin(request.getHeader("X-Auth-Token"));
 
         LoginResDTO dto = LoginResDTO.builder()
-                .userId(user.getUserId())
+                .id(user.getUserId())
                 .nickname(user.getNickname())
                 .age(user.getAge())
                 .gender(user.getGender())
                 .userCategoryList(user.changeToCategoryNameList())
                 .isChecked(user.isChecked())
+                .userId(user.getId())
+                .type(user.getType().toString())
                 .build();
 
         List<String> list = Arrays.asList("ROLE_USER");

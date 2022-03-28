@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class LoginResDTO {
     @ApiModelProperty(value = "회원 PK", required = true, example = "1")
-    private Long userId;
+    private Long id;
 
     @ApiModelProperty(value = "회원 닉네임", required = true, example = "닉네임")
     private String nickname;
@@ -31,6 +31,12 @@ public class LoginResDTO {
 
     @ApiModelProperty(value = "회원 정보 수집 여부", required = true, example = "")
     private boolean isChecked;
+
+    @ApiModelProperty(value = "회원 가입 타입", required = true, example = "KAKAO/NORMAL")
+    private String userId;
+
+    @ApiModelProperty(value = "회원 가입 타입", required = true, example = "KAKAO/NORMAL")
+    private String type;
 
     @ApiModelProperty(value = "Refresh Token 값", required = true, example = "")
     private String refreshToken;

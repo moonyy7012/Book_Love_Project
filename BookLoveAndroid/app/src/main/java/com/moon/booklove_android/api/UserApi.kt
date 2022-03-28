@@ -14,11 +14,11 @@ interface UserApi {
     @GET("api/user")
     fun normalLogin(
         @Query("id") id: String?,
-        @Query("password") password: String?): Call<SingleResult<NormalLoginResDTO>>
+        @Query("password") password: String?): Call<SingleResult<LoginResDTO>>
 
     // 소셜 로그인
     @POST("api/user/social")
-    fun socialSignUp(): Call<SingleResult<SocialLoginResDTO>>
+    fun socialSignUp(): Call<SingleResult<LoginResDTO>>
 
     // 아이디 중복체크 (일반 로그인)
     @GET("api/user/idcheck/{id}")

@@ -128,6 +128,8 @@ public class SignService {
             user = User.builder()
                     .id(socialUser.getId())
                     .type(JoinCode.KAKAO)
+                    .gender("")
+                    .categories(new ArrayList<>())
                     .nickname(socialUser.getProperties().getNickname())
                     .isChecked(false)
                     .roles(Collections.singletonList("ROLE_USER"))

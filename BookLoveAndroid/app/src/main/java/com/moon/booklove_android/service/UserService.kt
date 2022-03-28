@@ -1,6 +1,5 @@
 package com.moon.booklove_android.service
 
-import android.util.Log
 import com.moon.booklove_android.dto.*
 import com.moon.booklove_android.util.RetrofitCallback
 import com.moon.booklove_android.util.RetrofitUtil
@@ -32,10 +31,10 @@ class UserService {
         })
     }
 
-    fun normalLogin(id:String, password:String, callback: RetrofitCallback<SingleResult<NormalLoginResDTO>>) {
+    fun normalLogin(id:String, password:String, callback: RetrofitCallback<SingleResult<LoginResDTO>>) {
         RetrofitUtil.userService.normalLogin(id, password)
-            .enqueue(object : Callback<SingleResult<NormalLoginResDTO>> {
-                override fun onResponse(call: Call<SingleResult<NormalLoginResDTO>>, response: Response<SingleResult<NormalLoginResDTO>>) {
+            .enqueue(object : Callback<SingleResult<LoginResDTO>> {
+                override fun onResponse(call: Call<SingleResult<LoginResDTO>>, response: Response<SingleResult<LoginResDTO>>) {
                     val res = response.body()
                     if (response.code() == 200) {
                         if (res != null) {
@@ -48,16 +47,16 @@ class UserService {
                     }
                 }
 
-                override fun onFailure(call: Call<SingleResult<NormalLoginResDTO>>, t: Throwable) {
+                override fun onFailure(call: Call<SingleResult<LoginResDTO>>, t: Throwable) {
                     callback.onError(t)
                 }
             })
     }
 
-    fun socialSignUp(callback: RetrofitCallback<SingleResult<SocialLoginResDTO>>) {
+    fun socialSignUp(callback: RetrofitCallback<SingleResult<LoginResDTO>>) {
         RetrofitUtil.userService.socialSignUp()
-            .enqueue(object : Callback<SingleResult<SocialLoginResDTO>> {
-                override fun onResponse(call: Call<SingleResult<SocialLoginResDTO>>, response: Response<SingleResult<SocialLoginResDTO>>) {
+            .enqueue(object : Callback<SingleResult<LoginResDTO>> {
+                override fun onResponse(call: Call<SingleResult<LoginResDTO>>, response: Response<SingleResult<LoginResDTO>>) {
                     val res = response.body()
                     if (response.code() == 200) {
                         if (res != null) {
@@ -70,7 +69,7 @@ class UserService {
                     }
                 }
 
-                override fun onFailure(call: Call<SingleResult<SocialLoginResDTO>>, t: Throwable) {
+                override fun onFailure(call: Call<SingleResult<LoginResDTO>>, t: Throwable) {
                     callback.onError(t)
                 }
             })
