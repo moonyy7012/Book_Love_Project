@@ -114,13 +114,13 @@ public class SignController {
     @ApiOperation(value = "회원 정보", notes = "회원 정보")
     @GetMapping(value = "/user/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody SingleResult infoUser(@PathVariable long userId, HttpServletRequest request) throws Exception {
-
-        String token = jwtTokenProvider.resolveToken(request);
-        String userPk = jwtTokenProvider.getUserPk(token);
-        User user = signService.enrollUserInfo(Long.parseLong(userPk), req);
-        signService.saveUser(user);
-        boolean isCheck = user.isChecked();
-        return responseService.getSingleResult(isCheck);
+//
+//        String token = jwtTokenProvider.resolveToken(request);
+//        String userPk = jwtTokenProvider.getUserPk(token);
+//        User user = signService.enrollUserInfo(Long.parseLong(userPk), req);
+//        signService.saveUser(user);
+//        boolean isCheck = user.isChecked();
+//        return responseService.getSingleResult(isCheck);
 
         User user = signService.findUserById(userId);
         return responseService.getSingleResult(user);

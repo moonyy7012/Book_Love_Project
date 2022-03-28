@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="09cac4fe-c8a7-43ed-821b-ccf2493aad13" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/api-module/src/main/java/com/ssafy/api/controller/SignController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/api-module/src/main/java/com/ssafy/api/controller/SignController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -162,7 +161,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647912968017</updated>
-      <workItem from="1648299423543" duration="21026000" />
+      <workItem from="1648299423543" duration="21132000" />
     </task>
     <servers />
   </component>
