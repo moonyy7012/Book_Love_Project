@@ -1,3 +1,4 @@
+import asyncio
 # ttbpmw71301115001
 import requests
 import json
@@ -8,7 +9,7 @@ dir = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/') + '/'
 
 async def save_book():
     max_result = 50
-    query_type = ["ItemNewAll", "ItemNewSpecial", "Bestseller"]
+    query_type = ["Bestseller", "ItemNewSpecial"]
     key = "ttbsmy042991037001"
     #"ttbpmw71301115001"
     data_list = ['title', 'description', 'link', 'pubDate', 'priceStandard', 'cover', 'publisher',
@@ -18,36 +19,44 @@ async def save_book():
     book_result= []
     category_list = (pd.read_csv(dir + 'file/category_all.csv', encoding='cp949')['CID'].values.tolist())
 
-    for cid in category_list:
-        # 1페이지부터 원하는 페이지까지 가져오기
-        for page in range(1, page_num + 1):
-            url = f"http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey={key}&QueryType={query_type[2]}" \
-                  f"&MaxResults={max_result}&start={page}&SearchTarget=Book&output=js&Version=20131101&categoryId={cid}"
-            response = requests.get(url)
-            try:
-                response_json = json.loads(response.text)  # response를 json으로 변환
-            except (json.JSONDecodeError, json.JSONDecodeError):
-                continue
 
-            item_list = response_json
-            print(len(item_list['item']))
+    for query_type in query_type:
+        if query_type == query_type[1]:
+            category_list = [0]
+            max_result = 20
+            page_num = 1
 
-            book_list = [[0] * data_len for _ in range(len(item_list['item']))]
+        for cid in category_list:
+            # 1페이지부터 원하는 페이지까지 가져오기
+            for page in range(1, page_num + 1):
+                url = f"http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey={key}&QueryType={query_type}" \
+                      f"&MaxResults={max_result}&start={page}&SearchTarget=Book&output=js&Version=20131101&categoryId={cid}"
+                response = requests.get(url)
+                try:
+                    response_json = json.loads(response.text)  # response를 json으로 변환
+                except (json.JSONDecodeError, json.JSONDecodeError):
+                    continue
 
-            for i in range(len(item_list['item'])):
-                for j in range(data_len):
-                    book_list[i][j] = item_list['item'][i][data_list[j]]
+                item_list = response_json
+                # print(len(item_list['item']))
 
-            book_result += book_list
+                book_list = [[0] * data_len for _ in range(len(item_list['item']))]
 
-            if len(item_list['item']) < 50 :
-                break;
+                for i in range(len(item_list['item'])):
+                    for j in range(data_len):
+                        book_list[i][j] = item_list['item'][i][data_list[j]]
 
-    df = pd.DataFrame(book_result,
-                      columns=['title', 'description', 'link', 'pub_date', 'price_standard', 'cover',
-                'publisher', 'price_sales', 'isbn', 'author', 'category_name', 'sales_point', 'customer_review_rank'])
+                book_result += book_list
 
-    df.to_csv(dir + 'file/books.csv', index=False, encoding='cp949')
+                if len(item_list['item']) < 50 :
+                    break
+
+
+        df = pd.DataFrame(book_result,
+                          columns=['title', 'description', 'link', 'pub_date', 'price_standard', 'cover', 'publisher',
+                                   'price_sales', 'isbn', 'author', 'category_name', 'sales_point', 'customer_review_rank'])
+
+        df.to_csv(dir + 'file/books.csv', index=False, encoding='cp949')
 
     return book_result
 
@@ -63,9 +72,9 @@ def process_book():
     df['category_id'] = df['category_name'].str.split(">", expand=True)[1].map(map_dictionary)
     df = df.drop_duplicates(['isbn'])
     df = df.dropna(axis=0, how='any')
-    df.to_csv(dir + 'books.csv', index=False, encoding='cp949')
+    df.to_csv(dir + 'file/books.csv', index=False, encoding='cp949')
 
-# save_book()
+# asyncio.run(save_book())
 # process_book()
 
 

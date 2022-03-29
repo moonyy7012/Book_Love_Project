@@ -38,14 +38,6 @@ async def get_book_recommend(book_id: int, db: Session = Depends(get_db)) -> Non
     tfidf_matrix_cate = tfidfv.fit_transform(corpus_cate)
     tfidf_matrix_title = tfidfv.fit_transform(corpus_title)
 
-    title2idx = {}
-    for i, c in enumerate(corpus_title):
-        title2idx[i] = c
-
-    idx2title = {}
-    for i, c in title2idx.items():
-        idx2title[c] = i
-
     idx = [df.index[df['book_id'] == book_id][0]]
 
     cosine_matrix_des = cosine_similarity(tfidf_matrix_des[idx], tfidf_matrix_des)
