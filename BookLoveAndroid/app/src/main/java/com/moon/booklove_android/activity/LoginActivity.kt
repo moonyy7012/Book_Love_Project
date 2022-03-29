@@ -8,6 +8,7 @@ import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
+import com.moon.booklove_android.config.ApplicationClass.Companion.currentuser
 import com.moon.booklove_android.config.ApplicationClass.Companion.initRetrofit
 import com.moon.booklove_android.config.ApplicationClass.Companion.prefs
 import com.moon.booklove_android.config.toast
@@ -75,13 +76,23 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun socialSignUp() {
-        UserService().socialSignUp(object : RetrofitCallback<SingleResult<SocialLoginResDTO>> {
-            override fun onSuccess(code: Int, responseData: SingleResult<SocialLoginResDTO>) {
+        UserService().socialSignUp(object : RetrofitCallback<SingleResult<LoginResDTO>> {
+            override fun onSuccess(code: Int, responseData: SingleResult<LoginResDTO>) {
                 if (responseData.output == 1) {
-                    toast("회원 가입 성공!",applicationContext)
+                    toast("로그인 성공!",applicationContext)
                     prefs.setJWTAccess(responseData.data.accessToken)
                     prefs.setJWTRefresh(responseData.data.refreshToken)
                     initRetrofit()
+
+                    currentuser = User(
+                        responseData.data.id,
+                        responseData.data.nickname,
+                        responseData.data.age,
+                        responseData.data.gender,
+                        responseData.data.checked,
+                        responseData.data.type,
+                        responseData.data.userId,
+                        responseData.data.userCategoryList)
 
                     if(responseData.data.checked){
                         val intent = Intent(applicationContext, MainActivity::class.java)
@@ -104,13 +115,23 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun normalLogin(id:String, password:String) {
-        UserService().normalLogin(id, password, object : RetrofitCallback<SingleResult<NormalLoginResDTO>> {
-            override fun onSuccess(code: Int, responseData: SingleResult<NormalLoginResDTO>) {
+        UserService().normalLogin(id, password, object : RetrofitCallback<SingleResult<LoginResDTO>> {
+            override fun onSuccess(code: Int, responseData: SingleResult<LoginResDTO>) {
                 if (responseData.output==1) {
                     toast("회원 가입 성공!",applicationContext)
                     prefs.setJWTAccess(responseData.data.accessToken)
                     prefs.setJWTRefresh(responseData.data.refreshToken)
                     initRetrofit()
+
+                    currentuser = User(
+                        responseData.data.id,
+                        responseData.data.nickname,
+                        responseData.data.age,
+                        responseData.data.gender,
+                        responseData.data.checked,
+                        responseData.data.type,
+                        responseData.data.userId,
+                        responseData.data.userCategoryList)
 
                     if(responseData.data.checked){
                         val intent = Intent(applicationContext, MainActivity::class.java)

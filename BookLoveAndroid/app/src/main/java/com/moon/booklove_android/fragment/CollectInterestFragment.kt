@@ -12,6 +12,8 @@ import com.google.android.material.chip.Chip
 import com.moon.booklove_android.R
 import com.moon.booklove_android.activity.CollectActivity
 import com.moon.booklove_android.activity.MainActivity
+import com.moon.booklove_android.config.ApplicationClass
+import com.moon.booklove_android.config.ApplicationClass.Companion.currentuser
 import com.moon.booklove_android.config.ApplicationClass.Companion.initRetrofit
 import com.moon.booklove_android.config.ApplicationClass.Companion.interest
 import com.moon.booklove_android.config.ApplicationClass.Companion.prefs
@@ -19,6 +21,7 @@ import com.moon.booklove_android.config.toast
 import com.moon.booklove_android.databinding.FragmentCollectInterestBinding
 import com.moon.booklove_android.dto.ReissuanceResDTO
 import com.moon.booklove_android.dto.SingleResult
+import com.moon.booklove_android.dto.User
 import com.moon.booklove_android.dto.UserInfoUpdateReqDTO
 import com.moon.booklove_android.service.TokenService
 import com.moon.booklove_android.service.UserService
@@ -62,6 +65,9 @@ class CollectInterestFragment  : Fragment(){
             for(checkedCategory in checkedInterestIdx){
                  checkedInterestList.add(binding.chipGroup[checkedCategory-1].tag.toString())
             }
+            currentuser.age = selectedAgeRange
+            currentuser.gender = selectedGender
+            currentuser.userCategoryList = checkedInterestList
             updateUserInfo(UserInfoUpdateReqDTO(selectedAgeRange,checkedInterestList, selectedGender))
         }
 
@@ -80,7 +86,7 @@ class CollectInterestFragment  : Fragment(){
         }
     }
 
-    private fun updateUserInfo(userInfoUpdateReqDTO: UserInfoUpdateReqDTO) {
+    fun updateUserInfo(userInfoUpdateReqDTO: UserInfoUpdateReqDTO) {
         UserService().userInfoUpdate(userInfoUpdateReqDTO, object : RetrofitCallback<SingleResult<Any>> {
             override fun onSuccess(code: Int, responseData: SingleResult<Any>) {
                 if (responseData.data==true) {

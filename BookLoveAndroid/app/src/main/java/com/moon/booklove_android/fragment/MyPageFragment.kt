@@ -13,11 +13,10 @@ import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.moon.booklove_android.R
+import com.moon.booklove_android.config.ApplicationClass.Companion.currentuser
 import com.moon.booklove_android.databinding.FragmentFavoriteBinding
 import com.moon.booklove_android.databinding.FragmentMypageBinding
 
-
-private const val TAG = "HomeFragment"
 private const val NUM_PAGES = 3
 
 class MyPageFragment  : Fragment(){
@@ -39,9 +38,22 @@ class MyPageFragment  : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mPager = view.findViewById(R.id.viewpager)
+        if(currentuser.type=="KAKAO"){
+            binding.loginTypeTextView.text = "KAKAO"
+        }else{
+            binding.loginTypeTextView.text = "NORMAL"
+        }
+
+        binding.idTextView.text = currentuser.userId
+        //binding.passwordTextView.text = currentuser.nickname
+        binding.nameTextView.text = currentuser.nickname
+
+
+        //binding.idTextView.text = currentuser.nickname
+
+        //mPager = view.findViewById(R.id.viewpager)
         val pagerAdapter = ScreenSlidePagerAdapter(childFragmentManager)
-        mPager.adapter = pagerAdapter
+        binding.viewpager.adapter = pagerAdapter
 //        val transaction = childFragmentManager.beginTransaction().replace(R.id.viewpager, EditGenderFragment())
 //        transaction.commit()
     }
