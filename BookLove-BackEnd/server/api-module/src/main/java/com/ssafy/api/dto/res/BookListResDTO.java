@@ -14,7 +14,9 @@ import java.util.List;
 @AllArgsConstructor
 public class BookListResDTO {
     @ApiModelProperty(value = "베스트셀러", required = true, example = "")
-    private List<Book> bestseller;
+    private List<BookListInfoResDTO> bestseller;
+
+
 
 
 

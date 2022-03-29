@@ -3,6 +3,7 @@ package com.ssafy.api.controller;
 
 
 import com.ssafy.api.dto.res.BookInfoResDTO;
+import com.ssafy.api.dto.res.BookListInfoResDTO;
 import com.ssafy.api.dto.res.BookListResDTO;
 import com.ssafy.api.service.BookService;
 import com.ssafy.api.service.common.ResponseService;
@@ -19,6 +20,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 @Api(tags = {"02. 책"})
@@ -62,15 +64,25 @@ public class BookController {
     }
 
     @ApiOperation(value = "베스트셀러", notes = "베스트셀러")
-    @GetMapping(value = "/book/bestSeller/{categoryName}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/book/bestseller/{categoryName}", produces = "application/json; charset=utf8")
     public @ResponseBody
     SingleResult<BookListResDTO> getBestSeller(@PathVariable String categoryName)throws Exception{
         List<Book> bestseller = bookService.findBestseller(categoryName);
-        BookListResDTO dto = BookListResDTO.builder()
-                .bestseller(bestseller)
+        //제목 커버 북아이디
+        List<BookListInfoResDTO> infoLIst= new ArrayList<>();
+        for(int i = 0 ; i<10 ; i++) {
+            BookListInfoResDTO info = BookListInfoResDTO.builder()
+                    .title(bestseller.get(i).getTitle())
+                    .cover(bestseller.get(i).getCover())
+                    .bookId(bestseller.get(i).getBookId())
+                    .build();
+            infoLIst.add(info);
+        }
+        BookListResDTO list = BookListResDTO.builder()
+                .bestseller(infoLIst)
                 .build();
 
-        return responseService.getSingleResult(dto);
+        return responseService.getSingleResult(list);
     }
 
 

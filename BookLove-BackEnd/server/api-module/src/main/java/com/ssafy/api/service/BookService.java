@@ -17,7 +17,7 @@ public class BookService {
 
     @Transactional(readOnly = false)
     public List<Book> findBestseller(String categoryName){
-        List<Book> bestseller = bookRepository.findBestSellerByCategoryName(categoryName);
+        List<Book> bestseller = bookRepository.findBestsellerByCategoryName(categoryName);
 
         return bestseller;
 

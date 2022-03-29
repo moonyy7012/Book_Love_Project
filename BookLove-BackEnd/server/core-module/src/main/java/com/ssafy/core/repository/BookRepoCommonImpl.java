@@ -25,7 +25,7 @@ public class BookRepoCommonImpl implements BookRepoCommon{
 
 
     @Override
-    public List<Book> findBestSellerByCategoryName(String categoryName) {
+    public List<Book> findBestsellerByCategoryName(String categoryName) {
         List<Book> result  = queryFactory
                 .selectFrom(QBook.book)
                 .where(QBook.book.category_name.contains(categoryName))
