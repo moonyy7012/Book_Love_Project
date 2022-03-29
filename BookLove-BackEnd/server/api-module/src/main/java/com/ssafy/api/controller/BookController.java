@@ -64,7 +64,7 @@ public class BookController {
     }
 
     @ApiOperation(value = "베스트셀러", notes = "베스트셀러")
-    @GetMapping(value = "/book/bestseller/{categoryName}", produces = "application/json; charset=utf8")
+    @GetMapping(value = "/book/bestseller/{categoryName}", produces = "APPLICATION_JSON_UTF8_VALUE")
     public @ResponseBody
     SingleResult<BookListResDTO> getBestSeller(@PathVariable String categoryName)throws Exception{
         List<Book> bestseller = bookService.findBestseller(categoryName);
