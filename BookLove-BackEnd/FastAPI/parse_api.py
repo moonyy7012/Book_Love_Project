@@ -10,6 +10,7 @@ def save_book():
     max_result = 50
     query_type = ["ItemNewAll", "ItemNewSpecial", "Bestseller"]
     key = "ttbsmy042991037001"
+    #"ttbpmw71301115001"
     data_list = ['title', 'description', 'link', 'pubDate', 'priceStandard', 'cover', 'publisher',
                  'priceSales', 'isbn', 'author', 'categoryName', 'salesPoint', 'customerReviewRank']
     data_len = len(data_list)
