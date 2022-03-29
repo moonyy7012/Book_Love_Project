@@ -59,6 +59,7 @@ public class SignController {
                 .nickname(req.getNickname())
                 .password(passwordEncoder.encode(req.getPassword()))
                 .isChecked(false)
+                .gender("")
                 // 기타 필요한 값 세팅
                 .roles(Collections.singletonList("ROLE_USER"))
                 .build(); // 인증된 회원인지 확인하기 위한 JWT 토큰에 사용될 데이터

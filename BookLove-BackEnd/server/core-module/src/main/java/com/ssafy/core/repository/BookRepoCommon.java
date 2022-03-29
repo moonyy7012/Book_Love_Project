@@ -9,6 +9,9 @@ import java.util.List;
 @Repository
 public interface BookRepoCommon {
     List<Book> findBestsellerByCategoryName(String categoryName);
-    List<Book> findNewBookByCategoryName(String categoryName);
+    List<Book> findMainBestseller();
+    List<Book> findNewBook();
     Book findBookInfoByBookId(long bookId);
+    List<Book> findBookByTitle(String title);
+    List<Book> findBookByAuthor(String author);
 }

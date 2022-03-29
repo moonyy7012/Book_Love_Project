@@ -2,6 +2,7 @@ package com.ssafy.api.controller;
 
 
 
+import com.ssafy.api.dto.req.BookSearchReqDTO;
 import com.ssafy.api.dto.res.BookInfoResDTO;
 import com.ssafy.api.dto.res.BookListInfoResDTO;
 import com.ssafy.api.dto.res.BookListResDTO;
@@ -19,6 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -54,9 +56,9 @@ public class BookController {
     public @ResponseBody
     ListResult<BookListInfoResDTO> getBestSeller(@PathVariable String categoryName)throws Exception{
         List<Book> bestseller = bookService.findBestseller(categoryName);
-        //제목 커버 북아이디
+
         List<BookListInfoResDTO> infoLIst= new ArrayList<>();
-        for(int i = 0 ; i < 10 ; i++) {
+        for(int i = 0 ; i < bestseller.size() ; i++) {
             BookListInfoResDTO info = BookListInfoResDTO.builder()
                     .title(bestseller.get(i).getTitle())
                     .cover(bestseller.get(i).getCover())
@@ -67,4 +69,79 @@ public class BookController {
 
         return responseService.getListResult(infoLIst);
     }
+
+    @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "JWT Token", required = true, dataType = "string", paramType = "header")})
+    @ApiOperation(value = "메인 베스트셀러", notes = "메인 베스트셀러")
+    @GetMapping(value = "/book/bestseller/main", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    ListResult<BookListInfoResDTO> getBestSeller()throws Exception{
+        List<Book> bestseller = bookService.findMainBestseller();
+
+        List<BookListInfoResDTO> infoLIst= new ArrayList<>();
+        for(int i = 0 ; i < bestseller.size() ; i++) {
+            BookListInfoResDTO info = BookListInfoResDTO.builder()
+                    .title(bestseller.get(i).getTitle())
+                    .cover(bestseller.get(i).getCover())
+                    .bookId(bestseller.get(i).getBookId())
+                    .build();
+            infoLIst.add(info);
+        }
+
+        return responseService.getListResult(infoLIst);
+    }
+
+    @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "JWT Token", required = true, dataType = "string", paramType = "header")})
+    @ApiOperation(value = "신간리스트", notes = "신간리스트")
+    @GetMapping(value = "/book/newbook", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    ListResult<BookListInfoResDTO> getNewBook()throws Exception{
+        List<Book> newBook = bookService.findNewBook();
+
+        List<BookListInfoResDTO> infoLIst= new ArrayList<>();
+        for(int i = 0 ; i < newBook.size() ; i++) {
+            BookListInfoResDTO info = BookListInfoResDTO.builder()
+                    .title(newBook.get(i).getTitle())
+                    .cover(newBook.get(i).getCover())
+                    .bookId(newBook.get(i).getBookId())
+                    .build();
+            infoLIst.add(info);
+        }
+
+        return responseService.getListResult(infoLIst);
+    }
+
+    @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "JWT Token", required = true, dataType = "string", paramType = "header")})
+    @ApiOperation(value = "검색결과", notes = "검색결과")
+    @GetMapping(value = "/book/search", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    ListResult<BookListInfoResDTO> getSearchList(@Valid BookSearchReqDTO req)throws Exception{
+        List<Book> searchResultByTitle = bookService.findBookByTitle(req.getKeyword());
+        List<Book> searchResultByAuthor = bookService.findBookByAuthor(req.getKeyword());
+
+
+        List<BookListInfoResDTO> searchResult= new ArrayList<>();
+        List<BookListInfoResDTO> searchAuthorList= new ArrayList<>();
+        //title 로 검색
+        for(int i = 0 ; i < searchResultByTitle.size() ; i++) {
+            BookListInfoResDTO info = BookListInfoResDTO.builder()
+                    .title(searchResultByTitle.get(i).getTitle())
+                    .cover(searchResultByTitle.get(i).getCover())
+                    .bookId(searchResultByTitle.get(i).getBookId())
+                    .build();
+            searchResult.add(info);
+        }
+        //author 로 검색
+        for(int i = 0 ; i < searchResultByAuthor.size() ; i++) {
+            BookListInfoResDTO info = BookListInfoResDTO.builder()
+                    .title(searchResultByAuthor.get(i).getTitle())
+                    .cover(searchResultByAuthor.get(i).getCover())
+                    .bookId(searchResultByAuthor.get(i).getBookId())
+                    .build();
+            searchAuthorList.add(info);
+        }
+        searchResult.addAll(searchAuthorList);
+        return responseService.getListResult(searchResult);
+    }
+
+
 }
