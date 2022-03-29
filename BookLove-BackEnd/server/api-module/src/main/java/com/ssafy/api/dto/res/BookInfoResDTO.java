@@ -51,7 +51,7 @@ public class BookInfoResDTO {
     @ApiModelProperty(value = "판매 점수", required = true, example = "")
     private int salesPoint;
 
-    @ApiModelProperty(value = "리뷰 (1~10)", required = true, example = "")
+    @ApiModelProperty(value = "별점 (1~10)", required = true, example = "")
     private int customerReviewRank;
 
     @ApiModelProperty(value = "유사 책 리스트", example = "")
