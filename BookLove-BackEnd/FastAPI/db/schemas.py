@@ -47,3 +47,11 @@ class Category(BaseModel):
 
     class Config:
         orm_mode = True
+
+class BookBase(BaseModel):
+    book_id: int
+    title: str
+    cover: str
+
+    class Config:
+        orm_mode = True

@@ -28,7 +28,7 @@ public class BookRepoCommonImpl implements BookRepoCommon{
     public List<Book> findBestsellerByCategoryName(String categoryName) {
         List<Book> result  = queryFactory
                 .selectFrom(QBook.book)
-                .where(QBook.book.category_name.contains(categoryName))
+                .where(QBook.book.categoryName.contains(categoryName))
                 .leftJoin(QBook.book.category, QCategory.category)
                 .fetchJoin()
                 .orderBy(QBook.book.salesPoint.desc())

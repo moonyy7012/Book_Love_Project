@@ -21,8 +21,6 @@ class Book(Base):
     sales_point = Column(Integer)
     customer_review_rank = Column(Integer)
 
-    # children = relationship("Child", backref="parent")
-
 class Category(Base):
     __tablename__ = "category"
 

@@ -3,6 +3,7 @@ from db.database import SessionLocal, engine
 from db import crud
 from sqlalchemy.orm import Session
 from fastapi import APIRouter, Depends, status
+import parse_api
 import json
 import pandas
 import os
@@ -12,15 +13,14 @@ models.Base.metadata.create_all(bind=engine)
 
 router = APIRouter(prefix="/data")
 
-# Dependency
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
-def store_categories_in_db(db):
+
+async def store_categories_in_db(db):
+    db_cate = crud.get_categories(db)
+
+    if not len(db_cate) == 0:
+        return
+
     df = pandas.read_csv(dir + '../file/category_depth1.csv', encoding='cp949')
     json_data = df.to_json(orient='records')
 
@@ -34,23 +34,27 @@ def store_categories_in_db(db):
 
     return
 
-@router.get('/books', status_code=status.HTTP_201_CREATED)
-async def store_books_in_dir(db: Session = Depends(get_db)):
+async def store_books_in_dir(db):
     db_book = crud.get_books(db)
 
-    if db_book is None:
-        return "fail"
+    if len(db_book) == 0:
+        await store_books_in_db(db)
+        db_book = crud.get_books(db)
 
     df = pandas.DataFrame([o.__dict__ for o in db_book])
     df.drop(['_sa_instance_state'], axis=1, inplace=True)
 
     df.to_csv(dir + '../file/db_books.csv', encoding='cp949', index=False)
 
-    return "success"
+    return
 
-@router.post('/books', status_code=status.HTTP_201_CREATED)
-def store_books_in_db(db: Session = Depends(get_db)) -> None:
-    store_categories_in_db(db)
+async def store_books_in_db(db):
+    await store_categories_in_db(db)
+
+    if not os.path.isfile(dir + '../file/books.csv'):
+        await parse_api.save_book()
+        parse_api.process_book()
+
     df = pandas.read_csv(dir + '../file/books.csv', encoding='cp949')
     df.drop_duplicates(subset=None, keep='first', inplace=False, ignore_index=False)
 
@@ -66,12 +70,14 @@ def store_books_in_db(db: Session = Depends(get_db)) -> None:
 
     return "success"
 
-@router.get("/books/{book_id}", tags=["book"])
-def get_book_info(book_id : int, db: Session = Depends(get_db)) -> None:
-
-    db_book_info = crud.get_book_info_by_book_id(db, book_id)
-
-    if db_book_info is None:
-        return "fail"
-    print(type(db_book_info))
-    return db_book_info
+# @router.get("/books/{book_id}", tags=["book"])
+# def get_book_info(book_id : int, db: Session = Depends(get_db)) -> None:
+#
+#     db_book_info = crud.get_book_info_by_book_id(db, book_id)
+#
+#     if db_book_info is None:
+#         return "fail"
+#
+#     print(type(db_book_info))
+#
+#     return db_book_info

@@ -6,7 +6,7 @@ import os
 
 dir = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/') + '/'
 
-def save_book():
+async def save_book():
     max_result = 50
     query_type = ["ItemNewAll", "ItemNewSpecial", "Bestseller"]
     key = "ttbsmy042991037001"
@@ -19,8 +19,7 @@ def save_book():
     category_list = (pd.read_csv(dir + 'file/category_all.csv', encoding='cp949')['CID'].values.tolist())
 
     for cid in category_list:
-        print(cid)
-        #1페이지부터 원하는 페이지까지 가져오기
+        # 1페이지부터 원하는 페이지까지 가져오기
         for page in range(1, page_num + 1):
             url = f"http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey={key}&QueryType={query_type[2]}" \
                   f"&MaxResults={max_result}&start={page}&SearchTarget=Book&output=js&Version=20131101&categoryId={cid}"
@@ -66,6 +65,8 @@ def process_book():
     df = df.dropna(axis=0, how='any')
     df.to_csv(dir + 'books.csv', index=False, encoding='cp949')
 
+# save_book()
+# process_book()
 
 
 
