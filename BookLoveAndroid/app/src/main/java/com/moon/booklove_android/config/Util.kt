@@ -9,18 +9,20 @@ import com.moon.booklove_android.dto.Book
 import com.moon.booklove_android.dto.BookCategory
 
 fun getRecomm(): ArrayList<BookCategory> {
-    val bookCategory = arrayListOf<BookCategory>()
+    //bookCategory : header를 포함한 북리스트 전체
+    val bookCategoryList = arrayListOf<BookCategory>()
     for (a in 0..2) {
+        //북리스트
         val bookList = arrayListOf<Book>()
         for(b in 0..5) {
             val book = Book(b, "Book Title $b", R.drawable.ic_baseline_book_24, "재밌는 책입니다.")
             bookList += book
         }
 
-        bookCategory += BookCategory(a, recommand[a], bookList)
+        bookCategoryList += BookCategory(a, recommand[a], bookList)
     }
 
-    return bookCategory
+    return bookCategoryList
 }
 
 fun getSearch(): ArrayList<BookCategory> {
@@ -39,6 +41,15 @@ fun getSearch(): ArrayList<BookCategory> {
 }
 
 fun getGenre(): ArrayList<Book> {
+    val books = arrayListOf<Book>()
+    for (a in 0..30) {
+        books += Book(a, "Book Title $a", R.drawable.ic_baseline_book_24, "재밌는 책입니다.")
+    }
+
+    return books
+}
+
+fun getAuthorBooks(): ArrayList<Book> {
     val books = arrayListOf<Book>()
     for (a in 0..30) {
         books += Book(a, "Book Title $a", R.drawable.ic_baseline_book_24, "재밌는 책입니다.")
