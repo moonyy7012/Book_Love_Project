@@ -9,7 +9,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SocialUserResponseDTO {
+public class SocialUserResDTO {
     private String id;
     private Properties properties;
 

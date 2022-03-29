@@ -1,7 +1,7 @@
 package com.ssafy.api.service;
 
 import com.ssafy.api.dto.req.UserInfoReqDTO;
-import com.ssafy.api.dto.res.SocialUserResponseDTO;
+import com.ssafy.api.dto.res.SocialUserResDTO;
 import com.ssafy.core.code.JoinCode;
 import com.ssafy.core.entity.Category;
 import com.ssafy.core.entity.User;
@@ -113,13 +113,13 @@ public class SignService {
 
     @Transactional(readOnly = false)
     public User socialLogin(String accessToken) {
-        SocialUserResponseDTO socialUser = WebClient.create().get()
+        SocialUserResDTO socialUser = WebClient.create().get()
                 .uri("https://kapi.kakao.com/v2/user/me")
                 .headers(h -> h.setBearerAuth(accessToken))
                 .retrieve()
                 .onStatus(HttpStatus::is4xxClientError, response -> Mono.error(new ApiMessageException(401, "소셜 토큰이 유효하지 않습니다.")))
                 .onStatus(HttpStatus::is5xxServerError, response -> Mono.error(new ApiMessageException("내부 서버 에러")))
-                .bodyToMono(SocialUserResponseDTO.class)
+                .bodyToMono(SocialUserResDTO.class)
                 .block();
 
         User user = userRepository.findUserLogin(socialUser.getId(), JoinCode.KAKAO);

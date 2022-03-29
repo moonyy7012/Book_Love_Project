@@ -34,7 +34,7 @@ public class Book {
     private String author;
 
     @Column(nullable = false, length = 1000)
-    private String pub_date;
+    private String pubDate;
 
     @Column(nullable = false, length = 200)
     private String isbn;
@@ -52,7 +52,7 @@ public class Book {
     private String link;
 
     @Column(nullable = false, length = 2000)
-    private String category_name;
+    private String categoryName;
 
     @Column(nullable = false, length = 1000)
     private String publisher;
