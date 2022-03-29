@@ -6,19 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="09cac4fe-c8a7-43ed-821b-ccf2493aad13" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api-module/src/main/java/com/ssafy/api/controller/SignController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/api-module/src/main/java/com/ssafy/api/controller/SignController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/api-module/src/main/java/com/ssafy/api/dto/res/LoginResDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/api-module/src/main/java/com/ssafy/api/dto/res/LoginResDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api-module/src/main/java/com/ssafy/api/service/SignService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/api-module/src/main/java/com/ssafy/api/service/SignService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/activity/LoginActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/activity/LoginActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/api/UserApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/api/UserApi.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/config/ApplicationClass.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/config/ApplicationClass.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/dto/NormalLoginResDTO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/dto/LoginResDTO.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/dto/SocialLoginResDTO.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/fragment/CollectInterestFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/fragment/CollectInterestFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/fragment/MyPageFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/fragment/MyPageFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/service/UserService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/service/UserService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/res/layout/fragment_mypage.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/res/layout/fragment_mypage.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/fragment/EditAgeFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/fragment/EditAgeFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/fragment/EditGenderFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/fragment/EditGenderFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/fragment/EditInterestFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/fragment/EditInterestFragment.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,7 +167,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647912968017</updated>
-      <workItem from="1648299423543" duration="26660000" />
+      <workItem from="1648299423543" duration="27257000" />
+      <workItem from="1648472433681" duration="6993000" />
     </task>
     <servers />
   </component>

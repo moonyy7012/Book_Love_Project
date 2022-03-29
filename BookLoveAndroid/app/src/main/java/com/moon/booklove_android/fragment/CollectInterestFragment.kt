@@ -86,7 +86,7 @@ class CollectInterestFragment  : Fragment(){
         }
     }
 
-    private fun updateUserInfo(userInfoUpdateReqDTO: UserInfoUpdateReqDTO) {
+    fun updateUserInfo(userInfoUpdateReqDTO: UserInfoUpdateReqDTO) {
         UserService().userInfoUpdate(userInfoUpdateReqDTO, object : RetrofitCallback<SingleResult<Any>> {
             override fun onSuccess(code: Int, responseData: SingleResult<Any>) {
                 if (responseData.data==true) {
