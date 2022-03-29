@@ -11,6 +11,8 @@ import com.ssafy.api.service.common.ResponseService;
 import com.ssafy.api.service.common.SingleResult;
 import com.ssafy.core.entity.Book;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,6 +35,7 @@ public class BookController {
     private final ResponseService responseService;
     private final BookService bookService;
 
+    @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "JWT Token", required = true, dataType = "string", paramType = "header")})
     @ApiOperation(value = "책 상세정보", notes = "책 상세정보")
     @GetMapping(value = "/book/{bookId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody SingleResult<BookInfoResDTO> getBookDetail(@PathVariable long bookId) throws Exception {
@@ -45,6 +48,7 @@ public class BookController {
         return responseService.getSingleResult(bookInfoResDTO);
     }
 
+    @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "JWT Token", required = true, dataType = "string", paramType = "header")})
     @ApiOperation(value = "베스트셀러", notes = "베스트셀러")
     @GetMapping(value = "/book/bestseller/{categoryName}", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
@@ -63,7 +67,4 @@ public class BookController {
 
         return responseService.getListResult(infoLIst);
     }
-
-
-
 }
