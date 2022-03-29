@@ -6,6 +6,7 @@ import com.ssafy.api.dto.res.BookInfoResDTO;
 import com.ssafy.api.dto.res.BookListInfoResDTO;
 import com.ssafy.api.dto.res.BookListResDTO;
 import com.ssafy.api.service.BookService;
+import com.ssafy.api.service.common.ListResult;
 import com.ssafy.api.service.common.ResponseService;
 import com.ssafy.api.service.common.SingleResult;
 import com.ssafy.core.entity.Book;
@@ -66,7 +67,7 @@ public class BookController {
     @ApiOperation(value = "베스트셀러", notes = "베스트셀러")
     @GetMapping(value = "/book/bestseller/{categoryName}", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    SingleResult<BookListResDTO> getBestSeller(@PathVariable String categoryName)throws Exception{
+    ListResult<BookListInfoResDTO> getBestSeller(@PathVariable String categoryName)throws Exception{
         List<Book> bestseller = bookService.findBestseller(categoryName);
         //제목 커버 북아이디
         List<BookListInfoResDTO> infoLIst= new ArrayList<>();
@@ -82,7 +83,7 @@ public class BookController {
                 .bestseller(infoLIst)
                 .build();
 
-        return responseService.getSingleResult(list);
+        return responseService.getListResult(infoLIst);
     }
 
 
