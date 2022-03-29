@@ -50,7 +50,10 @@
             android:name=".activity.SignUpActivity"
             android:exported="true">
         </activity>
-
+        <activity
+            android:name=".activity.DetailActivity"
+            android:exported="true">
+        </activity>
 
     </application>
 

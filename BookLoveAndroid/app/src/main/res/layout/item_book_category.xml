@@ -3,6 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+<!--   item_book_category는  홈 프래그먼트의 리사이클러뷰의 한 item -->
+<!--  어댑터 데이터는 getRecomm() 반환 값 arrayList<BookCategory>  -->
+<!--   리스트의 한 항목인 BookCategory가 아래 data bookCategory  -->
     <data>
         <import type="androidx.core.content.ContextCompat" />
         <variable

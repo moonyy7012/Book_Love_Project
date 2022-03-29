@@ -30,6 +30,7 @@ class HomeFragment  : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val bookCategoryAdapter = BookCategoryAdapter()
+        //리스트 데이터 갱신(카테고리 리스트)
         bookCategoryAdapter.submitList(getRecomm())
         binding.outerRecyclerView.adapter = bookCategoryAdapter
     }
