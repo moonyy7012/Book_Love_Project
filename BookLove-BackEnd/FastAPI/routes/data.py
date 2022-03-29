@@ -65,3 +65,13 @@ def store_books_in_db(db: Session = Depends(get_db)) -> None:
     db.commit()
 
     return "success"
+
+@router.get("/books/{book_id}", tags=["book"])
+def get_book_info(book_id : int, db: Session = Depends(get_db)) -> None:
+
+    db_book_info = crud.get_book_info_by_book_id(db, book_id)
+
+    if db_book_info is None:
+        return "fail"
+    print(type(db_book_info))
+    return db_book_info
