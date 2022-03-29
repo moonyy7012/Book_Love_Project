@@ -1,4 +1,4 @@
-from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy import Column, ForeignKey, Integer, String, BIGINT
 
 from db.database import Base
 
@@ -15,7 +15,7 @@ class Book(Base):
     price_standard = Column(Integer)
     cover = Column(String(2000))
     link = Column(String(2000))
-    category_id = Column(Integer, ForeignKey("category.category_id"))
+    category_id = Column(BIGINT, ForeignKey("category.category_id"))
     category_name = Column(String(2000))
     publisher = Column(String(1000))
     sales_point = Column(Integer)
