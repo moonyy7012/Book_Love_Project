@@ -14,9 +14,9 @@ interface BookApi {
     @GET("api/user/idcheck/{id}")
     fun getBookListSearch(@Query("search") search: String): Call<SingleResult<BookListSearchResDTO>>
 
-    // 장르 리스트
-    @GET("api/user/idcheck/{id}")
-    fun getBookListCategory(@Query("category") category: String): Call<SingleResult<BookListCategoryResDTO>>
+    // 카테고리별 조회 리스트
+    @GET("api/book/bestseller/{categoryName}")
+    fun getBookListCategory(@Path("categoryName") category: String): Call<ListResult<BookListInfoResDTO>>
 
     // 책 상세 정보 비슷한 책 리스트
     @GET("api/user/idcheck/{id}")

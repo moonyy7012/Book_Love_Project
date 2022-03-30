@@ -1,5 +1,6 @@
 package com.moon.booklove_android.service
 
+import android.util.Log
 import com.moon.booklove_android.data.dto.*
 import com.moon.booklove_android.config.util.RetrofitCallback
 import com.moon.booklove_android.config.util.RetrofitUtil
@@ -53,10 +54,10 @@ class BookService {
             })
     }
 
-    fun getBookListCategory(category: String,callback: RetrofitCallback<SingleResult<BookListCategoryResDTO>>) {
+    fun getBookListCategory(category: String,callback: RetrofitCallback<ListResult<BookListInfoResDTO>>) {
         RetrofitUtil.bookService.getBookListCategory(category)
-            .enqueue(object : Callback<SingleResult<BookListCategoryResDTO>> {
-                override fun onResponse(call: Call<SingleResult<BookListCategoryResDTO>>, response: Response<SingleResult<BookListCategoryResDTO>>) {
+            .enqueue(object : Callback<ListResult<BookListInfoResDTO>> {
+                override fun onResponse(call: Call<ListResult<BookListInfoResDTO>>, response: Response<ListResult<BookListInfoResDTO>>) {
                     val res = response.body()
                     if (response.code() == 200) {
                         if (res != null) {
@@ -69,7 +70,7 @@ class BookService {
                     }
                 }
 
-                override fun onFailure(call: Call<SingleResult<BookListCategoryResDTO>>, t: Throwable) {
+                override fun onFailure(call: Call<ListResult<BookListInfoResDTO>>, t: Throwable) {
                     callback.onError(t)
                 }
             })
