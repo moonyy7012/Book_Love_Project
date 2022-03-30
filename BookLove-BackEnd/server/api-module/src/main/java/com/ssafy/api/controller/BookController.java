@@ -52,11 +52,11 @@ public class BookController {
 
     @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "JWT Token", required = true, dataType = "string", paramType = "header")})
     @ApiOperation(value = "베스트셀러", notes = "베스트셀러")
-    @GetMapping(value = "/book/bestseller/{categoryName}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/book/bestseller/", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    ListResult<BookListInfoResDTO> getBestSeller(@PathVariable String categoryName)throws Exception{
+    ListResult<BookListInfoResDTO> getBestSeller(@RequestParam("categoryName") String categoryName)throws Exception{
         List<Book> bestseller = bookService.findBestseller(categoryName);
-
+        System.out.println(categoryName);
         List<BookListInfoResDTO> infoLIst= new ArrayList<>();
         for(int i = 0 ; i < bestseller.size() ; i++) {
             BookListInfoResDTO info = BookListInfoResDTO.builder()
@@ -112,11 +112,11 @@ public class BookController {
 
     @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "JWT Token", required = true, dataType = "string", paramType = "header")})
     @ApiOperation(value = "검색결과", notes = "검색결과")
-    @GetMapping(value = "/book/search", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/book/search/{keyword}", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    ListResult<BookListInfoResDTO> getSearchList(@Valid BookSearchReqDTO req)throws Exception{
-        List<Book> searchResultByTitle = bookService.findBookByTitle(req.getKeyword());
-        List<Book> searchResultByAuthor = bookService.findBookByAuthor(req.getKeyword());
+    ListResult<BookListInfoResDTO> getSearchList(@PathVariable String keyword)throws Exception{
+        List<Book> searchResultByTitle = bookService.findBookByTitle(keyword);
+        List<Book> searchResultByAuthor = bookService.findBookByAuthor(keyword);
 
 
         List<BookListInfoResDTO> searchResult= new ArrayList<>();
