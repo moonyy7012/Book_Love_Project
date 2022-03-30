@@ -22,7 +22,7 @@ class CategoryPresenterImpl(override var view: CategoryContract.View) : Category
     var bookList: ListResult<BookListInfoResDTO> ?= null
 
 
-    override fun getBookListCategory(context: Context, categoryName:String, position:Int) {
+    override fun getBookListCategory(context: Context, categoryName:String) {
         Log.d(TAG, "getBookListCategory: ${categoryName}")
         BookService().getBookListCategory(categoryName, object :
             RetrofitCallback<ListResult<BookListInfoResDTO>> {
@@ -33,6 +33,7 @@ class CategoryPresenterImpl(override var view: CategoryContract.View) : Category
                     bookList = responseData
                     bookCategoryAdapter = BookItemAdapter()
                     bookCategoryAdapter!!.submitList(bookList!!.data)
+                    view.connectAdapter()
                 } else {
                     toast("문제가 발생하였습니다. 다시 시도해주세요.",context)
                 }
@@ -56,7 +57,7 @@ class CategoryPresenterImpl(override var view: CategoryContract.View) : Category
                             ApplicationClass.prefs.setJWTAccess(responseData.data.accessToken)
                             ApplicationClass.prefs.setJWTRefresh(responseData.data.refreshToken)
                             ApplicationClass.initRetrofit()
-                            getBookListCategory(context, categoryName, position)
+                            getBookListCategory(context, categoryName)
                         } else toast("문제가 발생하였습니다. 다시 시도해주세요.", context)
                     }
 

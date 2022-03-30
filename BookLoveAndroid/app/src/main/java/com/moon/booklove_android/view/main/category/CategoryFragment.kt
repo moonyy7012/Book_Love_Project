@@ -48,16 +48,19 @@ class CategoryFragment  : Fragment(), CategoryView{
                 id: Long
             ) {
 
-                presenter.getBookListCategory(requireContext(), interest[position], position)
-                binding.myGridView.adapter = bookCategoryAdapter
+                presenter.getBookListCategory(requireContext(), interest[position])
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
-                presenter.getBookListCategory(requireContext(), interest[0],0)
-                binding.myGridView.adapter = bookCategoryAdapter
+                presenter.getBookListCategory(requireContext(), interest[0])
 
             }
         }
+    }
+
+    override fun connectAdapter() {
+        binding.myGridView.adapter = bookCategoryAdapter
+
     }
 
 }
