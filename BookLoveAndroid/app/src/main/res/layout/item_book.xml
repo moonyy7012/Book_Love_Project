@@ -7,7 +7,7 @@
         <import type="androidx.core.content.ContextCompat" />
         <variable
             name="book"
-            type="com.moon.booklove_android.dto.Book" />
+            type="com.moon.booklove_android.data.dto.Book" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
