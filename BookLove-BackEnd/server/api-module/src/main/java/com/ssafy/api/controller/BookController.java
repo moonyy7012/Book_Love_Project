@@ -2,10 +2,8 @@ package com.ssafy.api.controller;
 
 
 
-import com.ssafy.api.dto.req.BookSearchReqDTO;
 import com.ssafy.api.dto.res.BookInfoResDTO;
 import com.ssafy.api.dto.res.BookListInfoResDTO;
-import com.ssafy.api.dto.res.BookListResDTO;
 import com.ssafy.api.service.BookService;
 import com.ssafy.api.service.common.ListResult;
 import com.ssafy.api.service.common.ResponseService;
@@ -20,11 +18,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -113,12 +106,12 @@ public class BookController {
     @ApiOperation(value = "검색결과", notes = "검색결과")
     @GetMapping(value = "/book/search/{keyword}", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    ListResult<BookListInfoResDTO> getSearchList(@PathVariable String keyword)throws Exception{
+    ListResult<List<BookListInfoResDTO>> getSearchList(@PathVariable String keyword)throws Exception{
         List<Book> searchResultByTitle = bookService.findBookByTitle(keyword);
         List<Book> searchResultByAuthor = bookService.findBookByAuthor(keyword);
 
 
-        List<BookListInfoResDTO> searchResult= new ArrayList<>();
+        List<BookListInfoResDTO> searchTitleList= new ArrayList<>();
         List<BookListInfoResDTO> searchAuthorList= new ArrayList<>();
         //title 로 검색
         for(int i = 0 ; i < searchResultByTitle.size() ; i++) {
@@ -127,7 +120,7 @@ public class BookController {
                     .cover(searchResultByTitle.get(i).getCover())
                     .bookId(searchResultByTitle.get(i).getBookId())
                     .build();
-            searchResult.add(info);
+            searchTitleList.add(info);
         }
         //author 로 검색
         for(int i = 0 ; i < searchResultByAuthor.size() ; i++) {
@@ -138,7 +131,11 @@ public class BookController {
                     .build();
             searchAuthorList.add(info);
         }
-        searchResult.addAll(searchAuthorList);
+        List<List<BookListInfoResDTO>> searchResult =
+                new ArrayList<>();
+        searchResult.add(searchTitleList);
+        searchResult.add(searchAuthorList);
+
         return responseService.getListResult(searchResult);
     }
 
