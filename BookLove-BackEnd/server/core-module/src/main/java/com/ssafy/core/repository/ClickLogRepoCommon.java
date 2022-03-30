@@ -9,6 +9,5 @@ import java.util.List;
 @Repository
 public interface ClickLogRepoCommon {
     ClickLog findClickLogByUserIdAndBookId(long userId, long bookId);
-    List<Book> findBookByClickLog(String gender);
-    List<Book> findBookByClickLog(int age);
+    List<Book> findBookByClickLog(String gender, int age);
 }

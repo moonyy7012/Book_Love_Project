@@ -14,6 +14,8 @@ public interface UserRepoCommon {
 
     void deleteUser(User user);
 
+    User findUserWithCategory(Long userId);
+
 }
 
 

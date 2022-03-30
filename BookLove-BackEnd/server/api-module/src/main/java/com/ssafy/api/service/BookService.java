@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -70,19 +71,38 @@ public class BookService {
     }
 
     @Transactional(readOnly = false)
-    public List<Book> findMainBestseller(){
+    public List<BookListInfoResDTO> findMainBestseller(){
         List<Book> bestseller = bookRepository.findMainBestseller();
 
-        return bestseller;
+        List<BookListInfoResDTO> infoLIst = new ArrayList<>();
+        for(int i = 0 ; i < bestseller.size() ; i++) {
+            BookListInfoResDTO info = BookListInfoResDTO.builder()
+                    .title(bestseller.get(i).getTitle())
+                    .cover(bestseller.get(i).getCover())
+                    .bookId(bestseller.get(i).getBookId())
+                    .build();
+            infoLIst.add(info);
+        }
+
+        return infoLIst;
 
     }
 
     @Transactional(readOnly = false)
-    public List<Book> findNewBook(){
+    public List<BookListInfoResDTO> findNewBook(){
         List<Book> newBook = bookRepository.findNewBook();
 
-        return newBook;
+        List<BookListInfoResDTO> infoLIst = new ArrayList<>();
+        for(int i = 0 ; i < newBook.size() ; i++) {
+            BookListInfoResDTO info = BookListInfoResDTO.builder()
+                    .title(newBook.get(i).getTitle())
+                    .cover(newBook.get(i).getCover())
+                    .bookId(newBook.get(i).getBookId())
+                    .build();
+            infoLIst.add(info);
+        }
 
+        return infoLIst;
     }
 
     @Transactional(readOnly = false)
@@ -119,21 +139,9 @@ public class BookService {
         return clickLogRepository.save(clickLog);
     }
 
-    public List<BookListInfoResDTO> findBookByGenderClickLog(String gender) {
-        List<Book> bookList = clickLogRepository.findBookByClickLog(gender);
 
-        List<BookListInfoResDTO> resultList = IntStream.range(0, bookList.size())
-                .mapToObj(i -> BookListInfoResDTO.builder()
-                        .title(bookList.get(i).getTitle())
-                        .cover(bookList.get(i).getCover())
-                        .bookId(bookList.get(i).getBookId()).build())
-                .collect(Collectors.toList());
-
-        return resultList;
-    }
-
-    public List<BookListInfoResDTO> findBookByAgeClickLog(int age) {
-        List<Book> bookList = clickLogRepository.findBookByClickLog(age);
+    public List<BookListInfoResDTO> findBookByGenderAndAgeClickLog(String gender, int age) {
+       List<Book> bookList = clickLogRepository.findBookByClickLog(gender, age);
 
         List<BookListInfoResDTO> resultList = IntStream.range(0, bookList.size())
                 .mapToObj(i -> BookListInfoResDTO.builder()

@@ -32,29 +32,14 @@ public class ClickLogRepoCommonImpl implements ClickLogRepoCommon {
     }
 
     @Override
-    public List<Book> findBookByClickLog(String gender) {
+    public List<Book> findBookByClickLog(String gender, int age) {
         return queryFactory
                 .select(QClickLog.clickLog.book)
                 .from(QClickLog.clickLog)
                 .leftJoin(QClickLog.clickLog.user)
                 .leftJoin(QClickLog.clickLog.book)
                 .where(
-                        genderEq(gender)
-                )
-                .groupBy(QClickLog.clickLog.book.bookId)
-                .orderBy(QClickLog.clickLog.book.bookId.count().desc(), QClickLog.clickLog.book.salesPoint.desc())
-                .limit(10)
-                .fetch();
-    }
-
-    @Override
-    public List<Book> findBookByClickLog(int age) {
-        return queryFactory
-                .select(QClickLog.clickLog.book)
-                .from(QClickLog.clickLog)
-                .leftJoin(QClickLog.clickLog.user)
-                .leftJoin(QClickLog.clickLog.book)
-                .where(
+                        genderEq(gender),
                         ageEq(age)
                 )
                 .groupBy(QClickLog.clickLog.book.bookId)

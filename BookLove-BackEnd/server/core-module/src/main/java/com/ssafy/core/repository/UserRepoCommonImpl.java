@@ -36,6 +36,20 @@ public class UserRepoCommonImpl implements UserRepoCommon{
         return result;
     }
 
+    @Override
+    @Transactional
+    public User findUserWithCategory(Long userId){
+        User result = queryFactory
+                .select(QUser.user)
+                .from(QUser.user)
+                .where(QUser.user.userId.eq(userId))
+                .leftJoin(QUser.user.categories, QCategory.category)
+                .fetchJoin()
+                .fetchFirst();
+
+        return result;
+    }
+
 
     @Override
     public User findById(String id){
