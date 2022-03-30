@@ -2,12 +2,12 @@ package com.moon.booklove_android.config
 
 import android.app.Application
 import com.kakao.sdk.common.KakaoSdk
+import com.moon.booklove_android.adapter.BookAdapter
 import com.moon.booklove_android.adapter.BookItemAdapter
 import com.moon.booklove_android.data.model.User
 import com.moon.booklove_android.config.util.PreferenceUtil
 import com.moon.booklove_android.config.util.RetrofitInterceptor
-import com.moon.booklove_android.data.dto.BookListInfoResDTO
-import com.moon.booklove_android.data.dto.ListResult
+import com.moon.booklove_android.data.dto.*
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -28,7 +28,9 @@ class ApplicationClass : Application() {
         var bookCategoryAdapter: BookItemAdapter? = null
         var recommand: MutableList<String> = mutableListOf("같은 나이대의 사람들이 관심 있어요", "같은 성별의 사람들이 관심 있어요", "같은 장르의 책인데 한 번 보시겠어요?")
         var search: MutableList<String> = mutableListOf("책 제목으로 검색했어요!", "작가 이름으로 검색했어요!", "장르로 검색했어요!")
-        var items = mutableListOf("아이템0","아이템1","아이템2","아이템3","아이템4")
+        var bookInfo : SingleResult<BookInfoResDTO>?= null
+
+
 
         fun initRetrofit(){
             retrofit = Retrofit.Builder()

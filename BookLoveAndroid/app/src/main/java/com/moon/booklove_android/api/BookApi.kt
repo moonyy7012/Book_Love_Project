@@ -24,7 +24,7 @@ interface BookApi {
     fun getBookListSimilar(@Query("bookId") bookId: String): Call<SingleResult<BookListCategoryResDTO>>
 
     // //책 상세 정보
-    @GET("api/user/idcheck/{id}")
-    fun getBookInfo(@Query("bookId") bookId: String): Call<SingleResult<BookListCategoryResDTO>>
+    @GET("api/book/{bookId}")
+    fun getBookInfo(@Path("bookId") bookId: Long): Call<SingleResult<BookInfoResDTO>>
 
 }
