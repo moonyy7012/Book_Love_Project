@@ -4,8 +4,12 @@ package com.ssafy.api.service;
 import com.ssafy.api.dto.res.BookListInfoResDTO;
 import com.ssafy.api.dto.res.PyBooksResDTO;
 import com.ssafy.core.entity.Book;
+import com.ssafy.core.entity.ClickLog;
+import com.ssafy.core.entity.User;
 import com.ssafy.core.exception.ApiMessageException;
 import com.ssafy.core.repository.BookRepository;
+import com.ssafy.core.repository.ClickLogRepository;
+import com.ssafy.core.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -23,6 +27,8 @@ import java.util.stream.IntStream;
 @Transactional
 public class BookService {
     private final BookRepository bookRepository;
+    private final ClickLogRepository clickLogRepository;
+    private final UserRepository userRepository;
 
     @Transactional(readOnly = false)
     public List<Book> findBestseller(String categoryName){
@@ -95,5 +101,47 @@ public class BookService {
 
     }
 
+    @Transactional(readOnly = false)
+    public ClickLog putClickLog(Long userId, Book book) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new ApiMessageException("존재하지 않는 회원정보입니다."));
+        ClickLog clickLog = clickLogRepository.findClickLogByUserIdAndBookId(user.getUserId(), book.getBookId());
 
+        if (clickLog == null) {
+            clickLog = ClickLog.builder()
+                    .user(user)
+                    .book(book)
+                    .count(1)
+                    .build();
+        } else {
+            clickLog.addCount();
+        }
+
+        return clickLogRepository.save(clickLog);
+    }
+
+    public List<BookListInfoResDTO> findBookByGenderClickLog(String gender) {
+        List<Book> bookList = clickLogRepository.findBookByClickLog(gender);
+
+        List<BookListInfoResDTO> resultList = IntStream.range(0, bookList.size())
+                .mapToObj(i -> BookListInfoResDTO.builder()
+                        .title(bookList.get(i).getTitle())
+                        .cover(bookList.get(i).getCover())
+                        .bookId(bookList.get(i).getBookId()).build())
+                .collect(Collectors.toList());
+
+        return resultList;
+    }
+
+    public List<BookListInfoResDTO> findBookByAgeClickLog(int age) {
+        List<Book> bookList = clickLogRepository.findBookByClickLog(age);
+
+        List<BookListInfoResDTO> resultList = IntStream.range(0, bookList.size())
+                .mapToObj(i -> BookListInfoResDTO.builder()
+                        .title(bookList.get(i).getTitle())
+                        .cover(bookList.get(i).getCover())
+                        .bookId(bookList.get(i).getBookId()).build())
+                .collect(Collectors.toList());
+
+        return resultList;
+    }
 }

@@ -26,9 +26,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "user"
-
-)
+@Table(name = "user")
 // 회원 테이블
 public class User extends BaseEntity implements UserDetails {
 
