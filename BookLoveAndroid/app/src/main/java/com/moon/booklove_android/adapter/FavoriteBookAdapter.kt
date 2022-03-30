@@ -7,11 +7,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.moon.booklove_android.databinding.FavoriteItemBookBinding
-import com.moon.booklove_android.dto.Book
+import com.moon.booklove_android.data.dto.Book
 
 // ViewHolder
 class FavoriteViewHolder(val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root)
-
 
 class FavoriteBookAdapter : ListAdapter<Book, FavoriteViewHolder>(Companion) {
     companion object : DiffUtil.ItemCallback<Book>() {

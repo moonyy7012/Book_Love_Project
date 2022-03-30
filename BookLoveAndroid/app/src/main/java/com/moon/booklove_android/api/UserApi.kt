@@ -1,6 +1,6 @@
 package com.moon.booklove_android.api
 
-import com.moon.booklove_android.dto.*
+import com.moon.booklove_android.data.dto.*
 import retrofit2.Call
 import retrofit2.http.*
 

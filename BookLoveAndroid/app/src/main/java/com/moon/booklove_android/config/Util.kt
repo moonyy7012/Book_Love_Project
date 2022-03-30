@@ -5,8 +5,8 @@ import android.widget.Toast
 import com.moon.booklove_android.R
 import com.moon.booklove_android.config.ApplicationClass.Companion.recommand
 import com.moon.booklove_android.config.ApplicationClass.Companion.search
-import com.moon.booklove_android.dto.Book
-import com.moon.booklove_android.dto.BookCategory
+import com.moon.booklove_android.data.dto.Book
+import com.moon.booklove_android.data.dto.BookCategory
 
 fun getRecomm(): ArrayList<BookCategory> {
     //bookCategory : header를 포함한 북리스트 전체

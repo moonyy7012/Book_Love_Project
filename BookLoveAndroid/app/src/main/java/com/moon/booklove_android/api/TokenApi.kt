@@ -1,7 +1,7 @@
 package com.moon.booklove_android.api
 
-import com.moon.booklove_android.dto.ReissuanceResDTO
-import com.moon.booklove_android.dto.SingleResult
+import com.moon.booklove_android.data.dto.ReissuanceResDTO
+import com.moon.booklove_android.data.dto.SingleResult
 import retrofit2.Call
 import retrofit2.http.*
 

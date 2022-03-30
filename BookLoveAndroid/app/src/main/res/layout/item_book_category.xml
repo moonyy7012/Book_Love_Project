@@ -10,7 +10,7 @@
         <import type="androidx.core.content.ContextCompat" />
         <variable
             name="bookCategory"
-            type="com.moon.booklove_android.dto.BookCategory" />
+            type="com.moon.booklove_android.data.dto.BookCategory" />
     </data>
 
 

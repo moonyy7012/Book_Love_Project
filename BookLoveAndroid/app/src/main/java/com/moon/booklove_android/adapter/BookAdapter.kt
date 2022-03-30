@@ -2,18 +2,15 @@ package com.moon.booklove_android.adapter
 
 import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat.startActivity
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.moon.booklove_android.activity.DetailActivity
-import com.moon.booklove_android.activity.MainActivity
+import com.moon.booklove_android.view.detail.DetailActivity
 import com.moon.booklove_android.databinding.ItemBookBinding
-import com.moon.booklove_android.dto.Book
+import com.moon.booklove_android.data.dto.Book
 
 // ViewHolder
 class CustomViewHolder(val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root)

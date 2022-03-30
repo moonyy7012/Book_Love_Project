@@ -32,7 +32,7 @@ public class LoginResDTO {
     @ApiModelProperty(value = "회원 정보 수집 여부", required = true, example = "")
     private boolean isChecked;
 
-    @ApiModelProperty(value = "회원 가입 타입", required = true, example = "KAKAO/NORMAL")
+    @ApiModelProperty(value = "회원 아이디", required = true, example = "KAKAO/NORMAL")
     private String userId;
 
     @ApiModelProperty(value = "회원 가입 타입", required = true, example = "KAKAO/NORMAL")
