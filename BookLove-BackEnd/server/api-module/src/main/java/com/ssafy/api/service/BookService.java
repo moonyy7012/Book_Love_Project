@@ -31,6 +31,7 @@ public class BookService {
         return bestseller;
 
     }
+
     @Transactional(readOnly = false)
     public Book findBook(long bookId){
         Book book = bookRepository.findBookInfoByBookId(bookId);
@@ -61,5 +62,38 @@ public class BookService {
 
         return resultList;
     }
+
+    @Transactional(readOnly = false)
+    public List<Book> findMainBestseller(){
+        List<Book> bestseller = bookRepository.findMainBestseller();
+
+        return bestseller;
+
+    }
+
+    @Transactional(readOnly = false)
+    public List<Book> findNewBook(){
+        List<Book> newBook = bookRepository.findNewBook();
+
+        return newBook;
+
+    }
+
+    @Transactional(readOnly = false)
+    public List<Book> findBookByTitle(String Title){
+        List<Book> titleList = bookRepository.findBookByTitle(Title);
+
+        return titleList;
+
+    }
+
+    @Transactional(readOnly = false)
+    public List<Book> findBookByAuthor(String author){
+        List<Book> titleList = bookRepository.findBookByAuthor(author);
+
+        return titleList;
+
+    }
+
 
 }
