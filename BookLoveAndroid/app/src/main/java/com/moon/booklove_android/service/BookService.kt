@@ -1,11 +1,14 @@
 package com.moon.booklove_android.service
 
+import android.util.Log
 import com.moon.booklove_android.data.dto.*
 import com.moon.booklove_android.config.util.RetrofitCallback
 import com.moon.booklove_android.config.util.RetrofitUtil
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
+private const val TAG = "BookService"
 
 class BookService {
 
@@ -53,23 +56,31 @@ class BookService {
             })
     }
 
-    fun getBookListCategory(category: String,callback: RetrofitCallback<SingleResult<BookListCategoryResDTO>>) {
-        RetrofitUtil.bookService.getBookListCategory(category)
-            .enqueue(object : Callback<SingleResult<BookListCategoryResDTO>> {
-                override fun onResponse(call: Call<SingleResult<BookListCategoryResDTO>>, response: Response<SingleResult<BookListCategoryResDTO>>) {
+    fun getBookListCategory(categoryName: String, callback: RetrofitCallback<ListResult<BookListInfoResDTO>>) {
+        RetrofitUtil.bookService.getBookListCategory(categoryName)
+            .enqueue(object : Callback<ListResult<BookListInfoResDTO>> {
+                override fun onResponse(call: Call<ListResult<BookListInfoResDTO>>, response: Response<ListResult<BookListInfoResDTO>>) {
                     val res = response.body()
+                    Log.d(TAG, "onResponse: ")
+//                    Log.d(TAG, "onResponse: ${res!!.data[0].title}")
                     if (response.code() == 200) {
                         if (res != null) {
+                            Log.d(TAG, "onResponse1: ")
                             callback.onSuccess(response.code(), res)
+                        }else{
+                            Log.d(TAG, "onResponse2: ")
                         }
                     } else if(response.code() == 403){
+                        Log.d(TAG, "onResponse403: ")
                         callback.onExpired(response.code())
                     } else{
+                        Log.d(TAG, "onResponse: ${response.code()}")
                         callback.onFailure(response.code())
                     }
                 }
 
-                override fun onFailure(call: Call<SingleResult<BookListCategoryResDTO>>, t: Throwable) {
+                override fun onFailure(call: Call<ListResult<BookListInfoResDTO>>, t: Throwable) {
+                    Log.d(TAG, "onFailure: ")
                     callback.onError(t)
                 }
             })

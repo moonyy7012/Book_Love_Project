@@ -13,10 +13,10 @@ import com.moon.booklove_android.databinding.ItemBookBinding
 import com.moon.booklove_android.data.dto.Book
 
 // ViewHolder
-class CustomViewHolder(val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root)
+class CustomViewHolder2(val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root)
 
 
-class BookAdapter : ListAdapter<Book, CustomViewHolder>(Companion) {
+class BookAdapter : ListAdapter<Book, CustomViewHolder2>(Companion) {
 
     companion object : DiffUtil.ItemCallback<Book>() {
         override fun areItemsTheSame(oldItem: Book, newItem: Book): Boolean {
@@ -28,14 +28,14 @@ class BookAdapter : ListAdapter<Book, CustomViewHolder>(Companion) {
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder2 {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemBookBinding.inflate(inflater, parent, false)
 
-        return CustomViewHolder(binding)
+        return CustomViewHolder2(binding)
     }
 
-    override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CustomViewHolder2, position: Int) {
         val currentBook = getItem(position)
         val itemBinding = holder.binding as ItemBookBinding
         itemBinding.book = currentBook

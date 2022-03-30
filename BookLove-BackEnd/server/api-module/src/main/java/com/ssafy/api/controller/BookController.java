@@ -45,9 +45,10 @@ public class BookController {
 
     @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "JWT Token", required = true, dataType = "string", paramType = "header")})
     @ApiOperation(value = "베스트셀러", notes = "베스트셀러")
-    @GetMapping(value = "/book/bestseller/", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/book/bestseller", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    ListResult<BookListInfoResDTO> getBestSeller(@RequestParam("categoryName") String categoryName)throws Exception{
+    ListResult<BookListInfoResDTO> getBestSeller(@RequestParam(value="categoryName") String categoryName)throws Exception{
+        System.out.println(categoryName);
         List<Book> bestseller = bookService.findBestseller(categoryName);
         List<BookListInfoResDTO> infoLIst= new ArrayList<>();
         for(int i = 0 ; i < bestseller.size() ; i++) {
