@@ -56,7 +56,6 @@ public class BookController {
     public @ResponseBody
     ListResult<BookListInfoResDTO> getBestSeller(@RequestParam("categoryName") String categoryName)throws Exception{
         List<Book> bestseller = bookService.findBestseller(categoryName);
-        System.out.println(categoryName);
         List<BookListInfoResDTO> infoLIst= new ArrayList<>();
         for(int i = 0 ; i < bestseller.size() ; i++) {
             BookListInfoResDTO info = BookListInfoResDTO.builder()
