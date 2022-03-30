@@ -1,5 +1,6 @@
 package com.moon.booklove_android.api
 
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable
 import com.moon.booklove_android.data.dto.*
 import retrofit2.Call
 import retrofit2.http.*
@@ -15,8 +16,8 @@ interface BookApi {
     fun getBookListSearch(@Query("search") search: String): Call<SingleResult<BookListSearchResDTO>>
 
     // 카테고리별 조회 리스트
-    @GET("api/book/bestseller/{categoryName}")
-    fun getBookListCategory(@Path("categoryName") category: String): Call<ListResult<BookListInfoResDTO>>
+    @GET("api/book/bestseller")
+    fun getBookListCategory(@Query("categoryName") categoryName: String): Call<ListResult<BookListInfoResDTO>>
 
     // 책 상세 정보 비슷한 책 리스트
     @GET("api/user/idcheck/{id}")
