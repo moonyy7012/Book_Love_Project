@@ -8,6 +8,7 @@ import json
 import pandas
 import os
 
+
 dir = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/') + '/'
 models.Base.metadata.create_all(bind=engine)
 
