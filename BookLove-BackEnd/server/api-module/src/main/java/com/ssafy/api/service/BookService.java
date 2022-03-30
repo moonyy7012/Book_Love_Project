@@ -4,8 +4,12 @@ package com.ssafy.api.service;
 import com.ssafy.api.dto.res.BookListInfoResDTO;
 import com.ssafy.api.dto.res.PyBooksResDTO;
 import com.ssafy.core.entity.Book;
+import com.ssafy.core.entity.ClickLog;
+import com.ssafy.core.entity.User;
 import com.ssafy.core.exception.ApiMessageException;
 import com.ssafy.core.repository.BookRepository;
+import com.ssafy.core.repository.ClickLogRepository;
+import com.ssafy.core.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -23,6 +28,8 @@ import java.util.stream.IntStream;
 @Transactional
 public class BookService {
     private final BookRepository bookRepository;
+    private final ClickLogRepository clickLogRepository;
+    private final UserRepository userRepository;
 
     @Transactional(readOnly = false)
     public List<Book> findBestseller(String categoryName){
@@ -64,19 +71,38 @@ public class BookService {
     }
 
     @Transactional(readOnly = false)
-    public List<Book> findMainBestseller(){
+    public List<BookListInfoResDTO> findMainBestseller(){
         List<Book> bestseller = bookRepository.findMainBestseller();
 
-        return bestseller;
+        List<BookListInfoResDTO> infoLIst = new ArrayList<>();
+        for(int i = 0 ; i < bestseller.size() ; i++) {
+            BookListInfoResDTO info = BookListInfoResDTO.builder()
+                    .title(bestseller.get(i).getTitle())
+                    .cover(bestseller.get(i).getCover())
+                    .bookId(bestseller.get(i).getBookId())
+                    .build();
+            infoLIst.add(info);
+        }
+
+        return infoLIst;
 
     }
 
     @Transactional(readOnly = false)
-    public List<Book> findNewBook(){
+    public List<BookListInfoResDTO> findNewBook(){
         List<Book> newBook = bookRepository.findNewBook();
 
-        return newBook;
+        List<BookListInfoResDTO> infoLIst = new ArrayList<>();
+        for(int i = 0 ; i < newBook.size() ; i++) {
+            BookListInfoResDTO info = BookListInfoResDTO.builder()
+                    .title(newBook.get(i).getTitle())
+                    .cover(newBook.get(i).getCover())
+                    .bookId(newBook.get(i).getBookId())
+                    .build();
+            infoLIst.add(info);
+        }
 
+        return infoLIst;
     }
 
     @Transactional(readOnly = false)
@@ -95,5 +121,35 @@ public class BookService {
 
     }
 
+    @Transactional(readOnly = false)
+    public ClickLog putClickLog(Long userId, Book book) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new ApiMessageException("존재하지 않는 회원정보입니다."));
+        ClickLog clickLog = clickLogRepository.findClickLogByUserIdAndBookId(user.getUserId(), book.getBookId());
 
+        if (clickLog == null) {
+            clickLog = ClickLog.builder()
+                    .user(user)
+                    .book(book)
+                    .count(1)
+                    .build();
+        } else {
+            clickLog.addCount();
+        }
+
+        return clickLogRepository.save(clickLog);
+    }
+
+
+    public List<BookListInfoResDTO> findBookByGenderAndAgeClickLog(String gender, int age) {
+       List<Book> bookList = clickLogRepository.findBookByClickLog(gender, age);
+
+        List<BookListInfoResDTO> resultList = IntStream.range(0, bookList.size())
+                .mapToObj(i -> BookListInfoResDTO.builder()
+                        .title(bookList.get(i).getTitle())
+                        .cover(bookList.get(i).getCover())
+                        .bookId(bookList.get(i).getBookId()).build())
+                .collect(Collectors.toList());
+
+        return resultList;
+    }
 }
