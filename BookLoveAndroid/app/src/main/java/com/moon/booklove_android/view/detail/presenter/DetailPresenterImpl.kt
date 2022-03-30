@@ -1,7 +1,9 @@
 package com.moon.booklove_android.view.detail.presenter
 
 import android.content.Context
+import com.moon.booklove_android.adapter.BookItemAdapter
 import com.moon.booklove_android.config.ApplicationClass
+import com.moon.booklove_android.config.ApplicationClass.Companion.bookDetailAdapter
 import com.moon.booklove_android.config.ApplicationClass.Companion.bookInfo
 import com.moon.booklove_android.config.toast
 import com.moon.booklove_android.config.util.RetrofitCallback
@@ -19,7 +21,10 @@ class DetailPresenterImpl(override var view: DetailContract.View) : DetailPresen
             override fun onSuccess(code: Int, responseData: SingleResult<BookInfoResDTO>) {
                 if (responseData.output==1) {
                     bookInfo = responseData
+                    bookDetailAdapter = BookItemAdapter()
+                    bookDetailAdapter!!.submitList(bookInfo!!.data.similarBooks)
                     view.bindInfo()
+
                 } else {
                     toast("문제가 발생하였습니다. 다시 시도해주세요.",context)
                 }

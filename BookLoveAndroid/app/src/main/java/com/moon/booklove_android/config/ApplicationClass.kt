@@ -29,6 +29,7 @@ class ApplicationClass : Application() {
         var recommand: MutableList<String> = mutableListOf("같은 나이대의 사람들이 관심 있어요", "같은 성별의 사람들이 관심 있어요", "같은 장르의 책인데 한 번 보시겠어요?")
         var search: MutableList<String> = mutableListOf("책 제목으로 검색했어요!", "작가 이름으로 검색했어요!", "장르로 검색했어요!")
         var bookInfo : SingleResult<BookInfoResDTO>?= null
+        var bookDetailAdapter: BookItemAdapter? = null
 
 
 
