@@ -48,6 +48,34 @@ public class ClickLogRepoCommonImpl implements ClickLogRepoCommon {
                 .fetch();
     }
 
+    @Override
+    public Long getUserBookClickCnt(Long userId) {
+        return queryFactory
+                .select(QClickLog.clickLog.user.userId.count())
+                .from(QClickLog.clickLog)
+                .where(
+                        userEq(userId)
+                )
+                .fetchOne();
+    }
+
+    @Override
+    public List<Category> findCategoryByClickLog(Long userId) {
+        List<Category> result  = queryFactory
+                .select(QClickLog.clickLog.book.category)
+                .from(QClickLog.clickLog)
+                .leftJoin(QClickLog.clickLog.book)
+                .where(
+                        userEq(userId)
+                )
+                .groupBy(QClickLog.clickLog.book.category.categoryId)
+                .orderBy(QClickLog.clickLog.book.category.categoryId.count().desc())
+                .limit(1)
+                .fetch();
+
+        return result;
+    }
+
     private BooleanExpression userEq(Long userId) {
         return userId != null ? QClickLog.clickLog.user.userId.eq(userId) : null;
     }

@@ -87,6 +87,7 @@ public class BookController {
         BookMainListResDTO bookMainListResDTO = BookMainListResDTO.builder()
                 .bookBestSellerList(bookService.findMainBestseller())
                 .bookNewList(bookService.findNewBook())
+                .bookCategoryList(bookService.findBestsellerByCategoryList(user))
                 .bookGenderAgeList(bookService.findBookByGenderAndAgeClickLog(user.getGender(), user.getAge()))
                 .build();
 
@@ -102,8 +103,8 @@ public class BookController {
         List<Book> searchResultByAuthor = bookService.findBookByAuthor(keyword);
 
 
-        List<BookListInfoResDTO> searchTitleList= new ArrayList<>();
-        List<BookListInfoResDTO> searchAuthorList= new ArrayList<>();
+        List<BookListInfoResDTO> searchTitleList = new ArrayList<>();
+        List<BookListInfoResDTO> searchAuthorList = new ArrayList<>();
         //title 로 검색
         for(int i = 0 ; i < searchResultByTitle.size() ; i++) {
             BookListInfoResDTO info = BookListInfoResDTO.builder()
