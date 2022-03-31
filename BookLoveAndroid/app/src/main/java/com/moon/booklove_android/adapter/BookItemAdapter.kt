@@ -46,9 +46,11 @@ class BookItemAdapter : ListAdapter<BookListInfoResDTO, CustomViewHolder>(Compan
         holder.itemView.apply{
             setOnClickListener{
                 val intent = Intent(context, DetailActivity::class.java)
+                intent.putExtra("bookId", currentBook.bookId)
                 startActivity(context, intent, null)
             }
         }
 
     }
+
 }

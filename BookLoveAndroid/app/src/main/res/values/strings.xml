@@ -49,6 +49,8 @@
     <string name="Search">검색</string>
     <string name="Home">홈</string>
     <string name="Detail">도서 상세</string>
+    <string name="link_title">구매링크 : </string>
+    <string name="similar_header">같은 작가의 책이에요</string>
 
 
 </resources>

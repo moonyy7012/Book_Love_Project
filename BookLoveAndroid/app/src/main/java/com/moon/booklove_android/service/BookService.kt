@@ -108,10 +108,10 @@ class BookService {
             })
     }
 
-    fun getBookInfo(bookId: String, callback: RetrofitCallback<SingleResult<BookListCategoryResDTO>>) {
+    fun getBookInfo(bookId: Long, callback: RetrofitCallback<SingleResult<BookInfoResDTO>>) {
         RetrofitUtil.bookService.getBookInfo(bookId)
-            .enqueue(object : Callback<SingleResult<BookListCategoryResDTO>> {
-                override fun onResponse(call: Call<SingleResult<BookListCategoryResDTO>>, response: Response<SingleResult<BookListCategoryResDTO>>) {
+            .enqueue(object : Callback<SingleResult<BookInfoResDTO>> {
+                override fun onResponse(call: Call<SingleResult<BookInfoResDTO>>, response: Response<SingleResult<BookInfoResDTO>>) {
                     val res = response.body()
                     if (response.code() == 200) {
                         if (res != null) {
@@ -124,7 +124,7 @@ class BookService {
                     }
                 }
 
-                override fun onFailure(call: Call<SingleResult<BookListCategoryResDTO>>, t: Throwable) {
+                override fun onFailure(call: Call<SingleResult<BookInfoResDTO>>, t: Throwable) {
                     callback.onError(t)
                 }
             })
