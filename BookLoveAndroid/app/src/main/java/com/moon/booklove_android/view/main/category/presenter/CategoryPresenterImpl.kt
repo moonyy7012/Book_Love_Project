@@ -1,7 +1,6 @@
 package com.moon.booklove_android.view.main.category.presenter
 
 import android.content.Context
-import android.util.Log
 import com.moon.booklove_android.adapter.BookItemAdapter
 import com.moon.booklove_android.config.ApplicationClass
 import com.moon.booklove_android.config.ApplicationClass.Companion.bookCategoryAdapter
@@ -11,7 +10,6 @@ import com.moon.booklove_android.data.dto.BookListInfoResDTO
 import com.moon.booklove_android.data.dto.ListResult
 import com.moon.booklove_android.data.dto.ReissuanceResDTO
 import com.moon.booklove_android.data.dto.SingleResult
-import com.moon.booklove_android.databinding.FragmentGenreBinding
 import com.moon.booklove_android.service.BookService
 import com.moon.booklove_android.service.TokenService
 import com.moon.booklove_android.view.main.category.CategoryContract
@@ -20,9 +18,9 @@ class CategoryPresenterImpl(override var view: CategoryContract.View) : Category
 
 
     override fun getBookListCategory(context: Context, categoryName:String) {
+
         BookService().getBookListCategory(categoryName, object :
             RetrofitCallback<ListResult<BookListInfoResDTO>> {
-
             override fun onSuccess(code: Int, responseData: ListResult<BookListInfoResDTO>) {
                 if (responseData.output==1) {
                     val bookList = responseData
@@ -60,9 +58,7 @@ class CategoryPresenterImpl(override var view: CategoryContract.View) : Category
 
                     override fun onExpired(code: Int) {}
                 })
-
             }
         })
     }
-
 }

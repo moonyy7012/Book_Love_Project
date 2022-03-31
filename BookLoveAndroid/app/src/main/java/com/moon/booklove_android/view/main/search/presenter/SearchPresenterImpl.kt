@@ -61,7 +61,6 @@ class SearchPresenterImpl(override var view: SearchContract.View) : SearchPresen
 
                     override fun onExpired(code: Int) {}
                 })
-
             }
         })
     }

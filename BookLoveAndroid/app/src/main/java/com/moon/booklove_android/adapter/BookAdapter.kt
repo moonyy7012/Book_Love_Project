@@ -9,14 +9,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.moon.booklove_android.view.detail.DetailActivity
-import com.moon.booklove_android.data.dto.Book
 import com.moon.booklove_android.data.dto.BookListInfoResDTO
-import com.moon.booklove_android.data.model.BookItem
 import com.moon.booklove_android.databinding.ItemBookBinding
 
 // ViewHolder
 class CustomViewHolder2(val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root)
-
 
 class BookAdapter : ListAdapter<BookListInfoResDTO, CustomViewHolder2>(Companion) {
 
@@ -48,6 +45,5 @@ class BookAdapter : ListAdapter<BookListInfoResDTO, CustomViewHolder2>(Companion
                 startActivity(context, intent, null)
             }
         }
-
     }
 }

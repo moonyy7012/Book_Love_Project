@@ -2,7 +2,6 @@ package com.moon.booklove_android.config
 
 import android.app.Application
 import com.kakao.sdk.common.KakaoSdk
-import com.moon.booklove_android.adapter.BookAdapter
 import com.moon.booklove_android.adapter.BookDetailAdapter
 import com.moon.booklove_android.adapter.BookCategoryAdapter
 import com.moon.booklove_android.adapter.BookItemAdapter
@@ -17,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class ApplicationClass : Application() {
 
     companion object{
-        const val SERVER_URL = "http://192.168.35.235:8185/"
+        const val SERVER_URL = "http://192.168.0.9:8185/"
         lateinit var retrofit: Retrofit
         lateinit var prefs: PreferenceUtil
         lateinit var currentuser: User

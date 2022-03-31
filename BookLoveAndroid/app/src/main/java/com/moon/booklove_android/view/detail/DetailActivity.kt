@@ -1,16 +1,11 @@
 package com.moon.booklove_android.view.detail
 
-import android.content.Intent
 import android.os.Bundle
-import android.text.Html
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.moon.booklove_android.adapter.BookAdapter
-import com.moon.booklove_android.config.ApplicationClass
 import com.moon.booklove_android.config.ApplicationClass.Companion.bookDetailAdapter
 import com.moon.booklove_android.config.ApplicationClass.Companion.bookInfo
 import com.moon.booklove_android.config.ApplicationClass.Companion.bookSimilarAdapter
-import com.moon.booklove_android.config.getAuthorBooks
 import com.moon.booklove_android.databinding.ActivityDetailBinding
 import com.moon.booklove_android.view.detail.presenter.DetailPresenterImpl
 

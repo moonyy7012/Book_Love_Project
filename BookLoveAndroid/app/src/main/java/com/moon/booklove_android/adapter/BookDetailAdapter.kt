@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.moon.booklove_android.config.ApplicationClass.Companion.bookInfoHeader
 import com.moon.booklove_android.databinding.ItemBookDetailBinding
 
-
 class DetailViewHolder(val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root)
 
 class BookDetailAdapter : ListAdapter<String, DetailViewHolder>(Companion) {

@@ -1,13 +1,11 @@
 package com.moon.booklove_android.view.main.search
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.moon.booklove_android.adapter.BookCategoryAdapter
 import com.moon.booklove_android.config.ApplicationClass
 import com.moon.booklove_android.databinding.FragmentSearchBinding
 import com.moon.booklove_android.view.main.search.presenter.SearchPresenterImpl
@@ -33,12 +31,6 @@ class SearchFragment  : Fragment(), SearchView{
         super.onViewCreated(view, savedInstanceState)
 
         presenter = SearchPresenterImpl(this)
-
-
-//        val bookCategoryAdapter = BookCategoryAdapter()
-//        bookCategoryAdapter.submitList(getSearch())
-//        binding.outerRecyclerView.adapter = bookCategoryAdapter
-
 
         binding.searchView.apply {
 

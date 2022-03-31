@@ -1,6 +1,5 @@
 package com.moon.booklove_android.api
 
-import com.google.android.gms.common.internal.safeparcel.SafeParcelable
 import com.moon.booklove_android.data.dto.*
 import retrofit2.Call
 import retrofit2.http.*
