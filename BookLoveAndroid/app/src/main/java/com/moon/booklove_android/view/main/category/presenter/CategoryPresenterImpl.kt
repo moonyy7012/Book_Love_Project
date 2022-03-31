@@ -16,23 +16,18 @@ import com.moon.booklove_android.service.BookService
 import com.moon.booklove_android.service.TokenService
 import com.moon.booklove_android.view.main.category.CategoryContract
 
-private const val TAG = "CategoryPresenterImpl"
-
 class CategoryPresenterImpl(override var view: CategoryContract.View) : CategoryPresenter {
-    var bookList: ListResult<BookListInfoResDTO> ?= null
 
 
     override fun getBookListCategory(context: Context, categoryName:String) {
-        Log.d(TAG, "getBookListCategory: ${categoryName}")
         BookService().getBookListCategory(categoryName, object :
             RetrofitCallback<ListResult<BookListInfoResDTO>> {
 
             override fun onSuccess(code: Int, responseData: ListResult<BookListInfoResDTO>) {
-                Log.d(TAG, "onSuccess: ")
                 if (responseData.output==1) {
-                    bookList = responseData
+                    val bookList = responseData
                     bookCategoryAdapter = BookItemAdapter()
-                    bookCategoryAdapter!!.submitList(bookList!!.data)
+                    bookCategoryAdapter!!.submitList(bookList.data)
                     view.connectAdapter()
                 } else {
                     toast("문제가 발생하였습니다. 다시 시도해주세요.",context)
@@ -40,12 +35,10 @@ class CategoryPresenterImpl(override var view: CategoryContract.View) : Category
             }
 
             override fun onFailure(code: Int) {
-                Log.d(TAG, "onFailure: ${code}")
                 toast("문제가 발생하였습니다. 다시 시도해주세요.",context)
             }
 
             override fun onError(t: Throwable) {
-                Log.d(TAG, "onFailure: ${t}")
                 toast("문제가 발생하였습니다. 다시 시도해주세요.",context)
             }
 

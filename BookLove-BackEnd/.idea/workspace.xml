@@ -5,7 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="09cac4fe-c8a7-43ed-821b-ccf2493aad13" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FastAPI/.idea/FastAPI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/FastAPI/.idea/FastAPI.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FastAPI/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/FastAPI/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FastAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/FastAPI/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/adapter/BookAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/adapter/BookAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/adapter/BookCategoryAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/adapter/BookCategoryAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/api/BookApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/api/BookApi.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/config/ApplicationClass.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/config/ApplicationClass.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/config/CustomAttributes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/config/CustomAttributes.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/config/Util.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/config/Util.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/data/dto/BookCategory.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/data/dto/BookCategory.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/data/dto/BookListSearchResDTO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/data/dto/BookListSearchResDTO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/data/model/BookItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/data/model/BookItem.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/service/BookService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/service/BookService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/detail/DetailActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/detail/DetailActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/category/CategoryFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/category/CategoryFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/category/CategoryView.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/category/CategoryView.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/category/presenter/CategoryPresenterImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/category/presenter/CategoryPresenterImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/home/HomeFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/home/HomeFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/search/SearchContract.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/search/SearchContract.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/search/SearchFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/search/SearchFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/search/presenter/SearchPresenter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/search/presenter/SearchPresenter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/search/presenter/SearchPresenterImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/search/presenter/SearchPresenterImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/res/layout/item_book.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/res/layout/item_book.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,11 +107,17 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../S06P12D208/RollingPictures-Backend" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.ssafy.api.dto.res" />
+    </key>
   </component>
   <component name="RunManager" selected="Gradle.server [bootRun]">
     <configuration name="server [bootRun]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -165,6 +195,8 @@
       <workItem from="1648472433681" duration="10488000" />
       <workItem from="1648553130430" duration="2385000" />
       <workItem from="1648569752649" duration="4173000" />
+      <workItem from="1648632699245" duration="13343000" />
+      <workItem from="1648709184784" duration="1706000" />
     </task>
     <servers />
   </component>

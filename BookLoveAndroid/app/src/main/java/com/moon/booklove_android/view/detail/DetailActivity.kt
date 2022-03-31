@@ -33,6 +33,10 @@ class DetailActivity : AppCompatActivity(), DetailView {
         binding.title.text = book.title
         binding.bookInfoRecyclerView.adapter = bookDetailAdapter
         binding.recyclerView.adapter = bookSimilarAdapter
+//        val bookAdapter = BookAdapter()
+//        //리스트 데이터 갱신(카테고리 리스트)
+//        bookAdapter.submitList(getAuthorBooks())
+//        binding.recyclerView.adapter = bookAdapter
 
     }
 
