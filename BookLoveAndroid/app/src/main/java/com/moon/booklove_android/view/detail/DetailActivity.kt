@@ -12,10 +12,10 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val bookAdapter = BookAdapter()
-        //리스트 데이터 갱신(카테고리 리스트)
-        bookAdapter.submitList(getAuthorBooks())
-        binding.recyclerView.adapter = bookAdapter
+//        val bookAdapter = BookAdapter()
+//        //리스트 데이터 갱신(카테고리 리스트)
+//        bookAdapter.submitList(getAuthorBooks())
+//        binding.recyclerView.adapter = bookAdapter
 
     }
 

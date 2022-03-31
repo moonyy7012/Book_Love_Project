@@ -7,7 +7,7 @@
         <import type="androidx.core.content.ContextCompat" />
         <variable
             name="book"
-            type="com.moon.booklove_android.data.dto.Book" />
+            type="com.moon.booklove_android.data.dto.BookListInfoResDTO" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,7 +21,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
             android:scaleType="centerCrop"
-            android:src="@{ContextCompat.getDrawable(context, book.img)}"
+            app:setBookCover="@{book.cover}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

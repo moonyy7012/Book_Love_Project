@@ -34,10 +34,10 @@ class BookService {
             })
     }
 
-    fun getBookListSearch(search: String, callback: RetrofitCallback<SingleResult<BookListSearchResDTO>>) {
+    fun getBookListSearch(search: String, callback: RetrofitCallback<ListResult<List<BookListInfoResDTO>>>) {
         RetrofitUtil.bookService.getBookListSearch(search)
-            .enqueue(object : Callback<SingleResult<BookListSearchResDTO>> {
-                override fun onResponse(call: Call<SingleResult<BookListSearchResDTO>>, response: Response<SingleResult<BookListSearchResDTO>>) {
+            .enqueue(object : Callback<ListResult<List<BookListInfoResDTO>>> {
+                override fun onResponse(call: Call<ListResult<List<BookListInfoResDTO>>>, response: Response<ListResult<List<BookListInfoResDTO>>>) {
                     val res = response.body()
                     if (response.code() == 200) {
                         if (res != null) {
@@ -50,7 +50,7 @@ class BookService {
                     }
                 }
 
-                override fun onFailure(call: Call<SingleResult<BookListSearchResDTO>>, t: Throwable) {
+                override fun onFailure(call: Call<ListResult<List<BookListInfoResDTO>>>, t: Throwable) {
                     callback.onError(t)
                 }
             })

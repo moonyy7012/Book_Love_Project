@@ -2,6 +2,7 @@ package com.moon.booklove_android.config
 
 import android.app.Application
 import com.kakao.sdk.common.KakaoSdk
+import com.moon.booklove_android.adapter.BookCategoryAdapter
 import com.moon.booklove_android.adapter.BookItemAdapter
 import com.moon.booklove_android.data.model.User
 import com.moon.booklove_android.config.util.PreferenceUtil
@@ -15,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class ApplicationClass : Application() {
 
     companion object{
-        const val SERVER_URL = "http://192.168.35.235:8185/"
+        const val SERVER_URL = "http://192.168.0.9:8185/"
         lateinit var retrofit: Retrofit
         lateinit var prefs: PreferenceUtil
         lateinit var currentuser: User
@@ -26,6 +27,7 @@ class ApplicationClass : Application() {
             , "전집/중고전집", "종교/역학", "좋은부모", "중학교참고서", "청소년", "초등학교참고서", "컴퓨터/모바일"
         )
         var bookCategoryAdapter: BookItemAdapter? = null
+        var bookListAdapter: BookCategoryAdapter? = null
         var recommand: MutableList<String> = mutableListOf("같은 나이대의 사람들이 관심 있어요", "같은 성별의 사람들이 관심 있어요", "같은 장르의 책인데 한 번 보시겠어요?")
         var search: MutableList<String> = mutableListOf("책 제목으로 검색했어요!", "작가 이름으로 검색했어요!", "장르로 검색했어요!")
         var items = mutableListOf("아이템0","아이템1","아이템2","아이템3","아이템4")
