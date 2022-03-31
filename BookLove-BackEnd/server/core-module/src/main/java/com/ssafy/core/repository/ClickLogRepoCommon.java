@@ -12,4 +12,5 @@ public interface ClickLogRepoCommon {
     ClickLog findClickLogByUserIdAndBookId(long userId, long bookId);
     List<Book> findBookByClickLog(String gender, int age);
     Long getUserBookClickCnt(Long userId);
+    List<Category> findCategoryByClickLog(Long userId);
 }
