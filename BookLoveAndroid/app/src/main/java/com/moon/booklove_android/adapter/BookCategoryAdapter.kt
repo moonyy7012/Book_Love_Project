@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.moon.booklove_android.databinding.ItemBookCategoryBinding
 import com.moon.booklove_android.data.dto.BookCategory
-import com.moon.booklove_android.data.model.BookItem
 
 class BookCategoryAdapter : ListAdapter<BookCategory, CustomViewHolder>(Companion) {
     private val viewPool = RecyclerView.RecycledViewPool()

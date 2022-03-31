@@ -16,7 +16,6 @@ import com.moon.booklove_android.view.detail.DetailActivity
 // ViewHolder
 class CustomViewHolder(val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root)
 
-
 class BookItemAdapter : ListAdapter<BookListInfoResDTO, CustomViewHolder>(Companion) {
 
     companion object : DiffUtil.ItemCallback<BookListInfoResDTO>() {
@@ -50,7 +49,5 @@ class BookItemAdapter : ListAdapter<BookListInfoResDTO, CustomViewHolder>(Compan
                 startActivity(context, intent, null)
             }
         }
-
     }
-
 }

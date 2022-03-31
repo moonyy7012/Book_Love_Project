@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
-import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 import com.moon.booklove_android.view.main.MainActivity
 import com.moon.booklove_android.view.signup.SignUpActivity
