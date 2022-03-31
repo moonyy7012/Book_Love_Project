@@ -6,6 +6,19 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
+    <TextView
+        android:id="@+id/similarHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/kopubworld_dotum_medium"
+        android:text="@string/similar_header"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bookInfoRecyclerView" />
+
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linearLayoutCompat"
         android:layout_width="match_parent"
@@ -36,100 +49,48 @@
         android:id="@+id/cover"
         android:layout_width="130dp"
         android:layout_height="150dp"
-        android:layout_marginStart="140dp"
-        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat"
-        app:srcCompat="@drawable/ic_baseline_book_24" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat" />
 
-<!--    <ImageView-->
-<!--        android:id="@+id/imageView3"-->
-<!--        android:layout_width="25dp"-->
-<!--        android:layout_height="25dp"-->
-<!--        android:layout_marginStart="28dp"-->
-<!--        android:layout_marginTop="132dp"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/imageView2"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat"-->
-<!--        app:srcCompat="@drawable/heart" />-->
-
-    <LinearLayout
-        android:id="@+id/linearLayout3"
+    <TextView
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginHorizontal="10dp"
+        android:fontFamily="@font/kopubworld_dotum_bold"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/cover"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/bookInfoRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
         android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cover">
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        tools:listitem="@layout/item_book_detail" />
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:fontFamily="@font/kopubworld_dotum_medium"
-            android:text="책 제목"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/author"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:fontFamily="@font/kopubworld_dotum_medium"
-            android:text="저자: "
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/publisher"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:fontFamily="@font/kopubworld_dotum_medium"
-            android:text="출판사: "
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/category"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:fontFamily="@font/kopubworld_dotum_medium"
-            android:text="분류: "
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/price"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:fontFamily="@font/kopubworld_dotum_medium"
-            android:text="가격: "
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/link"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="15dp"
-            android:fontFamily="@font/kopubworld_dotum_medium"
-            android:text="구매링크: "
-            android:textSize="15sp" />
-    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_height="200dp"
+        android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        app:layout_constraintTop_toBottomOf="@+id/similarHeader"
         app:spanCount="3"
-        tools:listitem="@layout/item_book"/>
+        tools:listitem="@layout/item_book" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
