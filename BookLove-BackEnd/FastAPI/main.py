@@ -1,4 +1,5 @@
 import uvicorn
+import pymysql
 from fastapi import FastAPI
 from routes import data, recommend
 

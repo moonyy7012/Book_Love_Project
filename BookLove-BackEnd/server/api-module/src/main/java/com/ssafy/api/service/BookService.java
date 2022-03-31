@@ -4,6 +4,7 @@ package com.ssafy.api.service;
 import com.ssafy.api.dto.res.BookListInfoResDTO;
 import com.ssafy.api.dto.res.PyBooksResDTO;
 import com.ssafy.core.entity.Book;
+import com.ssafy.core.entity.Category;
 import com.ssafy.core.entity.ClickLog;
 import com.ssafy.core.entity.User;
 import com.ssafy.core.exception.ApiMessageException;
@@ -148,6 +149,29 @@ public class BookService {
                         .title(bookList.get(i).getTitle())
                         .cover(bookList.get(i).getCover())
                         .bookId(bookList.get(i).getBookId()).build())
+                .collect(Collectors.toList());
+
+        return resultList;
+    }
+
+    @Transactional(readOnly = false)
+    public List<BookListInfoResDTO> findBestsellerByCategoryList(User user){
+        Long userClickCnt = clickLogRepository.getUserBookClickCnt(user.getUserId());
+        List<BookListInfoResDTO> resultList;
+        List<Book> bestseller;
+
+        if (userClickCnt >= 10) {
+            List<Category> categories = clickLogRepository.findCategoryByClickLog(user.getUserId());
+            bestseller = bookRepository.findBestsellerByCategoryList(categories);
+        } else {
+            bestseller = bookRepository.findBestsellerByCategoryList(user.getCategories());
+        }
+
+        resultList = IntStream.range(0, bestseller.size())
+                .mapToObj(i -> BookListInfoResDTO.builder()
+                        .title(bestseller.get(i).getTitle())
+                        .cover(bestseller.get(i).getCover())
+                        .bookId(bestseller.get(i).getBookId()).build())
                 .collect(Collectors.toList());
 
         return resultList;
