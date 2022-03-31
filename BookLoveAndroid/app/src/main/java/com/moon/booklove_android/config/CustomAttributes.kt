@@ -33,6 +33,8 @@ fun RecyclerView.setBooks(books: List<BookListInfoResDTO>?) {
     }
 }
 
+
+
 @BindingAdapter(value = ["setBookCover"])
 fun setBookCover(imageView: ImageView, url: String){
         Glide.with(imageView.context)

@@ -39,6 +39,12 @@ public class SignService {
         return user;
     }
 
+    @Transactional(readOnly = false)
+    public User findUserByIdWithCategory(Long userId) throws Exception{
+        User user = userRepository.findUserWithCategory(userId);
+        return user;
+    }
+
     /**
      * uid로 user 조회
      * @param id

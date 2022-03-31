@@ -2,13 +2,17 @@ package com.ssafy.api.controller;
 
 
 
+import com.ssafy.api.config.security.JwtTokenProvider;
 import com.ssafy.api.dto.res.BookInfoResDTO;
 import com.ssafy.api.dto.res.BookListInfoResDTO;
+import com.ssafy.api.dto.res.BookMainListResDTO;
 import com.ssafy.api.service.BookService;
+import com.ssafy.api.service.SignService;
 import com.ssafy.api.service.common.ListResult;
 import com.ssafy.api.service.common.ResponseService;
 import com.ssafy.api.service.common.SingleResult;
 import com.ssafy.core.entity.Book;
+import com.ssafy.core.entity.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -18,6 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,15 +34,22 @@ import java.util.List;
 public class BookController {
     private final ResponseService responseService;
     private final BookService bookService;
+    private final JwtTokenProvider jwtTokenProvider;
+    private final SignService signService;
 
     @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "JWT Token", required = true, dataType = "string", paramType = "header")})
     @ApiOperation(value = "책 상세정보", notes = "책 상세정보")
     @GetMapping(value = "/book/{bookId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody SingleResult<BookInfoResDTO> getBookDetail(@PathVariable long bookId) throws Exception {
+    public @ResponseBody SingleResult<BookInfoResDTO> getBookDetail(@PathVariable long bookId, HttpServletRequest request) throws Exception {
         BookInfoResDTO bookInfoResDTO = BookInfoResDTO.builder().build();
+
+        String token = jwtTokenProvider.resolveToken(request);
+        String userPk = jwtTokenProvider.getUserPk(token);
 
         bookInfoResDTO.setSimilarBooks(bookService.findSimilarBooks(bookId));
         Book book = bookService.findBook(bookId);
+
+        bookService.putClickLog(Long.parseLong(userPk), book);
         bookInfoResDTO.setBookInfo(book);
 
         return responseService.getSingleResult(bookInfoResDTO);
@@ -48,10 +60,10 @@ public class BookController {
     @GetMapping(value = "/book/bestseller", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     ListResult<BookListInfoResDTO> getBestSeller(@RequestParam(value="categoryName") String categoryName)throws Exception{
-        System.out.println(categoryName);
         List<Book> bestseller = bookService.findBestseller(categoryName);
-        List<BookListInfoResDTO> infoLIst= new ArrayList<>();
-        for(int i = 0 ; i < bestseller.size() ; i++) {
+        List<BookListInfoResDTO> infoLIst = new ArrayList<>();
+
+        for (int i = 0 ; i < bestseller.size(); i++) {
             BookListInfoResDTO info = BookListInfoResDTO.builder()
                     .title(bestseller.get(i).getTitle())
                     .cover(bestseller.get(i).getCover())
@@ -64,43 +76,22 @@ public class BookController {
     }
 
     @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "JWT Token", required = true, dataType = "string", paramType = "header")})
-    @ApiOperation(value = "메인 베스트셀러", notes = "메인 베스트셀러")
+    @ApiOperation(value = "메인 리스트", notes = "메인 베스트셀러")
     @GetMapping(value = "/book/bestseller/main", produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody
-    ListResult<BookListInfoResDTO> getBestSeller()throws Exception{
-        List<Book> bestseller = bookService.findMainBestseller();
+    public @ResponseBody SingleResult<BookMainListResDTO> getBestSeller(HttpServletRequest request) throws Exception {
+        String token = jwtTokenProvider.resolveToken(request);
+        String userPk = jwtTokenProvider.getUserPk(token);
 
-        List<BookListInfoResDTO> infoLIst= new ArrayList<>();
-        for(int i = 0 ; i < bestseller.size() ; i++) {
-            BookListInfoResDTO info = BookListInfoResDTO.builder()
-                    .title(bestseller.get(i).getTitle())
-                    .cover(bestseller.get(i).getCover())
-                    .bookId(bestseller.get(i).getBookId())
-                    .build();
-            infoLIst.add(info);
-        }
+        User user = signService.findUserByIdWithCategory(Long.parseLong(userPk));
 
-        return responseService.getListResult(infoLIst);
-    }
+        BookMainListResDTO bookMainListResDTO = BookMainListResDTO.builder()
+                .bookBestSellerList(bookService.findMainBestseller())
+                .bookNewList(bookService.findNewBook())
+                .bookCategoryList(bookService.findBestsellerByCategoryList(user))
+                .bookGenderAgeList(bookService.findBookByGenderAndAgeClickLog(user.getGender(), user.getAge()))
+                .build();
 
-    @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "JWT Token", required = true, dataType = "string", paramType = "header")})
-    @ApiOperation(value = "신간리스트", notes = "신간리스트")
-    @GetMapping(value = "/book/newbook", produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody
-    ListResult<BookListInfoResDTO> getNewBook()throws Exception{
-        List<Book> newBook = bookService.findNewBook();
-
-        List<BookListInfoResDTO> infoLIst= new ArrayList<>();
-        for(int i = 0 ; i < newBook.size() ; i++) {
-            BookListInfoResDTO info = BookListInfoResDTO.builder()
-                    .title(newBook.get(i).getTitle())
-                    .cover(newBook.get(i).getCover())
-                    .bookId(newBook.get(i).getBookId())
-                    .build();
-            infoLIst.add(info);
-        }
-
-        return responseService.getListResult(infoLIst);
+        return responseService.getSingleResult(bookMainListResDTO);
     }
 
     @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "JWT Token", required = true, dataType = "string", paramType = "header")})
@@ -112,8 +103,8 @@ public class BookController {
         List<Book> searchResultByAuthor = bookService.findBookByAuthor(keyword);
 
 
-        List<BookListInfoResDTO> searchTitleList= new ArrayList<>();
-        List<BookListInfoResDTO> searchAuthorList= new ArrayList<>();
+        List<BookListInfoResDTO> searchTitleList = new ArrayList<>();
+        List<BookListInfoResDTO> searchAuthorList = new ArrayList<>();
         //title 로 검색
         for(int i = 0 ; i < searchResultByTitle.size() ; i++) {
             BookListInfoResDTO info = BookListInfoResDTO.builder()
@@ -139,6 +130,4 @@ public class BookController {
 
         return responseService.getListResult(searchResult);
     }
-
-
 }

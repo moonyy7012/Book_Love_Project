@@ -5,26 +5,52 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="45b5eb8b-2757-4b83-9b87-661c84708dcf" name="Changes" comment="Changes">
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/FastAPI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FastAPI.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/file/books.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/file/db_books.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server/api-module/src/main/java/com/ssafy/api/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/api-module/src/main/java/com/ssafy/api/controller/BookController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../BookLoveAndroid/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../BookLoveAndroid/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/api/BookApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/api/BookApi.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/config/ApplicationClass.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/config/ApplicationClass.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/service/BookService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/service/BookService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/category/CategoryFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/category/CategoryFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/category/CategoryView.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/category/CategoryView.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/category/presenter/CategoryPresenterImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/category/presenter/CategoryPresenterImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/search/SearchContract.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/search/SearchContract.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/search/SearchFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/search/SearchFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/search/presenter/SearchPresenter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/search/presenter/SearchPresenter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/search/presenter/SearchPresenterImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/search/presenter/SearchPresenterImpl.kt" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="47505662">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="py" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Python" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -71,6 +97,18 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="FastAPI" />
@@ -99,7 +137,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -140,11 +178,21 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/main.py">
