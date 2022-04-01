@@ -13,5 +13,6 @@ interface LoginContract {
         var view: View
         fun socialLogin(context: Context)
         fun normalLogin(id:String, password:String, context: Context)
+        fun autoNormalLogin(userId: String, type: String, context: Context)
     }
 }

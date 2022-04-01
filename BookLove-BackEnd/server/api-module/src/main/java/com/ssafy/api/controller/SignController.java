@@ -174,6 +174,41 @@ public class SignController {
     }
 
     @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "Kakao Token", required = true, dataType = "string", paramType = "header")})
+    @ApiOperation(value = "자동 로그인", notes = "자동 로그인")
+    @GetMapping(value = "/user/autologin/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody SingleResult<LoginResDTO> autoNormalLogin(@PathVariable String userId, @Valid @RequestParam String type , HttpServletRequest request) throws Exception {
+        // uid 중복되는 값이 존재하는지 확인 (uid = 고유한 값)\
+        User user;
+        if(type.equals("KAKAO")){
+            user = signService.findUserByIdType(userId, JoinCode.KAKAO);
+        }else{
+            user = signService.findUserByIdType(userId, JoinCode.NONE);
+        }
+
+        LoginResDTO dto = LoginResDTO.builder()
+                .id(user.getUserId())
+                .nickname(user.getNickname())
+                .age(user.getAge())
+                .gender(user.getGender())
+                .userCategoryList(user.changeToCategoryNameList())
+                .isChecked(user.isChecked())
+                .userId(user.getId())
+                .type(user.getType().toString())
+                .build();
+
+        List<String> list = Arrays.asList("ROLE_USER");
+        dto.setAccessToken(jwtTokenProvider.createAccessToken(String.valueOf(user.getUserId()), list));
+        dto.setRefreshToken(jwtTokenProvider.createRefreshToken());
+
+        user.updateAccessToken(dto.getAccessToken());
+        user.updateRefreshToken(dto.getRefreshToken());
+
+        signService.saveUser(user);
+
+        return responseService.getSingleResult(dto);
+    }
+
+    @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "Kakao Token", required = true, dataType = "string", paramType = "header")})
     @ApiOperation(value = "소셜 로그인", notes = "소셜 로그인")
     @PostMapping(value = "/user/social", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody SingleResult<LoginResDTO> socialLogin(HttpServletRequest request) throws Exception {
