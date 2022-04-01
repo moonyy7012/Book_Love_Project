@@ -18,7 +18,6 @@ class CategoryFragment  : Fragment(), CategoryView{
     private lateinit var presenter: CategoryPresenterImpl
     private lateinit var binding: FragmentGenreBinding
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -60,7 +59,5 @@ class CategoryFragment  : Fragment(), CategoryView{
 
     override fun connectAdapter() {
         binding.myGridView.adapter = bookCategoryAdapter
-
     }
-
 }

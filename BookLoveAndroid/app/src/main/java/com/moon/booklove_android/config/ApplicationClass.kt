@@ -14,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class ApplicationClass : Application() {
 
     companion object{
-        const val SERVER_URL = "http://192.168.35.235:8185/"
+        const val SERVER_URL = "http://192.168.0.9:8185/"
         lateinit var retrofit: Retrofit
         lateinit var prefs: PreferenceUtil
         lateinit var currentuser: User
@@ -26,6 +26,7 @@ class ApplicationClass : Application() {
         )
         var bookCategoryAdapter: BookItemAdapter? = null
         var recommand: MutableList<String> = mutableListOf("같은 성별/나이대의 사람들이 관심 있어요", "좋아하는 카테고리의 책들이에요", "베스트셀러 도서를 만나보세요", "신간 도서를 만나보세요")
+        var bookListAdapter: BookCategoryAdapter? = null
         var search: MutableList<String> = mutableListOf("책 제목으로 검색했어요!", "작가 이름으로 검색했어요!", "장르로 검색했어요!")
         var bookInfo : SingleResult<BookInfoResDTO>?= null
         var bookSimilarAdapter: BookItemAdapter? = null

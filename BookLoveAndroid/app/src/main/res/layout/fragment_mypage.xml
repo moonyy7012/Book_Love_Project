@@ -9,7 +9,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linearLayoutCompat"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="@dimen/dp_size_70"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -18,44 +18,42 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginVertical="15dp"
-            android:layout_marginLeft="15dp"
+            android:layout_marginVertical="@dimen/dp_size_16"
+            android:layout_marginStart="@dimen/dp_size_16"
             android:fontFamily="@font/cafe24surround"
             android:gravity="center"
             android:text="@string/mypage"
-            android:textColor="#9289C7"
-            android:textSize="30sp"
-            tools:layout_editor_absoluteX="110dp"
-            tools:layout_editor_absoluteY="349dp" />
+            android:textColor="@color/dark_purple"
+            android:textSize="@dimen/title_text_size"
+            tools:layout_editor_absoluteX="@dimen/dp_size_100"
+            tools:layout_editor_absoluteY="@dimen/dp_size_300" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayoutCompat2"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/fragment_height"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat">
 
-
         <TextView
             android:id="@+id/loginType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginStart="@dimen/dp_size_24"
+            android:layout_marginTop="@dimen/dp_size_24"
             android:fontFamily="@font/kopubworld_dotum_bold"
             android:gravity="center"
             android:text="@string/login_type"
-            android:textSize="15sp"
+            android:textSize="@dimen/default_text_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -63,13 +61,13 @@
             android:id="@+id/loginTypeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="@dimen/dp_size_24"
             android:fontFamily="@font/kopubworld_dotum_medium"
             android:gravity="center"
             android:text="@string/login_type"
-            android:textSize="12sp"
+            android:textSize="@dimen/default_text_size"
             app:layout_constraintBaseline_toBaselineOf="@+id/loginType"
             app:layout_constraintStart_toEndOf="@+id/loginType" />
 
@@ -77,13 +75,13 @@
             android:id="@+id/id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/dp_size_16"
             android:fontFamily="@font/kopubworld_dotum_bold"
             android:gravity="center"
             android:text="@string/id"
-            android:textSize="15sp"
+            android:textSize="@dimen/default_text_size"
             app:layout_constraintStart_toStartOf="@+id/loginType"
             app:layout_constraintTop_toBottomOf="@+id/loginType" />
 
@@ -91,12 +89,12 @@
             android:id="@+id/idTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:fontFamily="@font/kopubworld_dotum_medium"
             android:gravity="center"
             android:text="@string/id"
-            android:textSize="12sp"
+            android:textSize="@dimen/default_text_size"
             app:layout_constraintBaseline_toBaselineOf="@+id/id"
             app:layout_constraintStart_toStartOf="@+id/loginTypeTextView" />
 
@@ -104,13 +102,13 @@
             android:id="@+id/password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/dp_size_16"
             android:fontFamily="@font/kopubworld_dotum_bold"
             android:gravity="center"
             android:text="@string/password"
-            android:textSize="15sp"
+            android:textSize="@dimen/default_text_size"
             app:layout_constraintStart_toStartOf="@+id/id"
             app:layout_constraintTop_toBottomOf="@+id/id" />
 
@@ -118,15 +116,14 @@
             android:id="@+id/passwordTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:fontFamily="@font/kopubworld_dotum_medium"
             android:gravity="center"
-            android:text="****"
-            android:textSize="12sp"
+            android:text="@string/password_text"
+            android:textSize="@dimen/default_text_size"
             app:layout_constraintBaseline_toBaselineOf="@+id/password"
             app:layout_constraintStart_toStartOf="@+id/idTextView" />
-
 
 <!--        <Button-->
 <!--            android:id="@+id/passwordUpdateButton"-->
@@ -144,27 +141,26 @@
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/dp_size_16"
             android:fontFamily="@font/kopubworld_dotum_bold"
             android:gravity="center"
             android:text="@string/name"
-            android:textSize="15sp"
+            android:textSize="@dimen/default_text_size"
             app:layout_constraintStart_toStartOf="@+id/password"
             app:layout_constraintTop_toBottomOf="@+id/password" />
-
 
         <TextView
             android:id="@+id/nameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:fontFamily="@font/kopubworld_dotum_medium"
             android:gravity="center"
             android:text="@string/name"
-            android:textSize="12sp"
+            android:textSize="@dimen/default_text_size"
             app:layout_constraintBaseline_toBaselineOf="@+id/name"
             app:layout_constraintStart_toStartOf="@+id/passwordTextView" />
 
@@ -182,32 +178,27 @@
 
         <Button
             android:id="@+id/logoutButton"
-            android:layout_width="82dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_width="@dimen/dp_size_80"
+            android:layout_height="@dimen/dp_size_40"
+            android:layout_marginEnd="@dimen/dp_size_8"
+            android:layout_marginBottom="@dimen/dp_size_8"
             android:backgroundTint="@color/dark_purple"
             android:text="@string/logout"
-            android:textSize="12sp"
+            android:textSize="@dimen/logout_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nameTextView" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/fragment_height"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat2">
-
-
-    </androidx.viewpager.widget.ViewPager>
-
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat2"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

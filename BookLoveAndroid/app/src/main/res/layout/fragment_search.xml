@@ -9,7 +9,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linearLayoutCompat"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="@dimen/dp_size_70"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -18,24 +18,24 @@
             android:id="@+id/some_id6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginVertical="15dp"
-            android:layout_marginLeft="15dp"
+            android:layout_marginVertical="@dimen/dp_size_16"
+            android:layout_marginStart="@dimen/dp_size_16"
             android:fontFamily="@font/cafe24surround"
             android:gravity="center"
             android:text="@string/search"
-            android:textColor="#9289C7"
-            android:textSize="30sp"
-            tools:layout_editor_absoluteX="110dp"
-            tools:layout_editor_absoluteY="349dp" />
+            android:textColor="@color/dark_purple"
+            android:textSize="@dimen/title_text_size"
+            tools:layout_editor_absoluteX="@dimen/dp_size_100"
+            tools:layout_editor_absoluteY="@dimen/dp_size_300" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/outerRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/fragment_height"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -50,9 +50,9 @@
         android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:iconifiedByDefault="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

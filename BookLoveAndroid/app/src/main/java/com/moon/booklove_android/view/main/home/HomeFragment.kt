@@ -5,10 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.bumptech.glide.Glide
-import com.moon.booklove_android.adapter.BookCategoryAdapter
 import com.moon.booklove_android.config.ApplicationClass
-import com.moon.booklove_android.config.getRecomm
 import com.moon.booklove_android.databinding.FragmentHomeBinding
 import com.moon.booklove_android.view.main.home.presenter.HomePresenterImpl
 

@@ -78,7 +78,6 @@ class EditCategoryFragment  : Fragment(), EditCategoryView{
                 }
             )
         }
-
     }
 
     override fun selectComplete() {
