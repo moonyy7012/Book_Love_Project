@@ -5,26 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="45b5eb8b-2757-4b83-9b87-661c84708dcf" name="Changes" comment="Changes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/file/books.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/file/db_books.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server/api-module/src/main/java/com/ssafy/api/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/api-module/src/main/java/com/ssafy/api/controller/BookController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/adapter/BookRecommAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/data/dto/BookRecomm.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/res/layout/item_book_recomm.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BookLoveAndroid/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../BookLoveAndroid/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/api/BookApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/api/BookApi.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/config/ApplicationClass.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/config/ApplicationClass.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/config/CustomAttributes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/config/CustomAttributes.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/config/Util.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/config/Util.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/data/dto/SingleResult.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/data/dto/SingleResult.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/service/BookService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/service/BookService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/home/HomeContract.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/home/HomeContract.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/home/HomeFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/home/HomeFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/home/HomeView.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/home/HomeView.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/home/presenter/HomePresenter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/home/presenter/HomePresenter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/home/presenter/HomePresenterImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/home/presenter/HomePresenterImpl.kt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -95,6 +76,11 @@
             <path>
               <item name="FastAPI" type="b2602c69:ProjectViewProjectNode" />
               <item name="FastAPI" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FastAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FastAPI" type="462c0819:PsiDirectoryNode" />
+              <item name="file" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -170,14 +156,12 @@
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
-    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32899022" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />

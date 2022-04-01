@@ -4,7 +4,6 @@ import android.content.Context
 import android.widget.Toast
 import com.moon.booklove_android.R
 import com.moon.booklove_android.config.ApplicationClass.Companion.recommand
-import com.moon.booklove_android.config.ApplicationClass.Companion.search
 import com.moon.booklove_android.data.dto.*
 
 fun getRecomm(bookMainListResDTO :BookMainListResDTO): List<BookRecomm> {
@@ -18,20 +17,7 @@ fun getRecomm(bookMainListResDTO :BookMainListResDTO): List<BookRecomm> {
     return bookList
 }
 
-fun getSearch(): ArrayList<BookCategory> {
-    val bookCategory = arrayListOf<BookCategory>()
-    for (a in 0..2) {
-        val bookList = arrayListOf<Book>()
-        for(b in 0..5) {
-            val book = Book(b, "Book Title $b", R.drawable.ic_baseline_book_24, "재밌는 책입니다.")
-            bookList += book
-        }
 
-        bookCategory += BookCategory(a, search[a], bookList)
-    }
-
-    return bookCategory
-}
 
 fun getGenre(): ArrayList<Book> {
     val books = arrayListOf<Book>()
