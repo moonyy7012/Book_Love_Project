@@ -1,9 +1,12 @@
 package com.moon.booklove_android.service
 
 import android.util.Log
-import com.moon.booklove_android.data.dto.*
+import com.google.gson.Gson
+import com.google.gson.JsonObject
+import com.kakao.sdk.common.util.KakaoJson.fromJson
 import com.moon.booklove_android.config.util.RetrofitCallback
 import com.moon.booklove_android.config.util.RetrofitUtil
+import com.moon.booklove_android.data.dto.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -12,11 +15,12 @@ private const val TAG = "BookService"
 
 class BookService {
 
-    fun getBookListMain(callback: RetrofitCallback<SingleResult<BookListMainResDTO>>) {
+    fun getBookListMain(callback: RetrofitCallback<SingleResult<BookMainListResDTO>>) {
         RetrofitUtil.bookService.getBookListMain()
-            .enqueue(object : Callback<SingleResult<BookListMainResDTO>> {
-                override fun onResponse(call: Call<SingleResult<BookListMainResDTO>>, response: Response<SingleResult<BookListMainResDTO>>) {
+            .enqueue(object : Callback<SingleResult<BookMainListResDTO>> {
+                override fun onResponse(call: Call<SingleResult<BookMainListResDTO>>, response: Response<SingleResult<BookMainListResDTO>>) {
                     val res = response.body()
+                    Log.d(TAG, "onResponse: ")
                     if (response.code() == 200) {
                         if (res != null) {
                             callback.onSuccess(response.code(), res)
@@ -24,11 +28,13 @@ class BookService {
                     } else if(response.code() == 403){
                         callback.onExpired(response.code())
                     } else{
+                        Log.d(TAG, "onResponse1: ${response.code()}")
                         callback.onFailure(response.code())
                     }
                 }
 
-                override fun onFailure(call: Call<SingleResult<BookListMainResDTO>>, t: Throwable) {
+                override fun onFailure(call: Call<SingleResult<BookMainListResDTO>>, t: Throwable) {
+                    Log.d(TAG, "onResponse2: ${t}")
                     callback.onError(t)
                 }
             })
@@ -86,27 +92,7 @@ class BookService {
             })
     }
 
-    fun getBookListSimilar(bookId: String, callback: RetrofitCallback<SingleResult<BookListCategoryResDTO>>) {
-        RetrofitUtil.bookService.getBookListSimilar(bookId)
-            .enqueue(object : Callback<SingleResult<BookListCategoryResDTO>> {
-                override fun onResponse(call: Call<SingleResult<BookListCategoryResDTO>>, response: Response<SingleResult<BookListCategoryResDTO>>) {
-                    val res = response.body()
-                    if (response.code() == 200) {
-                        if (res != null) {
-                            callback.onSuccess(response.code(), res)
-                        }
-                    } else if(response.code() == 403){
-                        callback.onExpired(response.code())
-                    } else{
-                        callback.onFailure(response.code())
-                    }
-                }
 
-                override fun onFailure(call: Call<SingleResult<BookListCategoryResDTO>>, t: Throwable) {
-                    callback.onError(t)
-                }
-            })
-    }
 
     fun getBookInfo(bookId: Long, callback: RetrofitCallback<SingleResult<BookInfoResDTO>>) {
         RetrofitUtil.bookService.getBookInfo(bookId)
