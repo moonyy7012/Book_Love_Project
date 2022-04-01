@@ -50,7 +50,7 @@
     <string name="Home">홈</string>
     <string name="Detail">도서 상세</string>
     <string name="link_title">구매링크 : </string>
-    <string name="similar_header">같은 작가의 책이에요</string>
+    <string name="similar_header">유사한 책도 만나보세요</string>
     <string name="AppName">부끄럽</string>
     <string name="login_text">로그인</string>
     <string name="AppNameEng">BookLove</string>
