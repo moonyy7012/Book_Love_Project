@@ -29,6 +29,6 @@ interface UserApi {
     fun userInfoUpdate(@Body body: UserInfoUpdateReqDTO): Call<SingleResult<Any>>
 
     // //회원정보 요청 (일반 로그인)
-    @GET("api/user/{userid}")
-    fun getUserInfo(@Query("userid") userid: String?): Call<SingleResult<Any>>
+    @GET("api/user/autologin/{userId}")
+    fun autoNormalLogin(@Path("userId") userid: String, @Query("type") type: String): Call<SingleResult<LoginResDTO>>
 }

@@ -53,7 +53,7 @@
             android:fontFamily="@font/kopubworld_dotum_bold"
             android:gravity="center"
             android:text="@string/login_type"
-            android:textSize="@dimen/default_text_size"
+            android:textSize="@dimen/mypage_text_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -67,7 +67,7 @@
             android:fontFamily="@font/kopubworld_dotum_medium"
             android:gravity="center"
             android:text="@string/login_type"
-            android:textSize="@dimen/default_text_size"
+            android:textSize="@dimen/mypage_text_size"
             app:layout_constraintBaseline_toBaselineOf="@+id/loginType"
             app:layout_constraintStart_toEndOf="@+id/loginType" />
 
@@ -81,7 +81,7 @@
             android:fontFamily="@font/kopubworld_dotum_bold"
             android:gravity="center"
             android:text="@string/id"
-            android:textSize="@dimen/default_text_size"
+            android:textSize="@dimen/mypage_text_size"
             app:layout_constraintStart_toStartOf="@+id/loginType"
             app:layout_constraintTop_toBottomOf="@+id/loginType" />
 
@@ -94,7 +94,7 @@
             android:fontFamily="@font/kopubworld_dotum_medium"
             android:gravity="center"
             android:text="@string/id"
-            android:textSize="@dimen/default_text_size"
+            android:textSize="@dimen/mypage_text_size"
             app:layout_constraintBaseline_toBaselineOf="@+id/id"
             app:layout_constraintStart_toStartOf="@+id/loginTypeTextView" />
 
@@ -108,7 +108,7 @@
             android:fontFamily="@font/kopubworld_dotum_bold"
             android:gravity="center"
             android:text="@string/password"
-            android:textSize="@dimen/default_text_size"
+            android:textSize="@dimen/mypage_text_size"
             app:layout_constraintStart_toStartOf="@+id/id"
             app:layout_constraintTop_toBottomOf="@+id/id" />
 
@@ -121,7 +121,7 @@
             android:fontFamily="@font/kopubworld_dotum_medium"
             android:gravity="center"
             android:text="@string/password_text"
-            android:textSize="@dimen/default_text_size"
+            android:textSize="@dimen/mypage_text_size"
             app:layout_constraintBaseline_toBaselineOf="@+id/password"
             app:layout_constraintStart_toStartOf="@+id/idTextView" />
 
@@ -147,7 +147,7 @@
             android:fontFamily="@font/kopubworld_dotum_bold"
             android:gravity="center"
             android:text="@string/name"
-            android:textSize="@dimen/default_text_size"
+            android:textSize="@dimen/mypage_text_size"
             app:layout_constraintStart_toStartOf="@+id/password"
             app:layout_constraintTop_toBottomOf="@+id/password" />
 
@@ -160,7 +160,7 @@
             android:fontFamily="@font/kopubworld_dotum_medium"
             android:gravity="center"
             android:text="@string/name"
-            android:textSize="@dimen/default_text_size"
+            android:textSize="@dimen/mypage_text_size"
             app:layout_constraintBaseline_toBaselineOf="@+id/name"
             app:layout_constraintStart_toStartOf="@+id/passwordTextView" />
 

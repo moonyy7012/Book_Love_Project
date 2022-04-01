@@ -35,6 +35,9 @@ class LoginPresenterImpl(override var view: LoginContract.View) : LoginPresenter
                         responseData.data.userId,
                         responseData.data.userCategoryList)
 
+                    prefs.setUserId(responseData.data.userId)
+                    prefs.setLoginType(responseData.data.type)
+
                     if(responseData.data.checked){
                         view.loginComplete("first login")
                     }else{
@@ -60,7 +63,7 @@ class LoginPresenterImpl(override var view: LoginContract.View) : LoginPresenter
             override fun onSuccess(code: Int, responseData: SingleResult<LoginResDTO>) {
                 if (responseData.output==1) {
 
-                    toast("회원 가입 성공!",context)
+                    toast("로그인 성공!",context)
                     prefs.setJWTAccess(responseData.data.accessToken)
                     prefs.setJWTRefresh(responseData.data.refreshToken)
                     initRetrofit()
@@ -74,6 +77,52 @@ class LoginPresenterImpl(override var view: LoginContract.View) : LoginPresenter
                         responseData.data.type,
                         responseData.data.userId,
                         responseData.data.userCategoryList)
+
+                    prefs.setUserId(responseData.data.userId)
+                    prefs.setLoginType(responseData.data.type)
+
+                    if(responseData.data.checked){
+                        view.loginComplete("first login")
+                    }else{
+                        view.loginComplete("")
+                    }
+                } else {
+                    toast("문제가 발생하였습니다. 다시 시도해주세요.",context)
+                }
+            }
+
+            override fun onFailure(code: Int) { toast("문제가 발생하였습니다. 다시 시도해주세요.",context) }
+
+            override fun onError(t: Throwable) { toast("문제가 발생하였습니다. 다시 시도해주세요.",context) }
+
+            override fun onExpired(code: Int) {}
+        })
+    }
+
+    override fun autoNormalLogin(userId: String, type: String, context: Context) {
+
+        UserService().autoNormalLogin(userId, type, object :
+            RetrofitCallback<SingleResult<LoginResDTO>> {
+            override fun onSuccess(code: Int, responseData: SingleResult<LoginResDTO>) {
+                if (responseData.output==1) {
+
+                    toast("로그인 성공!",context)
+                    prefs.setJWTAccess(responseData.data.accessToken)
+                    prefs.setJWTRefresh(responseData.data.refreshToken)
+                    initRetrofit()
+
+                    currentuser = User(
+                        responseData.data.id,
+                        responseData.data.nickname,
+                        responseData.data.age,
+                        responseData.data.gender,
+                        responseData.data.checked,
+                        responseData.data.type,
+                        responseData.data.userId,
+                        responseData.data.userCategoryList)
+
+                    prefs.setUserId(responseData.data.userId)
+                    prefs.setLoginType(responseData.data.type)
 
                     if(responseData.data.checked){
                         view.loginComplete("first login")
