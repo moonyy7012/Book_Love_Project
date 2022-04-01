@@ -52,7 +52,7 @@ async def get_books_recommend(user_id: int, db: Session = Depends(get_db)) -> No
     df_book = pandas.concat([df_book, df_click_log])
     df_book.drop_duplicates(['book_id'], keep=False, inplace=True)
 
-    df_book = df_book.append({'title': recent_title, 'description': recent_desc, 'category_name': recent_cate, 'book_id':1, 'cover':"1"},
+    df_book = df_book.append({'title': recent_title, 'description': recent_desc, 'category_name': recent_cate},
                              ignore_index=True)
 
     idx = len(df_book.index) - 1
