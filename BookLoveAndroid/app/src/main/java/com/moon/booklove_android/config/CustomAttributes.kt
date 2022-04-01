@@ -22,12 +22,16 @@ fun RecyclerView.setBooks(books: List<BookListInfoResDTO>?) {
 }
 
 @BindingAdapter(value = ["setBookCover"])
-fun setBookCover(imageView: ImageView, url: String){
+fun setBookCover(imageView: ImageView, url: String?){
+
+    if(url!=null){
         Glide.with(imageView.context)
             .load(url)
             .diskCacheStrategy(DiskCacheStrategy.NONE)
             .apply(RequestOptions().fitCenter())
             .into(imageView)
+    }
+
 
 }
 @BindingAdapter(value = ["setRecommBooks"])

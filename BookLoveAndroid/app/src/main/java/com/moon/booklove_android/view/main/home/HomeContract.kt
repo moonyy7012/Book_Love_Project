@@ -11,6 +11,6 @@ interface HomeContract {
     interface Presenter {
         var view: View
         fun getBookListMain(context: Context)
-
+        fun getBookInfo(context: Context, bookId: Long, idx:Int)
     }
 }
