@@ -8,13 +8,10 @@ import json
 import pandas
 import os
 
-
 dir = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/') + '/'
 models.Base.metadata.create_all(bind=engine)
 
 router = APIRouter(prefix="/data")
-
-
 
 async def store_categories_in_db(db):
     db_cate = crud.get_categories(db)
@@ -71,14 +68,13 @@ async def store_books_in_db(db):
 
     return "success"
 
-# @router.get("/books/{book_id}", tags=["book"])
-# def get_book_info(book_id : int, db: Session = Depends(get_db)) -> None:
-#
-#     db_book_info = crud.get_book_info_by_book_id(db, book_id)
-#
-#     if db_book_info is None:
-#         return "fail"
-#
-#     print(type(db_book_info))
-#
-#     return db_book_info
+async def get_click_log_by_user_id(db, user_id):
+    db_click_log = crud.get_click_log_by_user_id(db, user_id)
+
+    if len(db_click_log) == 0:
+        return
+
+    df = pandas.DataFrame([o.__dict__ for o in db_click_log])
+    df.drop(['_sa_instance_state'], axis=1, inplace=True)
+
+    return df
