@@ -8,4 +8,4 @@ app.include_router(data.router)
 app.include_router(recommend.router)
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="j6d106.p.ssafy.io", port=8000, reload=True)
+    uvicorn.run("main:app", host="http://j6d106.p.ssafy.io", port=8000, reload=True)
