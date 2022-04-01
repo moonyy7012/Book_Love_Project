@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.moon.booklove_android.adapter.BookCategoryAdapter
+import com.moon.booklove_android.config.ApplicationClass
 import com.moon.booklove_android.databinding.FragmentHomeBinding
 import com.moon.booklove_android.view.main.home.presenter.HomePresenterImpl
 
@@ -30,11 +30,12 @@ class HomeFragment  : Fragment(), HomeView{
         super.onViewCreated(view, savedInstanceState)
 
         presenter = HomePresenterImpl(this)
+        presenter.getBookListMain(requireContext())
 
-        val bookCategoryAdapter = BookCategoryAdapter()
-        //리스트 데이터 갱신(카테고리 리스트)
-//        bookCategoryAdapter.submitList(getRecomm())
-        binding.outerRecyclerView.adapter = bookCategoryAdapter
+    }
+
+    override fun bindInfo() {
+        binding.outerRecyclerView.adapter = ApplicationClass.bookRecommandAdapter
     }
 
 }

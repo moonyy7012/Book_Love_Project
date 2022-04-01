@@ -4,41 +4,20 @@ import android.content.Context
 import android.widget.Toast
 import com.moon.booklove_android.R
 import com.moon.booklove_android.config.ApplicationClass.Companion.recommand
-import com.moon.booklove_android.config.ApplicationClass.Companion.search
-import com.moon.booklove_android.data.dto.Book
-import com.moon.booklove_android.data.dto.BookCategory
+import com.moon.booklove_android.data.dto.*
 
-//fun getRecomm(): ArrayList<BookCategory> {
-//    //bookCategory : header를 포함한 북리스트 전체
-//    val bookCategoryList = arrayListOf<BookCategory>()
-//    for (a in 0..2) {
-//        //북리스트
-//        val bookList = arrayListOf<Book>()
-//        for(b in 0..5) {
-//            val book = Book(b, "Book Title $b", R.drawable.ic_baseline_book_24, "재밌는 책입니다.")
-//            bookList += book
-//        }
-//
-//        bookCategoryList += BookCategory(a, recommand[a], bookList)
-//    }
-//
-//    return bookCategoryList
-//}
+fun getRecomm(bookMainListResDTO :BookMainListResDTO): List<BookRecomm> {
+    val bookList = arrayListOf<BookRecomm>()
+    bookList+=BookRecomm(0, recommand[0], bookMainListResDTO.bookGenderAgeList)
+    bookList+=BookRecomm(1, recommand[1], bookMainListResDTO.bookCategoryList)
+    bookList+=BookRecomm(2, recommand[2], bookMainListResDTO.bookBestSellerList)
+    bookList+=BookRecomm(3, recommand[3], bookMainListResDTO.bookNewList)
 
-//fun getSearch(): ArrayList<BookCategory> {
-//    val bookCategory = arrayListOf<BookCategory>()
-//    for (a in 0..2) {
-//        val bookList = arrayListOf<Book>()
-//        for(b in 0..5) {
-//            val book = Book(b, "Book Title $b", R.drawable.ic_baseline_book_24, "재밌는 책입니다.")
-//            bookList += book
-//        }
-//
-//        bookCategory += BookCategory(a, search[a], bookList)
-//    }
-//
-//    return bookCategory
-//}
+
+    return bookList
+}
+
+
 
 fun getGenre(): ArrayList<Book> {
     val books = arrayListOf<Book>()

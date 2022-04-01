@@ -7,8 +7,9 @@ import retrofit2.http.*
 interface BookApi {
 
     // 메인 리스트
-    @GET("api/user")
-    fun getBookListMain(): Call<SingleResult<BookListMainResDTO>>
+    @GET("api/book/bestseller/main")
+    fun getBookListMain(): Call<SingleResult<BookMainListResDTO>>
+
 
     // 검색 결과 리스트
     @GET("api/book/search/{keyword}")
