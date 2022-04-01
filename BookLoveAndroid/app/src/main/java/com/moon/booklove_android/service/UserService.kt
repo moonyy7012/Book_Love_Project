@@ -117,4 +117,26 @@ class UserService {
             }
         })
     }
+
+    fun autoNormalLogin(userId: String, type: String, callback: RetrofitCallback<SingleResult<LoginResDTO>>) {
+        RetrofitUtil.userService.autoNormalLogin(userId, type)
+            .enqueue(object : Callback<SingleResult<LoginResDTO>> {
+                override fun onResponse(call: Call<SingleResult<LoginResDTO>>, response: Response<SingleResult<LoginResDTO>>) {
+                    val res = response.body()
+                    if (response.code() == 200) {
+                        if (res != null) {
+                            callback.onSuccess(response.code(), res)
+                        }
+                    } else if(response.code() == 403){
+                        callback.onExpired(response.code())
+                    } else{
+                        callback.onFailure(response.code())
+                    }
+                }
+
+                override fun onFailure(call: Call<SingleResult<LoginResDTO>>, t: Throwable) {
+                    callback.onError(t)
+                }
+            })
+    }
 }
