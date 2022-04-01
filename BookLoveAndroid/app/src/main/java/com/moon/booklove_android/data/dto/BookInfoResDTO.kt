@@ -9,7 +9,7 @@ data class BookInfoResDTO(
     var isbn: String,
     var priceSales: Int,
     var priceStandard: Int,
-    var cover: String,
+    var cover: String?,
     var link: String,
     var categoryName: String,
     var publisher: String,

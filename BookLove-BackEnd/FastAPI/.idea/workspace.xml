@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45b5eb8b-2757-4b83-9b87-661c84708dcf" name="Changes" comment="Changes">
-      <change beforePath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/config/ApplicationClass.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/config/ApplicationClass.kt" afterDir="false" />
-    </list>
+    <list default="true" id="45b5eb8b-2757-4b83-9b87-661c84708dcf" name="Changes" comment="Changes" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -34,6 +34,8 @@ class ApplicationClass : Application() {
         var bookInfoHeader: MutableList<String> = mutableListOf("저자 : ", "출판사 : ", "분류 : ", "가격 : ", "구매링크 : ")
         var bookRecommandAdapter: BookRecommAdapter?=null
         var bookRecommData: List<BookRecomm>?=null
+        var homeBannerAdapter: HomeBannerAdapter?=null
+        var homeBannerData: MutableList<BookInfoResDTO>?=null
 
         fun initRetrofit(){
             retrofit = Retrofit.Builder()

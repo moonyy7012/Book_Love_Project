@@ -58,5 +58,7 @@
     <string name="password_text">****</string>
     <string name="search_text">"검색어를 입력해주세요."</string>
 
+    <string name="banner1_header">요즘 이 책</string>
+
 
 </resources>

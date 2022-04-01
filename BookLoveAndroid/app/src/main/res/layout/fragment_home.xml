@@ -33,9 +33,9 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPager_idol"
+        android:id="@+id/vpHomeBanner"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_size_200"
+        android:layout_height="@dimen/dp_size_270"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat" />
@@ -50,7 +50,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewPager_idol"
+        app:layout_constraintTop_toBottomOf="@+id/vpHomeBanner"
         app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/item_book_category" />
 
