@@ -183,7 +183,7 @@ public class BookService {
     }
 
     @Transactional(readOnly = false)
-    public List<BookListInfoResDTO> findBestsellerByCategoryList(User user, Long userClickCnt){
+    public List<BookListInfoResDTO> findBestsellerByCategoryList(User user, Long userClickCnt) {
         List<BookListInfoResDTO> resultList;
         List<Book> bestseller;
 
