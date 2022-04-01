@@ -101,8 +101,7 @@ public class BookController {
     ListResult<List<BookListInfoResDTO>> getSearchList(@PathVariable String keyword)throws Exception{
         List<Book> searchResultByTitle = bookService.findBookByTitle(keyword);
         List<Book> searchResultByAuthor = bookService.findBookByAuthor(keyword);
-
-
+        System.out.println(keyword);
         List<BookListInfoResDTO> searchTitleList = new ArrayList<>();
         List<BookListInfoResDTO> searchAuthorList = new ArrayList<>();
         //title 로 검색
