@@ -83,7 +83,7 @@ public class ClickLogRepoCommonImpl implements ClickLogRepoCommon {
                 .from(QClickLog.clickLog)
                 .leftJoin(QClickLog.clickLog.book)
                 .where(userEq(userId))
-                .orderBy(QClickLog.clickLog.logId.desc())
+                .orderBy(QClickLog.clickLog.updateDate.desc())
                 .limit(10)
                 .fetch();
         return result;
