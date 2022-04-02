@@ -6,4 +6,5 @@ data class BookMainListResDTO(
     var bookNewList: ArrayList<BookListInfoResDTO>,
     var bookCategoryList: ArrayList<BookListInfoResDTO>,
     var bookGenderAgeList: ArrayList<BookListInfoResDTO>,
+    var bookRecentSimilarList: ArrayList<BookListInfoResDTO>
 )
