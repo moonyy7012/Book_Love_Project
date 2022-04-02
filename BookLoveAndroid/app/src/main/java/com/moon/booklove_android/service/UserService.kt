@@ -140,8 +140,8 @@ class UserService {
             })
     }
 
-    fun autoNormalLogin(userId: String, type: String, callback: RetrofitCallback<SingleResult<LoginResDTO>>) {
-        RetrofitUtil.userService.autoNormalLogin(userId, type)
+    fun autoLogin(callback: RetrofitCallback<SingleResult<LoginResDTO>>) {
+        RetrofitUtil.userService.autoLogin()
             .enqueue(object : Callback<SingleResult<LoginResDTO>> {
                 override fun onResponse(call: Call<SingleResult<LoginResDTO>>, response: Response<SingleResult<LoginResDTO>>) {
                     val res = response.body()

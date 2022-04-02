@@ -5,6 +5,7 @@ import android.content.Context
 interface MyPageContract {
     interface View {
         fun init()
+        fun logout()
     }
     interface Presenter {
         var view: View

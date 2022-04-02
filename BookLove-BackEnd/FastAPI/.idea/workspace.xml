@@ -7,7 +7,7 @@
     <list default="true" id="45b5eb8b-2757-4b83-9b87-661c84708dcf" name="Changes" comment="Changes">
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/file/db_books.csv" beforeDir="false" afterPath="$PROJECT_DIR$/file/db_books.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/file/db_books.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/api-module/src/main/java/com/ssafy/api/controller/SignController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../server/api-module/src/main/java/com/ssafy/api/controller/SignController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server/api-module/src/main/resources/application-alpha.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../server/api-module/src/main/resources/application-alpha.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/api/UserApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/api/UserApi.kt" afterDir="false" />
@@ -18,6 +18,10 @@
       <change beforePath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/login/LoginContract.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/login/LoginContract.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/login/presenter/LoginPresenter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/login/presenter/LoginPresenter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/login/presenter/LoginPresenterImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/login/presenter/LoginPresenterImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/myPage/MyPageContract.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/myPage/MyPageContract.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/myPage/MyPageFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/myPage/MyPageFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/myPage/MyPageView.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/myPage/MyPageView.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -1,5 +1,6 @@
 package com.moon.booklove_android.view.main.myPage
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +11,9 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.moon.booklove_android.config.ApplicationClass.Companion.currentuser
+import com.moon.booklove_android.config.ApplicationClass.Companion.prefs
 import com.moon.booklove_android.databinding.FragmentMypageBinding
+import com.moon.booklove_android.view.main.MainActivity
 import com.moon.booklove_android.view.main.myPage.editAge.EditAgeFragment
 import com.moon.booklove_android.view.main.myPage.editCategory.EditCategoryFragment
 import com.moon.booklove_android.view.main.myPage.editGender.EditGenderFragment
@@ -61,6 +64,16 @@ class MyPageFragment  : Fragment(), MyPageView{
         binding.nameUpdateButton.setOnClickListener {
             presenter.userUpdateInfo(binding.nameTextView.text.toString(), requireContext())
         }
+
+        binding.logoutButton.setOnClickListener {
+            logout()
+        }
+    }
+
+    override fun logout() {
+        prefs.setJWTAccess("")
+        prefs.setJWTRefresh("")
+        (activity as MainActivity).logout()
     }
 
     private inner class ScreenSlidePagerAdapter(fa: FragmentManager) : FragmentStatePagerAdapter(fa) {

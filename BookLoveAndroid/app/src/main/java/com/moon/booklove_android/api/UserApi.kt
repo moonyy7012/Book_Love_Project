@@ -33,6 +33,6 @@ interface UserApi {
     fun userUpdateInfo(@Body body: UserUpdateInfoReqDTO): Call<SingleResult<Any>>
 
     // //회원정보 요청 (일반 로그인)
-    @GET("api/user/autologin/{userId}")
-    fun autoNormalLogin(@Path("userId") userid: String, @Query("type") type: String): Call<SingleResult<LoginResDTO>>
+    @GET("api/user/auto")
+    fun autoLogin(): Call<SingleResult<LoginResDTO>>
 }
