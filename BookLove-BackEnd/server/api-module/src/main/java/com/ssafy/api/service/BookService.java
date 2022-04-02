@@ -72,7 +72,7 @@ public class BookService {
     }
 
     public List<BookListInfoResDTO> findRecentSimilarBooks(Long userId, Long userClickCnt) {
-        if (userClickCnt < 10) {
+        if (userClickCnt == 0) {
             return new ArrayList<>();
         }
 
