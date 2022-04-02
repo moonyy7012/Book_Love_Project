@@ -22,13 +22,44 @@ def get_db():
     finally:
         db.close()
 
-@router.get("/{book_id}", response_model=List[schemas.BookBase])
+@router.get("/book/{book_id}", response_model=List[schemas.BookBase])
 async def get_book_recommend(book_id: int, db: Session = Depends(get_db)) -> None:
     if not os.path.isfile(dir + '../file/db_books.csv'):
         await data.store_books_in_dir(db)
 
     df = pandas.read_csv(dir + '../file/db_books.csv', encoding='cp949')
 
+    idx = [df.index[df['book_id'] == book_id][0]]
+
+    return recommend_books(idx, df)
+
+@router.get("/books/{user_id}", response_model=List[schemas.BookBase])
+async def get_books_recommend(user_id: int, db: Session = Depends(get_db)) -> None:
+    if not os.path.isfile(dir + '../file/db_books.csv'):
+        await data.store_books_in_dir(db)
+
+    df_click_log = await data.get_click_log_by_user_id(db, user_id)
+    df_book = pandas.read_csv(dir + '../file/db_books.csv', encoding='cp949')
+
+    df_click_log = df_click_log.sort_values(by='update_date', ascending=False)
+
+    df = pandas.merge(df_click_log, df_book, on="book_id")
+
+    recent_title = df['title'][0:10].str.cat(sep=' ')
+    recent_desc = df['description'][0:10].str.cat(sep=' ')
+    recent_cate = df['category_name'][0:10].str.cat(sep=' ')
+
+    df_book = pandas.concat([df_book, df_click_log])
+    df_book.drop_duplicates(['book_id'], keep=False, inplace=True)
+
+    df_book = df_book.append({'title': recent_title, 'description': recent_desc, 'category_name': recent_cate},
+                             ignore_index=True)
+
+    idx = len(df_book.index) - 1
+
+    return recommend_books(idx, df_book)
+
+def recommend_books(idx, df):
     corpus_des = df['description'].values.astype('U')
     corpus_cate = df['category_name'].values.astype('U')
     corpus_title = df['title'].values.astype('U')
@@ -37,8 +68,6 @@ async def get_book_recommend(book_id: int, db: Session = Depends(get_db)) -> Non
     tfidf_matrix_des = tfidfv.fit_transform(corpus_des)
     tfidf_matrix_cate = tfidfv.fit_transform(corpus_cate)
     tfidf_matrix_title = tfidfv.fit_transform(corpus_title)
-
-    idx = [df.index[df['book_id'] == book_id][0]]
 
     cosine_matrix_des = cosine_similarity(tfidf_matrix_des[idx], tfidf_matrix_des)
     cosine_matrix_cate = cosine_similarity(tfidf_matrix_cate[idx], tfidf_matrix_cate)

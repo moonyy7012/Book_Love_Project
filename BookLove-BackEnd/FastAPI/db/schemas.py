@@ -3,7 +3,6 @@ from pydantic import BaseModel
 class Book(BaseModel):
     book_id: int
     title: str
-    category_id: int
     description: str
     author: str
     pub_date: str
@@ -23,7 +22,6 @@ class Book(BaseModel):
 
 class Book(BaseModel):
     title: str
-    category_id: int
     description: str
     author: str
     pub_date: str
@@ -52,6 +50,16 @@ class BookBase(BaseModel):
     book_id: int
     title: str
     cover: str
+
+    class Config:
+        orm_mode = True
+
+class ClickLog(BaseModel):
+    log_id: int
+    update_time: str
+    count: int
+    user_id: int
+    book_id: int
 
     class Config:
         orm_mode = True
