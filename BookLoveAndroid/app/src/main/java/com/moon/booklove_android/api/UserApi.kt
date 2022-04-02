@@ -26,7 +26,11 @@ interface UserApi {
 
     //회원정보 수정
     @POST("api/user/info")
-    fun userInfoUpdate(@Body body: UserInfoUpdateReqDTO): Call<SingleResult<Any>>
+    fun userInputInfo(@Body body: UserInputInfoReqDTO): Call<SingleResult<Any>>
+
+    //회원정보 수정
+    @POST("api/user/update")
+    fun userUpdateInfo(@Body body: UserUpdateInfoReqDTO): Call<SingleResult<Any>>
 
     // //회원정보 요청 (일반 로그인)
     @GET("api/user/autologin/{userId}")

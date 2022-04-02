@@ -98,32 +98,32 @@
             app:layout_constraintBaseline_toBaselineOf="@+id/id"
             app:layout_constraintStart_toStartOf="@+id/loginTypeTextView" />
 
-        <TextView
-            android:id="@+id/password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="@dimen/dp_size_16"
-            android:fontFamily="@font/kopubworld_dotum_bold"
-            android:gravity="center"
-            android:text="@string/password"
-            android:textSize="@dimen/mypage_text_size"
-            app:layout_constraintStart_toStartOf="@+id/id"
-            app:layout_constraintTop_toBottomOf="@+id/id" />
+<!--        <TextView-->
+<!--            android:id="@+id/password"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentStart="true"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_marginTop="@dimen/dp_size_16"-->
+<!--            android:fontFamily="@font/kopubworld_dotum_bold"-->
+<!--            android:gravity="center"-->
+<!--            android:text="@string/password"-->
+<!--            android:textSize="@dimen/mypage_text_size"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/id"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/id" />-->
 
-        <TextView
-            android:id="@+id/passwordTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:fontFamily="@font/kopubworld_dotum_medium"
-            android:gravity="center"
-            android:text="@string/password_text"
-            android:textSize="@dimen/mypage_text_size"
-            app:layout_constraintBaseline_toBaselineOf="@+id/password"
-            app:layout_constraintStart_toStartOf="@+id/idTextView" />
+<!--        <TextView-->
+<!--            android:id="@+id/passwordTextView"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentStart="true"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:fontFamily="@font/kopubworld_dotum_medium"-->
+<!--            android:gravity="center"-->
+<!--            android:text="@string/password_text"-->
+<!--            android:textSize="@dimen/mypage_text_size"-->
+<!--            app:layout_constraintBaseline_toBaselineOf="@+id/password"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/idTextView" />-->
 
 <!--        <Button-->
 <!--            android:id="@+id/passwordUpdateButton"-->
@@ -148,10 +148,10 @@
             android:gravity="center"
             android:text="@string/name"
             android:textSize="@dimen/mypage_text_size"
-            app:layout_constraintStart_toStartOf="@+id/password"
-            app:layout_constraintTop_toBottomOf="@+id/password" />
+            app:layout_constraintStart_toStartOf="@+id/id"
+            app:layout_constraintTop_toBottomOf="@+id/id" />
 
-        <TextView
+        <EditText
             android:id="@+id/nameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -162,19 +162,19 @@
             android:text="@string/name"
             android:textSize="@dimen/mypage_text_size"
             app:layout_constraintBaseline_toBaselineOf="@+id/name"
-            app:layout_constraintStart_toStartOf="@+id/passwordTextView" />
+            app:layout_constraintStart_toStartOf="@+id/idTextView" />
 
-<!--        <Button-->
-<!--            android:id="@+id/nameUpdateButton"-->
-<!--            android:layout_width="57dp"-->
-<!--            android:layout_height="40dp"-->
-<!--            android:layout_marginStart="24dp"-->
-<!--            android:backgroundTint="@color/dark_purple"-->
-<!--            android:text="@string/edit"-->
-<!--            android:textSize="12sp"-->
-<!--            app:layout_constraintBottom_toBottomOf="@+id/nameTextView"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/nameTextView"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/nameTextView" />-->
+        <Button
+            android:id="@+id/nameUpdateButton"
+            android:layout_width="57dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp"
+            android:backgroundTint="@color/dark_purple"
+            android:text="@string/edit"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/nameTextView"
+            app:layout_constraintStart_toEndOf="@+id/nameTextView"
+            app:layout_constraintTop_toTopOf="@+id/nameTextView" />
 
         <Button
             android:id="@+id/logoutButton"

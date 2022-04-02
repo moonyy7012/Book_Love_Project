@@ -1,4 +1,4 @@
-package com.moon.booklove_android.view.main.myPage.editCategory.presenter
+package com.moon.booklove_android.view.main.myPage.presenter
 
 import android.content.Context
 import com.moon.booklove_android.config.ApplicationClass.Companion.currentuser
@@ -7,22 +7,20 @@ import com.moon.booklove_android.config.ApplicationClass.Companion.prefs
 import com.moon.booklove_android.config.toast
 import com.moon.booklove_android.config.util.RetrofitCallback
 import com.moon.booklove_android.data.dto.*
-import com.moon.booklove_android.view.main.myPage.editCategory.EditCategoryContract
+import com.moon.booklove_android.view.main.myPage.editAge.EditAgeContract
 import com.moon.booklove_android.service.TokenService
 import com.moon.booklove_android.service.UserService
+import com.moon.booklove_android.view.main.myPage.MyPageContract
 
-class EditCategoryPresenterImpl(override var view: EditCategoryContract.View) : EditCategoryPresenter {
+class MyPagePresenterImpl(override var view: MyPageContract.View) : MyPagePresenter {
 
-    override fun updateUserCategory(userInputInfoReqDTO: UserInputInfoReqDTO, context: Context) {
+    override fun userUpdateInfo(nickname: String, context: Context) {
 
-        currentuser.userCategoryList = userInputInfoReqDTO.categories
-
-        UserService().userInputInfo(userInputInfoReqDTO, object :
+        UserService().userUpdateInfo(UserUpdateInfoReqDTO(nickname), object :
             RetrofitCallback<SingleResult<Any>> {
             override fun onSuccess(code: Int, responseData: SingleResult<Any>) {
                 if (responseData.data==true) {
-                    toast("관심사를 수정했습니다", context)
-                    view.selectComplete()
+                    toast("닉네임을 수정했습니다", context)
                 } else {
                     toast("문제가 발생하였습니다. 다시 시도해주세요.", context)
                 }
@@ -41,7 +39,7 @@ class EditCategoryPresenterImpl(override var view: EditCategoryContract.View) : 
                             prefs.setJWTAccess(responseData.data.accessToken)
                             prefs.setJWTRefresh(responseData.data.refreshToken)
                             initRetrofit()
-                            updateUserCategory(userInputInfoReqDTO, context)
+                            userUpdateInfo(nickname, context)
                         } else toast("문제가 발생하였습니다. 다시 시도해주세요.", context)
                     }
 

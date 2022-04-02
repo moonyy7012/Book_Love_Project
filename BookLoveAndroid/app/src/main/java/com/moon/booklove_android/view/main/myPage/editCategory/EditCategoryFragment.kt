@@ -11,7 +11,7 @@ import com.moon.booklove_android.config.ApplicationClass.Companion.currentuser
 import com.moon.booklove_android.config.ApplicationClass.Companion.interest
 import com.moon.booklove_android.config.toast
 import com.moon.booklove_android.databinding.FragmentEditInterestBinding
-import com.moon.booklove_android.data.dto.UserInfoUpdateReqDTO
+import com.moon.booklove_android.data.dto.UserInputInfoReqDTO
 import com.moon.booklove_android.view.main.myPage.editCategory.presenter.EditCategoryPresenterImpl
 
 class EditCategoryFragment  : Fragment(), EditCategoryView{
@@ -43,7 +43,7 @@ class EditCategoryFragment  : Fragment(), EditCategoryView{
 
         binding.nextStepButton.setOnClickListener {
             if(isClicked){
-                presenter.updateUserCategory(UserInfoUpdateReqDTO(currentuser.age,checkedInterestList, currentuser.gender), requireContext())
+                presenter.updateUserCategory(UserInputInfoReqDTO(currentuser.age,checkedInterestList, currentuser.gender), requireContext())
             }else{
                 toast("관심사를 선택해주세요", requireContext())
             }

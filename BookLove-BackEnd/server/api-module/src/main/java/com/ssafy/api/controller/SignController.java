@@ -4,6 +4,7 @@ import com.ssafy.api.config.security.JwtTokenProvider;
 import com.ssafy.api.dto.req.LoginReqDTO;
 import com.ssafy.api.dto.req.SignUpReqDTO;
 import com.ssafy.api.dto.req.UserInfoReqDTO;
+import com.ssafy.api.dto.req.UserUpdateInfoReqDTO;
 import com.ssafy.api.dto.res.LoginResDTO;
 import com.ssafy.api.dto.res.TokensResDTO;
 import com.ssafy.api.service.SignService;
@@ -80,6 +81,18 @@ public class SignController {
         String token = jwtTokenProvider.resolveToken(request);
         String userPk = jwtTokenProvider.getUserPk(token);
         User user = signService.enrollUserInfo(Long.parseLong(userPk), req);
+        signService.saveUser(user);
+        boolean isCheck = user.isChecked();
+        return responseService.getSingleResult(isCheck);
+    }
+
+    @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "JWT Token", required = true, dataType = "string", paramType = "header")})
+    @ApiOperation(value = "추가정보 입력", notes = "추가정보 입력")
+    @PostMapping(value = "/user/update", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody SingleResult<Boolean> updateInfo(@Valid @RequestBody UserUpdateInfoReqDTO req, HttpServletRequest request)throws Exception {
+        String token = jwtTokenProvider.resolveToken(request);
+        String userPk = jwtTokenProvider.getUserPk(token);
+        User user = signService.updateUser(Long.parseLong(userPk), req);
         signService.saveUser(user);
         boolean isCheck = user.isChecked();
         return responseService.getSingleResult(isCheck);

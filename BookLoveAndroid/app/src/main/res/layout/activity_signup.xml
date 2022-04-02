@@ -92,7 +92,7 @@
             android:textColorHint="@color/dark_purple"
             android:textSize="@dimen/edittext_text_size"/>
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/pwEditText"
             android:layout_width="@dimen/dp_size_300"
             android:layout_height="@dimen/dp_size_60"
@@ -101,9 +101,10 @@
             android:fontFamily="@font/kopubworld_dotum_medium"
             android:hint="   비밀번호"
             android:textColorHint="@color/dark_purple"
-            android:textSize="@dimen/edittext_text_size"/>
+            android:textSize="@dimen/edittext_text_size"
+            android:inputType="textPassword"/>
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/pwConfEditText"
             android:layout_width="@dimen/dp_size_300"
             android:layout_height="@dimen/dp_size_60"
@@ -112,7 +113,8 @@
             android:fontFamily="@font/kopubworld_dotum_medium"
             android:hint="   비밀번호 확인"
             android:textColorHint="@color/dark_purple"
-            android:textSize="@dimen/edittext_text_size"/>
+            android:textSize="@dimen/edittext_text_size"
+            android:inputType="textPassword"/>
 
     </LinearLayout>
 
