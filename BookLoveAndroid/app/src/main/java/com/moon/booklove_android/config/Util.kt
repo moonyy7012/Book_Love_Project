@@ -12,6 +12,7 @@ fun getRecomm(bookMainListResDTO :BookMainListResDTO): List<BookRecomm> {
     bookList+=BookRecomm(1, recommand[1], bookMainListResDTO.bookCategoryList)
     bookList+=BookRecomm(2, recommand[2], bookMainListResDTO.bookBestSellerList)
     bookList+=BookRecomm(3, recommand[3], bookMainListResDTO.bookNewList)
+    bookList+=BookRecomm(4, recommand[4], bookMainListResDTO.bookRecentSimilarList)
 
 
     return bookList
