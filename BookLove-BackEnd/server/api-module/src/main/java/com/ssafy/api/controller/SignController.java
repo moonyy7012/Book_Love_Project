@@ -1,10 +1,7 @@
 package com.ssafy.api.controller;
 
 import com.ssafy.api.config.security.JwtTokenProvider;
-import com.ssafy.api.dto.req.LoginReqDTO;
-import com.ssafy.api.dto.req.SignUpReqDTO;
-import com.ssafy.api.dto.req.UserInfoReqDTO;
-import com.ssafy.api.dto.req.UserUpdateInfoReqDTO;
+import com.ssafy.api.dto.req.*;
 import com.ssafy.api.dto.res.LoginResDTO;
 import com.ssafy.api.dto.res.TokensResDTO;
 import com.ssafy.api.service.SignService;
@@ -20,7 +17,6 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -87,15 +83,31 @@ public class SignController {
     }
 
     @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "JWT Token", required = true, dataType = "string", paramType = "header")})
-    @ApiOperation(value = "추가정보 입력", notes = "추가정보 입력")
-    @PostMapping(value = "/user/update", produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody SingleResult<Boolean> updateInfo(@Valid @RequestBody UserUpdateInfoReqDTO req, HttpServletRequest request)throws Exception {
+    @ApiOperation(value = "닉네임 수정", notes = "닉네임 수정")
+    @PostMapping(value = "/user/nickname", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody CommonResult updateNickname(@Valid @RequestBody UpdateNicknameReqDTO req, HttpServletRequest request) throws Exception {
         String token = jwtTokenProvider.resolveToken(request);
         String userPk = jwtTokenProvider.getUserPk(token);
-        User user = signService.updateUser(Long.parseLong(userPk), req);
+        signService.updateUserNickname(Long.parseLong(userPk), req);
+        return responseService.getSuccessResult();
+    }
+
+    @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "JWT Token", required = true, dataType = "string", paramType = "header")})
+    @ApiOperation(value = "비밀번호 수정", notes = "닉네임 수정")
+    @PatchMapping(value = "/user/password", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody CommonResult updatePassword(@Valid @RequestBody UpdatePasswordReqDTO req, HttpServletRequest request) throws Exception {
+        String token = jwtTokenProvider.resolveToken(request);
+        String userPk = jwtTokenProvider.getUserPk(token);
+        User user = signService.findUserById(Long.parseLong(userPk));
+
+        if (!passwordEncoder.matches(req.getPrePassword(), user.getPassword())) {
+            throw new ApiMessageException("비밀번호가 일치하지 않습니다.");
+        }
+
+        user.updatePwd(passwordEncoder.encode(req.getNewPassword()));
         signService.saveUser(user);
-        boolean isCheck = user.isChecked();
-        return responseService.getSingleResult(isCheck);
+
+        return responseService.getSuccessResult();
     }
 
     //아이디 중복 체크 true->중복O false->중복X
@@ -158,9 +170,9 @@ public class SignController {
         // uid 중복되는 값이 존재하는지 확인 (uid = 고유한 값)\
         User user = signService.findUserByIdType(req.getId(), JoinCode.NONE);
         if (user == null) {
-            throw new ApiMessageException("아이디가 틀렸다");
+            throw new ApiMessageException("아이디를 잘못 입력하였습니다.");
         } else if (!passwordEncoder.matches(req.getPassword(), user.getPassword())) {
-            throw new ApiMessageException("비밀번호가 틀렸다");
+            throw new ApiMessageException("비밀번호를 잘못 입력하였습니다.");
         }
 
         LoginResDTO dto = LoginResDTO.builder()
