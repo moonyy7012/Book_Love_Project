@@ -93,7 +93,7 @@ public class SignController {
     }
 
     @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "JWT Token", required = true, dataType = "string", paramType = "header")})
-    @ApiOperation(value = "비밀번호 수정", notes = "닉네임 수정")
+    @ApiOperation(value = "비밀번호 수정", notes = "비밀번호 수정")
     @PatchMapping(value = "/user/password", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody CommonResult updatePassword(@Valid @RequestBody UpdatePasswordReqDTO req, HttpServletRequest request) throws Exception {
         String token = jwtTokenProvider.resolveToken(request);

@@ -16,6 +16,6 @@ public class UpdatePasswordReqDTO {
     private String prePassword;
 
     @NotBlank
-    @ApiModelProperty(value = "nickname", required = true, example = "1233")
+    @ApiModelProperty(value = "새 비밀번호", required = true, example = "1233")
     private String newPassword;
 }
