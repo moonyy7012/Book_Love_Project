@@ -83,6 +83,7 @@ public class BookController {
         String userPk = jwtTokenProvider.getUserPk(token);
 
         User user = signService.findUserByIdWithCategory(Long.parseLong(userPk));
+
         Long userClickCnt = bookService.getUserClickCnt(user.getUserId());
 
         BookMainListResDTO bookMainListResDTO = BookMainListResDTO.builder()
@@ -91,6 +92,7 @@ public class BookController {
                 .bookCategoryList(bookService.findBestsellerByCategoryList(user, userClickCnt))
                 .bookGenderAgeList(bookService.findBookByGenderAndAgeClickLog(user.getGender(), user.getAge()))
                 .bookRecentSimilarList(bookService.findRecentSimilarBooks(user.getUserId(), userClickCnt))
+                .bookRecentList(bookService.findBookRecentList(user.getUserId()))
                 .build();
 
         return responseService.getSingleResult(bookMainListResDTO);
@@ -103,8 +105,6 @@ public class BookController {
     ListResult<List<BookListInfoResDTO>> getSearchList(@PathVariable String keyword) throws Exception{
         List<Book> searchResultByTitle = bookService.findBookByTitle(keyword);
         List<Book> searchResultByAuthor = bookService.findBookByAuthor(keyword);
-
-
         List<BookListInfoResDTO> searchTitleList = new ArrayList<>();
         List<BookListInfoResDTO> searchAuthorList = new ArrayList<>();
         //title 로 검색
