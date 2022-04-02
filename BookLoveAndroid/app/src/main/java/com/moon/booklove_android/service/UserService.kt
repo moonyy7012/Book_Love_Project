@@ -118,8 +118,8 @@ class UserService {
         })
     }
 
-    fun userUpdateInfo(userUpdateInfoReqDTO: UserUpdateInfoReqDTO, callback: RetrofitCallback<SingleResult<Any>>) {
-        RetrofitUtil.userService.userUpdateInfo(userUpdateInfoReqDTO)
+    fun userUpdateNickName(userUpdateInfoReqDTO: UpdateNicknameReqDTO, callback: RetrofitCallback<SingleResult<Any>>) {
+        RetrofitUtil.userService.userUpdateNickName(userUpdateInfoReqDTO)
             .enqueue(object : Callback<SingleResult<Any>> {
                 override fun onResponse(call: Call<SingleResult<Any>>, response: Response<SingleResult<Any>>) {
                     val res = response.body()
@@ -140,8 +140,30 @@ class UserService {
             })
     }
 
-    fun autoNormalLogin(userId: String, type: String, callback: RetrofitCallback<SingleResult<LoginResDTO>>) {
-        RetrofitUtil.userService.autoNormalLogin(userId, type)
+    fun userUpdatePassword(userUpdatePasswordReqDTO: UpdatePasswordReqDTO, callback: RetrofitCallback<SingleResult<Any>>) {
+        RetrofitUtil.userService.userUpdatePassword(userUpdatePasswordReqDTO)
+            .enqueue(object : Callback<SingleResult<Any>> {
+                override fun onResponse(call: Call<SingleResult<Any>>, response: Response<SingleResult<Any>>) {
+                    val res = response.body()
+                    if (response.code() == 200) {
+                        if (res != null) {
+                            callback.onSuccess(response.code(), res)
+                        }
+                    } else if(response.code() == 403){
+                        callback.onExpired(response.code())
+                    }else {
+                        callback.onFailure(response.code())
+                    }
+                }
+
+                override fun onFailure(call: Call<SingleResult<Any>>, t: Throwable) {
+                    callback.onError(t)
+                }
+            })
+    }
+
+    fun autoLogin(callback: RetrofitCallback<SingleResult<LoginResDTO>>) {
+        RetrofitUtil.userService.autoLogin()
             .enqueue(object : Callback<SingleResult<LoginResDTO>> {
                 override fun onResponse(call: Call<SingleResult<LoginResDTO>>, response: Response<SingleResult<LoginResDTO>>) {
                     val res = response.body()

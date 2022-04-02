@@ -72,7 +72,7 @@ public class SignController {
     //retrun true -> 추가정보 입력완료 false-> 카테고리 미입력
     @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "JWT Token", required = true, dataType = "string", paramType = "header")})
     @ApiOperation(value = "추가정보 입력", notes = "추가정보 입력")
-    @PostMapping(value = "/user/info", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PatchMapping(value = "/user/info", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody SingleResult<Boolean> inputInfo(@Valid @RequestBody UserInfoReqDTO req, HttpServletRequest request)throws Exception {
         String token = jwtTokenProvider.resolveToken(request);
         String userPk = jwtTokenProvider.getUserPk(token);
@@ -84,7 +84,7 @@ public class SignController {
 
     @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "JWT Token", required = true, dataType = "string", paramType = "header")})
     @ApiOperation(value = "닉네임 수정", notes = "닉네임 수정")
-    @PostMapping(value = "/user/nickname", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PatchMapping(value = "/user/nickname", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody CommonResult updateNickname(@Valid @RequestBody UpdateNicknameReqDTO req, HttpServletRequest request) throws Exception {
         String token = jwtTokenProvider.resolveToken(request);
         String userPk = jwtTokenProvider.getUserPk(token);
@@ -198,40 +198,40 @@ public class SignController {
         return responseService.getSingleResult(dto);
     }
 
-    @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "JWT Token", required = true, dataType = "string", paramType = "header")})
-    @ApiOperation(value = "자동 로그인", notes = "자동 로그인")
-    @GetMapping(value = "/user/autologin/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody SingleResult<LoginResDTO> autoNormalLogin(@PathVariable String userId, @Valid @RequestParam String type , HttpServletRequest request) throws Exception {
-        // uid 중복되는 값이 존재하는지 확인 (uid = 고유한 값)\
-        User user;
-        if(type.equals("KAKAO")){
-            user = signService.findUserByIdType(userId, JoinCode.KAKAO);
-        }else{
-            user = signService.findUserByIdType(userId, JoinCode.NONE);
-        }
-
-        LoginResDTO dto = LoginResDTO.builder()
-                .id(user.getUserId())
-                .nickname(user.getNickname())
-                .age(user.getAge())
-                .gender(user.getGender())
-                .userCategoryList(user.changeToCategoryNameList())
-                .isChecked(user.isChecked())
-                .userId(user.getId())
-                .type(user.getType().toString())
-                .build();
-
-        List<String> list = Arrays.asList("ROLE_USER");
-        dto.setAccessToken(jwtTokenProvider.createAccessToken(String.valueOf(user.getUserId()), list));
-        dto.setRefreshToken(jwtTokenProvider.createRefreshToken());
-
-        user.updateAccessToken(dto.getAccessToken());
-        user.updateRefreshToken(dto.getRefreshToken());
-
-        signService.saveUser(user);
-
-        return responseService.getSingleResult(dto);
-    }
+//    @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "JWT Token", required = true, dataType = "string", paramType = "header")})
+//    @ApiOperation(value = "자동 로그인", notes = "자동 로그인")
+//    @GetMapping(value = "/user/autologin/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+//    public @ResponseBody SingleResult<LoginResDTO> autoNormalLogin(@PathVariable String userId, @Valid @RequestParam String type , HttpServletRequest request) throws Exception {
+//        // uid 중복되는 값이 존재하는지 확인 (uid = 고유한 값)\
+//        User user;
+//        if(type.equals("KAKAO")){
+//            user = signService.findUserByIdType(userId, JoinCode.KAKAO);
+//        }else{
+//            user = signService.findUserByIdType(userId, JoinCode.NONE);
+//        }
+//
+//        LoginResDTO dto = LoginResDTO.builder()
+//                .id(user.getUserId())
+//                .nickname(user.getNickname())
+//                .age(user.getAge())
+//                .gender(user.getGender())
+//                .userCategoryList(user.changeToCategoryNameList())
+//                .isChecked(user.isChecked())
+//                .userId(user.getId())
+//                .type(user.getType().toString())
+//                .build();
+//
+//        List<String> list = Arrays.asList("ROLE_USER");
+//        dto.setAccessToken(jwtTokenProvider.createAccessToken(String.valueOf(user.getUserId()), list));
+//        dto.setRefreshToken(jwtTokenProvider.createRefreshToken());
+//
+//        user.updateAccessToken(dto.getAccessToken());
+//        user.updateRefreshToken(dto.getRefreshToken());
+//
+//        signService.saveUser(user);
+//
+//        return responseService.getSingleResult(dto);
+//    }
 
     @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "JWT Token", required = true, dataType = "string", paramType = "header")})
     @ApiOperation(value = "자동 로그인", notes = "자동 로그인")
@@ -294,7 +294,7 @@ public class SignController {
 
     @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "refresh Token", required = true, dataType = "string", paramType = "header")})
     @ApiOperation(value = "접근 토큰 재발급", notes = "접근 토큰 재발급")
-    @PutMapping(value = "/user/refresh", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PatchMapping(value = "/user/refresh", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody SingleResult<TokensResDTO> refreshToken(HttpServletRequest request) throws Exception {
         String refreshToken = request.getHeader("X-Auth-Token");
         User user = signService.findUserByRefreshToken(refreshToken);

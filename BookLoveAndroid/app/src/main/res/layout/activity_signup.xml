@@ -100,6 +100,7 @@
             android:layout_marginBottom="@dimen/dp_size_10"
             android:fontFamily="@font/kopubworld_dotum_medium"
             android:hint="   비밀번호"
+            android:ems="10"
             android:textColorHint="@color/dark_purple"
             android:textSize="@dimen/edittext_text_size"
             android:inputType="textPassword"/>
@@ -112,6 +113,7 @@
             android:layout_marginBottom="@dimen/dp_size_10"
             android:fontFamily="@font/kopubworld_dotum_medium"
             android:hint="   비밀번호 확인"
+            android:ems="10"
             android:textColorHint="@color/dark_purple"
             android:textSize="@dimen/edittext_text_size"
             android:inputType="textPassword"/>
