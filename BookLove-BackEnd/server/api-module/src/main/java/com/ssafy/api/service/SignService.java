@@ -1,7 +1,7 @@
 package com.ssafy.api.service;
 
 import com.ssafy.api.dto.req.UserInfoReqDTO;
-import com.ssafy.api.dto.req.UserUpdateInfoReqDTO;
+import com.ssafy.api.dto.req.UpdateNicknameReqDTO;
 import com.ssafy.api.dto.res.SocialUserResDTO;
 import com.ssafy.core.code.JoinCode;
 import com.ssafy.core.entity.Category;
@@ -74,13 +74,18 @@ public class SignService {
 
     @Transactional(readOnly = false)
     public void saveUser(User user){
-        userRepository.save(user);
+        User result = userRepository.save(user);
+        if (result == null) {
+            throw new ApiMessageException("저장에 실패하였습니다.");
+        }
     }
 
     @Transactional(readOnly = false)
-    public User updateUser(long userId, UserUpdateInfoReqDTO req){
-        User user = userRepository.findById(userId).orElseThrow( () -> new ApiMessageException("존재하지 않는 회원정보입니다.") );
+    public User updateUserNickname(long userId, UpdateNicknameReqDTO req){
+        User user = userRepository.findById(userId).orElseThrow(() -> new ApiMessageException("존재하지 않는 회원정보입니다."));
         user.updateNickname(req.getNickname());
+        saveUser(user);
+
         return user;
     }
 
