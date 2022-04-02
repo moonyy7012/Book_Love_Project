@@ -76,6 +76,19 @@ public class ClickLogRepoCommonImpl implements ClickLogRepoCommon {
         return result;
     }
 
+    @Override
+    public List<Book> findBookRecentList(Long userId) {
+        List<Book> result = queryFactory
+                .select(QClickLog.clickLog.book)
+                .from(QClickLog.clickLog)
+                .leftJoin(QClickLog.clickLog.book)
+                .where(userEq(userId))
+                .orderBy(QClickLog.clickLog.logId.desc())
+                .limit(10)
+                .fetch();
+        return result;
+    }
+
     private BooleanExpression userEq(Long userId) {
         return userId != null ? QClickLog.clickLog.user.userId.eq(userId) : null;
     }

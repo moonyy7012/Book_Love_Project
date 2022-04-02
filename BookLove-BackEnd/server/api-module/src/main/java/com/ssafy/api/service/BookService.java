@@ -203,4 +203,21 @@ public class BookService {
 
         return resultList;
     }
+
+    @Transactional(readOnly = false)
+    public List<BookListInfoResDTO> findBookRecentList(Long userId) {
+        List<BookListInfoResDTO> resultList;
+        List<Book> recentList;
+        recentList = clickLogRepository.findBookRecentList(userId);
+        resultList = IntStream.range(0, recentList.size())
+                .mapToObj(i -> BookListInfoResDTO.builder()
+                        .title(recentList.get(i).getTitle())
+                        .cover(recentList.get(i).getCover())
+                        .bookId(recentList.get(i).getBookId()).build())
+                .collect(Collectors.toList());
+
+        return resultList;
+    }
+
+
 }

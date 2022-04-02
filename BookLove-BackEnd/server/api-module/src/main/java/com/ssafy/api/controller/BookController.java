@@ -91,6 +91,7 @@ public class BookController {
                 .bookCategoryList(bookService.findBestsellerByCategoryList(user, userClickCnt))
                 .bookGenderAgeList(bookService.findBookByGenderAndAgeClickLog(user.getGender(), user.getAge()))
                 .bookRecentSimilarList(bookService.findRecentSimilarBooks(user.getUserId(), userClickCnt))
+                .bookRecentList(bookService.findBookRecentList(user.getUserId()))
                 .build();
 
         return responseService.getSingleResult(bookMainListResDTO);

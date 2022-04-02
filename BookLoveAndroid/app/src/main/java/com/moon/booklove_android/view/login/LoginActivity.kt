@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
+import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 import com.moon.booklove_android.view.main.MainActivity
 import com.moon.booklove_android.view.signup.SignUpActivity
@@ -45,8 +46,8 @@ class LoginActivity : AppCompatActivity(), LoginView {
             presenter.autoLogin(this@LoginActivity)
         }
 
-//        val keyHash = Utility.getKeyHash(this)//onCreate 안에 입력해주자
-//        Log.d("Hash", keyHash)
+        val keyHash = Utility.getKeyHash(this)//onCreate 안에 입력해주자
+        Log.d("Hash", keyHash)
 
         binding.loginButton.setOnClickListener {
             presenter.normalLogin(binding.idEditText.text.toString()
