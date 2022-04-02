@@ -35,8 +35,8 @@ spring:
 
   # 데이터 베이스 연결 설정
   datasource:
-    url: jdbc:mysql://localhost:3306/bookdb?serverTimezone=Asia/Seoul
-    #url: jdbc:mysql://j6d106.p.ssafy.io:3306/bookdb?serverTimezone=Asia/Seoul
+#    url: jdbc:mysql://localhost:3306/bookdb?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://j6d106.p.ssafy.io:3306/bookdb?serverTimezone=Asia/Seoul
     driver-class-name: com.mysql.cj.jdbc.Driver
 #    username: root
 #    password: 0000
@@ -72,8 +72,8 @@ spring:
 server:
   # 프로젝트 환경의 포트 설정
   port: 8185
-  domain: http://127.0.0.1
-#  domain: http://j6d106.p.ssafy.io
+#  domain: http://127.0.0.1
+  domain: http://j6d106.p.ssafy.io
   servlet:
     session:
       timeout: 1440m
@@ -88,5 +88,5 @@ app:
 
 # swagger에서 테스트 할 때의 host
 swagger:
-  host: localhost:8185
-#  host: j6d106.p.ssafy.io:8185
+#  host: localhost:8185
+  host: j6d106.p.ssafy.io:8185
