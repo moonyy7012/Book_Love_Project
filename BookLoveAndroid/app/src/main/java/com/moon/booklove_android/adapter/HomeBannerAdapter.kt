@@ -1,35 +1,28 @@
 package com.moon.booklove_android.adapter
 
-import android.content.ClipData
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.moon.booklove_android.R
 import com.moon.booklove_android.config.ApplicationClass.Companion.currentuser
-import com.moon.booklove_android.databinding.ItemBookCategoryBinding
-import com.moon.booklove_android.data.dto.BookCategory
-import com.moon.booklove_android.data.dto.BookInfoResDTO
-import com.moon.booklove_android.data.dto.BookRecomm
-import com.moon.booklove_android.databinding.ItemBookRecommBinding
+import com.moon.booklove_android.data.dto.BookListInfoResDTO
 import com.moon.booklove_android.databinding.ItemHomeBannerBinding
 import com.moon.booklove_android.view.detail.DetailActivity
 
-class HomeBannerAdapter : ListAdapter<BookInfoResDTO, CustomViewHolder>(Companion) {
+class HomeBannerAdapter : ListAdapter<BookListInfoResDTO, CustomViewHolder>(Companion) {
 
-    companion object : DiffUtil.ItemCallback<BookInfoResDTO>() {
-        override fun areItemsTheSame(oldItem: BookInfoResDTO, newItem: BookInfoResDTO): Boolean {
+    companion object : DiffUtil.ItemCallback<BookListInfoResDTO>() {
+        override fun areItemsTheSame(oldItem: BookListInfoResDTO, newItem: BookListInfoResDTO): Boolean {
             return  oldItem === newItem
         }
 
-        override fun areContentsTheSame(oldItem: BookInfoResDTO, newItem: BookInfoResDTO): Boolean {
+        override fun areContentsTheSame(oldItem: BookListInfoResDTO, newItem: BookListInfoResDTO): Boolean {
             return  oldItem.bookId == newItem.bookId
         }
     }
@@ -42,48 +35,48 @@ class HomeBannerAdapter : ListAdapter<BookInfoResDTO, CustomViewHolder>(Companio
     }
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-        val bookInfoResDTO = getItem(position)
+        val bookListInfoResDTO = getItem(position)
         val itemBinding = holder.binding as ItemHomeBannerBinding
         when(position) {
-            0 -> displayFirstBanner(itemBinding, bookInfoResDTO)
-            1 -> displaySecondBanner(itemBinding, bookInfoResDTO)
-            2 -> displayThirdBanner(itemBinding, bookInfoResDTO)
-            else -> displayFirstBanner(itemBinding, bookInfoResDTO)
+            0 -> displayFirstBanner(itemBinding, bookListInfoResDTO)
+            1 -> displaySecondBanner(itemBinding, bookListInfoResDTO)
+            2 -> displayThirdBanner(itemBinding, bookListInfoResDTO)
+            else -> displayFirstBanner(itemBinding, bookListInfoResDTO)
         }
         itemBinding.executePendingBindings()
         holder.itemView.apply{
             setOnClickListener{
                 val intent = Intent(context, DetailActivity::class.java)
-                intent.putExtra("bookId", bookInfoResDTO.bookId)
+                intent.putExtra("bookId", bookListInfoResDTO.bookId)
                 ContextCompat.startActivity(context, intent, null)
             }
         }
 
     }
-    fun displayFirstBanner(itemBinding :ItemHomeBannerBinding, bookInfoResDTO :BookInfoResDTO){
+    fun displayFirstBanner(itemBinding :ItemHomeBannerBinding, bookListInfoResDTO :BookListInfoResDTO){
         itemBinding.header.text = "요즘 이 책"
         itemBinding.itemBanner.setBackgroundResource(R.color.light_purple)
-        displayBannerBinding(itemBinding, bookInfoResDTO)
+        displayBannerBinding(itemBinding, bookListInfoResDTO)
     }
 
-    fun displaySecondBanner(itemBinding :ItemHomeBannerBinding, bookInfoResDTO :BookInfoResDTO){
-        itemBinding.header.text = "${bookInfoResDTO.author} 신작"
-        itemBinding.itemBanner.setBackgroundResource(R.color.orange)
-        displayBannerBinding(itemBinding, bookInfoResDTO)
+    fun displaySecondBanner(itemBinding :ItemHomeBannerBinding, bookListInfoResDTO :BookListInfoResDTO){
+        itemBinding.header.text = "금주의 신작"
+        itemBinding.itemBanner.setBackgroundResource(R.color.pink)
+        displayBannerBinding(itemBinding, bookListInfoResDTO)
     }
 
-    fun displayThirdBanner(itemBinding :ItemHomeBannerBinding, bookInfoResDTO :BookInfoResDTO){
+    fun displayThirdBanner(itemBinding :ItemHomeBannerBinding, bookListInfoResDTO :BookListInfoResDTO){
         var genderText = when(currentuser.gender){
             "Man" -> "남자"
             "Woman" -> "여자"
             else -> ""
         }
         itemBinding.header.text = "${currentuser.age}대 ${genderText}들의 선택"
-        itemBinding.itemBanner.setBackgroundResource(R.color.pink)
-        displayBannerBinding(itemBinding, bookInfoResDTO)
+        itemBinding.itemBanner.setBackgroundResource(R.color.orange)
+        displayBannerBinding(itemBinding, bookListInfoResDTO)
     }
 
-    fun displayBannerBinding(itemBinding :ItemHomeBannerBinding, bookInfoResDTO :BookInfoResDTO){
+    fun displayBannerBinding(itemBinding :ItemHomeBannerBinding, bookInfoResDTO :BookListInfoResDTO){
         itemBinding.apply{
             bookTitle.text = bookInfoResDTO.title
             if(bookInfoResDTO.cover!=null){
@@ -93,8 +86,6 @@ class HomeBannerAdapter : ListAdapter<BookInfoResDTO, CustomViewHolder>(Companio
                     .apply(RequestOptions().fitCenter())
                     .into(itemBinding.imageView)
             }
-
-
         }
     }
 
