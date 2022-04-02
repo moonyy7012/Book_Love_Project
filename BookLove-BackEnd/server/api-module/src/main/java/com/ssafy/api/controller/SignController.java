@@ -72,7 +72,7 @@ public class SignController {
     //retrun true -> 추가정보 입력완료 false-> 카테고리 미입력
     @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "JWT Token", required = true, dataType = "string", paramType = "header")})
     @ApiOperation(value = "추가정보 입력", notes = "추가정보 입력")
-    @PostMapping(value = "/user/info", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PatchMapping(value = "/user/info", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody SingleResult<Boolean> inputInfo(@Valid @RequestBody UserInfoReqDTO req, HttpServletRequest request)throws Exception {
         String token = jwtTokenProvider.resolveToken(request);
         String userPk = jwtTokenProvider.getUserPk(token);
@@ -84,7 +84,7 @@ public class SignController {
 
     @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "JWT Token", required = true, dataType = "string", paramType = "header")})
     @ApiOperation(value = "닉네임 수정", notes = "닉네임 수정")
-    @PostMapping(value = "/user/nickname", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PatchMapping(value = "/user/nickname", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody CommonResult updateNickname(@Valid @RequestBody UpdateNicknameReqDTO req, HttpServletRequest request) throws Exception {
         String token = jwtTokenProvider.resolveToken(request);
         String userPk = jwtTokenProvider.getUserPk(token);
@@ -294,7 +294,7 @@ public class SignController {
 
     @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "refresh Token", required = true, dataType = "string", paramType = "header")})
     @ApiOperation(value = "접근 토큰 재발급", notes = "접근 토큰 재발급")
-    @PutMapping(value = "/user/refresh", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PatchMapping(value = "/user/refresh", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody SingleResult<TokensResDTO> refreshToken(HttpServletRequest request) throws Exception {
         String refreshToken = request.getHeader("X-Auth-Token");
         User user = signService.findUserByRefreshToken(refreshToken);

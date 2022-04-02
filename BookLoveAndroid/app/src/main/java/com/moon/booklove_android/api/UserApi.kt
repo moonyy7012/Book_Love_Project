@@ -24,13 +24,17 @@ interface UserApi {
     @GET("api/user/idcheck/{id}")
     fun checkID(@Query("id") id: String?): Call<SingleResult<Any>>
 
-    //회원정보 수정
-    @POST("api/user/info")
+    //회원정보 입력 받기
+    @PATCH("api/user/info")
     fun userInputInfo(@Body body: UserInputInfoReqDTO): Call<SingleResult<Any>>
 
-    //회원정보 수정
-    @POST("api/user/update")
-    fun userUpdateInfo(@Body body: UserUpdateInfoReqDTO): Call<SingleResult<Any>>
+    //닉네임 수정
+    @PATCH("api/user/nickname")
+    fun userUpdateNickName(@Body body: UpdateNicknameReqDTO): Call<SingleResult<Any>>
+
+    //비밀번호 수정
+    @PATCH("api/user/password")
+    fun userUpdatePassword(@Body body: UpdatePasswordReqDTO): Call<SingleResult<Any>>
 
     // //회원정보 요청 (일반 로그인)
     @GET("api/user/auto")

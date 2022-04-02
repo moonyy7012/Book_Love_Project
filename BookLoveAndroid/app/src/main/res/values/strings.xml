@@ -59,6 +59,8 @@
     <string name="search_text">"검색어를 입력해주세요."</string>
 
     <string name="banner1_header">요즘 이 책</string>
+    <string name="prev_pw_text">이전 비밀번호</string>
+    <string name="update_pw_text">바꿀 비밀번호</string>
 
 
 </resources>

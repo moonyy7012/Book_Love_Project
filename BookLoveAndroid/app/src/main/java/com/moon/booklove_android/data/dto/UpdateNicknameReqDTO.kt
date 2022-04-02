@@ -1,5 +1,5 @@
 package com.moon.booklove_android.data.dto
 
-data class UserUpdateInfoReqDTO(
+data class UpdateNicknameReqDTO(
     var nickname: String
 )
