@@ -27,4 +27,11 @@ class Category(Base):
     category_id = Column(Integer, primary_key=True)
     name = Column(String(100))
 
+class ClickLog(Base):
+    __tablename__ = "click_log"
 
+    log_id = Column(Integer, primary_key=True)
+    update_date = Column(String(100))
+    count = Column(Integer)
+    user_id = Column(BIGINT, ForeignKey("user.user_id"))
+    book_id = Column(BIGINT, ForeignKey("book.book_id"))

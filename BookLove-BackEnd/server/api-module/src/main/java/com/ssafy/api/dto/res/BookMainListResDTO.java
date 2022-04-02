@@ -22,4 +22,7 @@ public class BookMainListResDTO {
 
     @ApiModelProperty(value = "연령/성별", required = true, example = "1")
     List<BookListInfoResDTO> bookGenderAgeList;
+
+    @ApiModelProperty(value = "최근 클릭한 책들과 비슷한 책", required = true, example = "1")
+    List<BookListInfoResDTO> bookRecentSimilarList;
 }
