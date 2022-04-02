@@ -29,22 +29,13 @@ class HomePresenterImpl(override var view: HomeContract.View) : HomePresenter {
                 if (res.output==1) {
                         bookRecommData = getRecomm(res.data)
                         bookRecommandAdapter = BookRecommAdapter()
-                        if(bookRecommData!![0].books.size==0){
-                            bookRecommData!![0].header=""
-                        }
+                        displayMainList()
                         bookRecommandAdapter!!.submitList(bookRecommData)
                         view.bindInfo()
 
                         homeBannerAdapter = HomeBannerAdapter()
                         homeBannerData = mutableListOf()
-                        var range = (0..bookRecommData!![2].books.size-1)
-                        homeBannerData!!.add(bookRecommData!![2].books[range.random()])
-                        range = (0..bookRecommData!![3].books.size-1)
-                        homeBannerData!!.add(bookRecommData!![3].books[range.random()])
-                        if(bookRecommData!![0].books.size!=0){
-                            range = (0..bookRecommData!![0].books.size-1)
-                            homeBannerData!!.add(bookRecommData!![0].books[range.random()])
-                        }
+                        addHomeBannerData()
                         homeBannerAdapter!!.submitList(homeBannerData)
                         view.bindBanner()
 
@@ -52,7 +43,22 @@ class HomePresenterImpl(override var view: HomeContract.View) : HomePresenter {
                     toast("문제가 발생하였습니다. 다시 시도해주세요.",context)
                 }
             }
-
+            fun displayMainList(){
+                for(a in 0..4){
+                    if(bookRecommData!![a].books.size==0){
+                        bookRecommData!![a].header=""
+                    }
+                }
+            }
+            fun addHomeBannerData(){
+                var idx = listOf<Int>(2, 3, 0)
+                for(i in idx){
+                    if(bookRecommData!![i].books.size!=0){
+                        var range = (0..bookRecommData!![i].books.size-1)
+                        homeBannerData!!.add(bookRecommData!![i].books[range.random()])
+                    }
+                }
+            }
             override fun onFailure(code: Int) {
                 toast("문제가 발생하였습니다. 다시 시도해주세요.",context)
             }
