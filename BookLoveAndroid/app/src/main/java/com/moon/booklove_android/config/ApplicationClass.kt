@@ -7,6 +7,7 @@ import com.moon.booklove_android.data.model.User
 import com.moon.booklove_android.config.util.PreferenceUtil
 import com.moon.booklove_android.config.util.RetrofitInterceptor
 import com.moon.booklove_android.data.dto.*
+import com.moon.booklove_android.data.model.BookItem
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -14,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class ApplicationClass : Application() {
 
     companion object{
-        const val SERVER_URL = "http://192.168.0.9:8185/"
+        const val SERVER_URL = "http://192.168.35.165:8185/"
         lateinit var retrofit: Retrofit
         lateinit var prefs: PreferenceUtil
         lateinit var currentuser: User
@@ -35,7 +36,7 @@ class ApplicationClass : Application() {
         var bookRecommandAdapter: BookRecommAdapter?=null
         var bookRecommData: List<BookRecomm>?=null
         var homeBannerAdapter: HomeBannerAdapter?=null
-        var homeBannerData: MutableList<BookInfoResDTO>?=null
+        var homeBannerData: MutableList<BookListInfoResDTO>?=null
 
         fun initRetrofit(){
             retrofit = Retrofit.Builder()
