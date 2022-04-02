@@ -125,20 +125,20 @@ public class SignController {
 //    }
 
     //userId로 회원정보 조회
-    @ApiOperation(value = "회원 정보", notes = "회원 정보")
-    @GetMapping(value = "/user/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody SingleResult infoUser(@PathVariable long userId, HttpServletRequest request) throws Exception {
+//    @ApiOperation(value = "회원 정보", notes = "회원 정보")
+//    @GetMapping(value = "/user/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+//    public @ResponseBody SingleResult infoUser(@PathVariable long userId, HttpServletRequest request) throws Exception {
+////
+////        String token = jwtTokenProvider.resolveToken(request);
+////        String userPk = jwtTokenProvider.getUserPk(token);
+////        User user = signService.enrollUserInfo(Long.parseLong(userPk), req);
+////        signService.saveUser(user);
+////        boolean isCheck = user.isChecked();
+////        return responseService.getSingleResult(isCheck);
 //
-//        String token = jwtTokenProvider.resolveToken(request);
-//        String userPk = jwtTokenProvider.getUserPk(token);
-//        User user = signService.enrollUserInfo(Long.parseLong(userPk), req);
-//        signService.saveUser(user);
-//        boolean isCheck = user.isChecked();
-//        return responseService.getSingleResult(isCheck);
-
-        User user = signService.findUserById(userId);
-        return responseService.getSingleResult(user);
-    }
+//        User user = signService.findUserById(userId);
+//        return responseService.getSingleResult(user);
+//    }
 
     //회원 삭제
     @ApiOperation(value = "회원 정보 삭제", notes = "회원 정보 삭제")
@@ -186,7 +186,7 @@ public class SignController {
         return responseService.getSingleResult(dto);
     }
 
-    @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "Kakao Token", required = true, dataType = "string", paramType = "header")})
+    @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "JWT Token", required = true, dataType = "string", paramType = "header")})
     @ApiOperation(value = "자동 로그인", notes = "자동 로그인")
     @GetMapping(value = "/user/autologin/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody SingleResult<LoginResDTO> autoNormalLogin(@PathVariable String userId, @Valid @RequestParam String type , HttpServletRequest request) throws Exception {
@@ -197,6 +197,37 @@ public class SignController {
         }else{
             user = signService.findUserByIdType(userId, JoinCode.NONE);
         }
+
+        LoginResDTO dto = LoginResDTO.builder()
+                .id(user.getUserId())
+                .nickname(user.getNickname())
+                .age(user.getAge())
+                .gender(user.getGender())
+                .userCategoryList(user.changeToCategoryNameList())
+                .isChecked(user.isChecked())
+                .userId(user.getId())
+                .type(user.getType().toString())
+                .build();
+
+        List<String> list = Arrays.asList("ROLE_USER");
+        dto.setAccessToken(jwtTokenProvider.createAccessToken(String.valueOf(user.getUserId()), list));
+        dto.setRefreshToken(jwtTokenProvider.createRefreshToken());
+
+        user.updateAccessToken(dto.getAccessToken());
+        user.updateRefreshToken(dto.getRefreshToken());
+
+        signService.saveUser(user);
+
+        return responseService.getSingleResult(dto);
+    }
+
+    @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "JWT Token", required = true, dataType = "string", paramType = "header")})
+    @ApiOperation(value = "자동 로그인", notes = "자동 로그인")
+    @GetMapping(value = "/user/auto", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody SingleResult<LoginResDTO> autoLogin(HttpServletRequest request) throws Exception {
+        String token = jwtTokenProvider.resolveToken(request);
+        String userPk = jwtTokenProvider.getUserPk(token);
+        User user = signService.findUserByIdWithCategory(Long.parseLong(userPk));
 
         LoginResDTO dto = LoginResDTO.builder()
                 .id(user.getUserId())
