@@ -83,6 +83,7 @@ public class BookController {
         String userPk = jwtTokenProvider.getUserPk(token);
 
         User user = signService.findUserByIdWithCategory(Long.parseLong(userPk));
+
         Long userClickCnt = bookService.getUserClickCnt(user.getUserId());
 
         BookMainListResDTO bookMainListResDTO = BookMainListResDTO.builder()
