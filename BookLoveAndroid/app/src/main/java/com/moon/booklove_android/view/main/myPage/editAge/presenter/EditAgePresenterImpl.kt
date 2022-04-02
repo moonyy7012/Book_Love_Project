@@ -13,11 +13,11 @@ import com.moon.booklove_android.service.UserService
 
 class EditAgePresenterImpl(override var view: EditAgeContract.View) : EditAgePresenter {
 
-    override fun updateUserAge(userInfoUpdateReqDTO: UserInfoUpdateReqDTO, context: Context) {
+    override fun updateUserAge(userInputInfoReqDTO: UserInputInfoReqDTO, context: Context) {
 
-        currentuser.age = userInfoUpdateReqDTO.age
+        currentuser.age = userInputInfoReqDTO.age
 
-        UserService().userInfoUpdate(userInfoUpdateReqDTO, object :
+        UserService().userInputInfo(userInputInfoReqDTO, object :
             RetrofitCallback<SingleResult<Any>> {
             override fun onSuccess(code: Int, responseData: SingleResult<Any>) {
                 if (responseData.data==true) {
@@ -41,7 +41,7 @@ class EditAgePresenterImpl(override var view: EditAgeContract.View) : EditAgePre
                             prefs.setJWTAccess(responseData.data.accessToken)
                             prefs.setJWTRefresh(responseData.data.refreshToken)
                             initRetrofit()
-                            updateUserAge(userInfoUpdateReqDTO, context)
+                            updateUserAge(userInputInfoReqDTO, context)
                         } else toast("문제가 발생하였습니다. 다시 시도해주세요.", context)
                     }
 

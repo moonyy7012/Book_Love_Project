@@ -89,17 +89,10 @@ class LoginActivity : AppCompatActivity(), LoginView {
     override fun loginComplete(res:String) {
         if(res=="first login"){
             val intent = Intent(applicationContext, MainActivity::class.java)
-//            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
-//            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-//            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             finishAffinity()
             startActivity(intent)
         }else{
             val intent = Intent(applicationContext, CollectActivity::class.java)
-
-//            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
-//            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-//            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             finishAffinity()
             startActivity(intent)
         }

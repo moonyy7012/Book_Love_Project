@@ -97,8 +97,8 @@ class UserService {
             })
     }
 
-    fun userInfoUpdate(userInfoUpdateReqDTO: UserInfoUpdateReqDTO, callback: RetrofitCallback<SingleResult<Any>>) {
-        RetrofitUtil.userService.userInfoUpdate(userInfoUpdateReqDTO).enqueue(object : Callback<SingleResult<Any>> {
+    fun userInputInfo(userInputInfoReqDTO: UserInputInfoReqDTO, callback: RetrofitCallback<SingleResult<Any>>) {
+        RetrofitUtil.userService.userInputInfo(userInputInfoReqDTO).enqueue(object : Callback<SingleResult<Any>> {
             override fun onResponse(call: Call<SingleResult<Any>>, response: Response<SingleResult<Any>>) {
                 val res = response.body()
                 if (response.code() == 200) {
@@ -116,6 +116,28 @@ class UserService {
                 callback.onError(t)
             }
         })
+    }
+
+    fun userUpdateInfo(userUpdateInfoReqDTO: UserUpdateInfoReqDTO, callback: RetrofitCallback<SingleResult<Any>>) {
+        RetrofitUtil.userService.userUpdateInfo(userUpdateInfoReqDTO)
+            .enqueue(object : Callback<SingleResult<Any>> {
+                override fun onResponse(call: Call<SingleResult<Any>>, response: Response<SingleResult<Any>>) {
+                    val res = response.body()
+                    if (response.code() == 200) {
+                        if (res != null) {
+                            callback.onSuccess(response.code(), res)
+                        }
+                    } else if(response.code() == 403){
+                        callback.onExpired(response.code())
+                    }else {
+                        callback.onFailure(response.code())
+                    }
+                }
+
+                override fun onFailure(call: Call<SingleResult<Any>>, t: Throwable) {
+                    callback.onError(t)
+                }
+            })
     }
 
     fun autoNormalLogin(userId: String, type: String, callback: RetrofitCallback<SingleResult<LoginResDTO>>) {

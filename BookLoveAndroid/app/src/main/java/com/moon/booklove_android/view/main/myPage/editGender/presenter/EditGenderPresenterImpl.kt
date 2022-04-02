@@ -13,11 +13,11 @@ import com.moon.booklove_android.service.UserService
 
 class EditGenderPresenterImpl(override var view: EditGenderContract.View) : EditGenderPresenter {
 
-    override fun updateUserGender(userInfoUpdateReqDTO: UserInfoUpdateReqDTO, context: Context) {
+    override fun updateUserGender(userInputInfoReqDTO: UserInputInfoReqDTO, context: Context) {
 
-        currentuser.gender = userInfoUpdateReqDTO.gender
+        currentuser.gender = userInputInfoReqDTO.gender
 
-        UserService().userInfoUpdate(userInfoUpdateReqDTO, object :
+        UserService().userInputInfo(userInputInfoReqDTO, object :
             RetrofitCallback<SingleResult<Any>> {
             override fun onSuccess(code: Int, responseData: SingleResult<Any>) {
                 if (responseData.data==true) {
@@ -41,7 +41,7 @@ class EditGenderPresenterImpl(override var view: EditGenderContract.View) : Edit
                             prefs.setJWTAccess(responseData.data.accessToken)
                             prefs.setJWTRefresh(responseData.data.refreshToken)
                             initRetrofit()
-                            updateUserGender(userInfoUpdateReqDTO, context)
+                            updateUserGender(userInputInfoReqDTO, context)
                         } else toast("문제가 발생하였습니다. 다시 시도해주세요.", context)
                     }
 
