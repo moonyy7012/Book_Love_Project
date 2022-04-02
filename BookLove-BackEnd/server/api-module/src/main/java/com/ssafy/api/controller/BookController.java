@@ -83,12 +83,14 @@ public class BookController {
         String userPk = jwtTokenProvider.getUserPk(token);
 
         User user = signService.findUserByIdWithCategory(Long.parseLong(userPk));
+        Long userClickCnt = bookService.getUserClickCnt(user.getUserId());
 
         BookMainListResDTO bookMainListResDTO = BookMainListResDTO.builder()
                 .bookBestSellerList(bookService.findMainBestseller())
                 .bookNewList(bookService.findNewBook())
-                .bookCategoryList(bookService.findBestsellerByCategoryList(user))
+                .bookCategoryList(bookService.findBestsellerByCategoryList(user, userClickCnt))
                 .bookGenderAgeList(bookService.findBookByGenderAndAgeClickLog(user.getGender(), user.getAge()))
+                .bookRecentSimilarList(bookService.findRecentSimilarBooks(user.getUserId(), userClickCnt))
                 .build();
 
         return responseService.getSingleResult(bookMainListResDTO);
@@ -98,7 +100,7 @@ public class BookController {
     @ApiOperation(value = "검색결과", notes = "검색결과")
     @GetMapping(value = "/book/search/{keyword}", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    ListResult<List<BookListInfoResDTO>> getSearchList(@PathVariable String keyword)throws Exception{
+    ListResult<List<BookListInfoResDTO>> getSearchList(@PathVariable String keyword) throws Exception{
         List<Book> searchResultByTitle = bookService.findBookByTitle(keyword);
         List<Book> searchResultByAuthor = bookService.findBookByAuthor(keyword);
         System.out.println(keyword);

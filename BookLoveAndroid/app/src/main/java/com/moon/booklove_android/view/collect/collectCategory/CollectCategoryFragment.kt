@@ -14,7 +14,7 @@ import com.moon.booklove_android.view.collect.collectCategory.presenter.CollectC
 import com.moon.booklove_android.view.collect.CollectActivity
 import com.moon.booklove_android.config.ApplicationClass
 import com.moon.booklove_android.databinding.FragmentCollectInterestBinding
-import com.moon.booklove_android.data.dto.UserInfoUpdateReqDTO
+import com.moon.booklove_android.data.dto.UserInputInfoReqDTO
 
 class CollectCategoryFragment  : Fragment(), CollectCategoryView {
 
@@ -52,7 +52,7 @@ class CollectCategoryFragment  : Fragment(), CollectCategoryView {
         init()
 
         nextButton.setOnClickListener {
-            presenter.updateUserInfo(UserInfoUpdateReqDTO(selectedAgeRange,checkedInterestList, selectedGender),requireContext())
+            presenter.updateUserInfo(UserInputInfoReqDTO(selectedAgeRange,checkedInterestList, selectedGender),requireContext())
         }
     }
 

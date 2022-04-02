@@ -1,6 +1,7 @@
 package com.ssafy.api.service;
 
 import com.ssafy.api.dto.req.UserInfoReqDTO;
+import com.ssafy.api.dto.req.UpdateNicknameReqDTO;
 import com.ssafy.api.dto.res.SocialUserResDTO;
 import com.ssafy.core.code.JoinCode;
 import com.ssafy.core.entity.Category;
@@ -73,21 +74,18 @@ public class SignService {
 
     @Transactional(readOnly = false)
     public void saveUser(User user){
-        userRepository.save(user);
+        User result = userRepository.save(user);
+        if (result == null) {
+            throw new ApiMessageException("저장에 실패하였습니다.");
+        }
     }
 
     @Transactional(readOnly = false)
-    public User updateUser(long userId, UserInfoReqDTO req){
-        User user = userRepository.findById(userId).orElseThrow( () -> new ApiMessageException("존재하지 않는 회원정보입니다.") );
-        user.updateAge(req.getAge());
-        user.updateGender(req.getGender());
-        List<Category> categoryList = new ArrayList<>();
-        for(int i = 0 ; i < req.getCategories().size() ; i++){
-            categoryList.add(
-                    categoryRepository.findCategoryByName(req.getCategories().get(i))
-            );
-        }
-        user.updateCategory(categoryList);
+    public User updateUserNickname(long userId, UpdateNicknameReqDTO req){
+        User user = userRepository.findById(userId).orElseThrow(() -> new ApiMessageException("존재하지 않는 회원정보입니다."));
+        user.updateNickname(req.getNickname());
+        saveUser(user);
+
         return user;
     }
 
@@ -127,6 +125,8 @@ public class SignService {
                 .onStatus(HttpStatus::is5xxServerError, response -> Mono.error(new ApiMessageException("내부 서버 에러")))
                 .bodyToMono(SocialUserResDTO.class)
                 .block();
+
+        System.out.print("socialUser.getId() : " + socialUser.getId());
 
         User user = userRepository.findUserLogin(socialUser.getId(), JoinCode.KAKAO);
 

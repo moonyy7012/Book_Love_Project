@@ -13,13 +13,13 @@ import com.moon.booklove_android.service.UserService
 
 class CollectCategoryPresenterImpl(override var view: CollectCategoryContract.View) : CollectCategopryPresenter {
 
-    override fun updateUserInfo(userInfoUpdateReqDTO: UserInfoUpdateReqDTO, context: Context) {
+    override fun updateUserInfo(userInputInfoReqDTO: UserInputInfoReqDTO, context: Context) {
 
-        currentuser.age = userInfoUpdateReqDTO.age
-        currentuser.gender = userInfoUpdateReqDTO.gender
-        currentuser.userCategoryList = userInfoUpdateReqDTO.categories
+        currentuser.age = userInputInfoReqDTO.age
+        currentuser.gender = userInputInfoReqDTO.gender
+        currentuser.userCategoryList = userInputInfoReqDTO.categories
 
-        UserService().userInfoUpdate(userInfoUpdateReqDTO, object :
+        UserService().userInputInfo(userInputInfoReqDTO, object :
             RetrofitCallback<SingleResult<Any>> {
 
             override fun onSuccess(code: Int, responseData: SingleResult<Any>) {
@@ -44,7 +44,7 @@ class CollectCategoryPresenterImpl(override var view: CollectCategoryContract.Vi
                             prefs.setJWTAccess(responseData.data.accessToken)
                             prefs.setJWTRefresh(responseData.data.refreshToken)
                             initRetrofit()
-                            updateUserInfo(userInfoUpdateReqDTO, context)
+                            updateUserInfo(userInputInfoReqDTO, context)
                         } else toast("문제가 발생하였습니다. 다시 시도해주세요.", context)
                     }
 

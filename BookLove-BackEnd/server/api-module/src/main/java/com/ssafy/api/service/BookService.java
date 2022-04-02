@@ -53,7 +53,31 @@ public class BookService {
 
     public List<BookListInfoResDTO> findSimilarBooks(long bookId) {
         List<PyBooksResDTO> similarBooks = WebClient.create().get()
-                .uri("http://localhost:8000/recommend/" + bookId)
+                .uri("http://localhost:8000/recommend/book/" + bookId)
+                .accept(MediaType.APPLICATION_JSON)
+                .retrieve()
+                .onStatus(HttpStatus::is5xxServerError, response -> Mono.error(new ApiMessageException("내부 서버 에러")))
+                .bodyToFlux(PyBooksResDTO.class)
+                .toStream()
+                .collect(Collectors.toList());
+
+        List<BookListInfoResDTO> resultList = IntStream.range(0, similarBooks.size())
+                .mapToObj(i -> BookListInfoResDTO.builder()
+                        .title(similarBooks.get(i).getTitle())
+                        .cover(similarBooks.get(i).getCover())
+                        .bookId(similarBooks.get(i).getBook_id()).build())
+                .collect(Collectors.toList());
+
+        return resultList;
+    }
+
+    public List<BookListInfoResDTO> findRecentSimilarBooks(Long userId, Long userClickCnt) {
+        if (userClickCnt == 0) {
+            return new ArrayList<>();
+        }
+
+        List<PyBooksResDTO> similarBooks = WebClient.create().get()
+                .uri("http://localhost:8000/recommend/books/" + userId)
                 .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
                 .onStatus(HttpStatus::is5xxServerError, response -> Mono.error(new ApiMessageException("내부 서버 에러")))
@@ -154,9 +178,12 @@ public class BookService {
         return resultList;
     }
 
+    public long getUserClickCnt(Long userId) {
+        return clickLogRepository.getUserBookClickCnt(userId);
+    }
+
     @Transactional(readOnly = false)
-    public List<BookListInfoResDTO> findBestsellerByCategoryList(User user){
-        Long userClickCnt = clickLogRepository.getUserBookClickCnt(user.getUserId());
+    public List<BookListInfoResDTO> findBestsellerByCategoryList(User user, Long userClickCnt) {
         List<BookListInfoResDTO> resultList;
         List<Book> bestseller;
 

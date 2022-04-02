@@ -1,7 +1,7 @@
 package com.moon.booklove_android.view.main.myPage.editCategory
 
 import android.content.Context
-import com.moon.booklove_android.data.dto.UserInfoUpdateReqDTO
+import com.moon.booklove_android.data.dto.UserInputInfoReqDTO
 
 interface EditCategoryContract {
     interface View {
@@ -10,6 +10,6 @@ interface EditCategoryContract {
     }
     interface Presenter {
         var view: View
-        fun updateUserCategory(userInfoUpdateReqDTO: UserInfoUpdateReqDTO, context: Context)
+        fun updateUserCategory(userInputInfoReqDTO: UserInputInfoReqDTO, context: Context)
     }
 }

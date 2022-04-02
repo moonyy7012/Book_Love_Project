@@ -27,24 +27,4 @@ class PreferenceUtil(context: Context) {
         editor.putString("jwtRefresh", jwtRefresh)
         editor.apply()
     }
-
-    fun getUserId(): String? {
-        return prefs.getString("userId", "")
-    }
-
-    fun setUserId(userId: String) {
-        val editor = prefs.edit()
-        editor.putString("userId", userId)
-        editor.apply()
-    }
-
-    fun getLoginType(): String? {
-        return prefs.getString("loginType", "")
-    }
-
-    fun setLoginType(loginType: String) {
-        val editor = prefs.edit()
-        editor.putString("loginType", loginType)
-        editor.apply()
-    }
 }

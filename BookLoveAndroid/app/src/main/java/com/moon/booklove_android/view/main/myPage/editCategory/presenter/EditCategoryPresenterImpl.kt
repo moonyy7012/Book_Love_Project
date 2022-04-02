@@ -13,11 +13,11 @@ import com.moon.booklove_android.service.UserService
 
 class EditCategoryPresenterImpl(override var view: EditCategoryContract.View) : EditCategoryPresenter {
 
-    override fun updateUserCategory(userInfoUpdateReqDTO: UserInfoUpdateReqDTO, context: Context) {
+    override fun updateUserCategory(userInputInfoReqDTO: UserInputInfoReqDTO, context: Context) {
 
-        currentuser.userCategoryList = userInfoUpdateReqDTO.categories
+        currentuser.userCategoryList = userInputInfoReqDTO.categories
 
-        UserService().userInfoUpdate(userInfoUpdateReqDTO, object :
+        UserService().userInputInfo(userInputInfoReqDTO, object :
             RetrofitCallback<SingleResult<Any>> {
             override fun onSuccess(code: Int, responseData: SingleResult<Any>) {
                 if (responseData.data==true) {
@@ -41,7 +41,7 @@ class EditCategoryPresenterImpl(override var view: EditCategoryContract.View) : 
                             prefs.setJWTAccess(responseData.data.accessToken)
                             prefs.setJWTRefresh(responseData.data.refreshToken)
                             initRetrofit()
-                            updateUserCategory(userInfoUpdateReqDTO, context)
+                            updateUserCategory(userInputInfoReqDTO, context)
                         } else toast("문제가 발생하였습니다. 다시 시도해주세요.", context)
                     }
 

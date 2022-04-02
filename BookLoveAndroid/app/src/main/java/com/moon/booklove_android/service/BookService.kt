@@ -29,7 +29,6 @@ class BookService {
                 }
 
                 override fun onFailure(call: Call<SingleResult<BookMainListResDTO>>, t: Throwable) {
-                    Log.d(TAG, "onResponse2: ${t}")
                     callback.onError(t)
                 }
             })

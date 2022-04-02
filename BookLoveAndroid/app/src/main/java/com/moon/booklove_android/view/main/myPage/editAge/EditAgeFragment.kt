@@ -10,7 +10,7 @@ import com.moon.booklove_android.R
 import com.moon.booklove_android.config.ApplicationClass.Companion.currentuser
 import com.moon.booklove_android.config.toast
 import com.moon.booklove_android.databinding.FragmentEditAgeBinding
-import com.moon.booklove_android.data.dto.UserInfoUpdateReqDTO
+import com.moon.booklove_android.data.dto.UserInputInfoReqDTO
 import com.moon.booklove_android.view.main.myPage.editAge.presenter.EditAgePresenterImpl
 
 class EditAgeFragment  : Fragment(), EditAgeView{
@@ -63,7 +63,7 @@ class EditAgeFragment  : Fragment(), EditAgeView{
 
         binding.nextStepButton.setOnClickListener {
             if(isClicked){
-                presenter.updateUserAge(UserInfoUpdateReqDTO(selectedAge,currentuser.userCategoryList, currentuser.gender), requireContext())
+                presenter.updateUserAge(UserInputInfoReqDTO(selectedAge,currentuser.userCategoryList, currentuser.gender), requireContext())
             }else{
                 toast("연령대를 선택해주세요", requireContext())
             }

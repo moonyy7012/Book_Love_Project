@@ -41,8 +41,8 @@ class LoginActivity : AppCompatActivity(), LoginView {
 
         presenter = LoginPresenterImpl(this@LoginActivity)
 
-        if(prefs.getUserId() != ""){
-            presenter.autoNormalLogin(prefs.getUserId()!!, prefs.getLoginType()!!,this@LoginActivity)
+        if(prefs.getJWTAccess() != ""){
+            presenter.autoLogin(this@LoginActivity)
         }
 
 //        val keyHash = Utility.getKeyHash(this)//onCreate 안에 입력해주자
@@ -89,17 +89,10 @@ class LoginActivity : AppCompatActivity(), LoginView {
     override fun loginComplete(res:String) {
         if(res=="first login"){
             val intent = Intent(applicationContext, MainActivity::class.java)
-//            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
-//            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-//            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             finishAffinity()
             startActivity(intent)
         }else{
             val intent = Intent(applicationContext, CollectActivity::class.java)
-
-//            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
-//            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-//            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             finishAffinity()
             startActivity(intent)
         }

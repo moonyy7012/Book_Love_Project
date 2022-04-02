@@ -1,7 +1,7 @@
 package com.moon.booklove_android.view.collect.collectCategory
 
 import android.content.Context
-import com.moon.booklove_android.data.dto.UserInfoUpdateReqDTO
+import com.moon.booklove_android.data.dto.UserInputInfoReqDTO
 
 interface CollectCategoryContract {
     interface View {
@@ -10,6 +10,6 @@ interface CollectCategoryContract {
     }
     interface Presenter {
         var view: View
-        fun updateUserInfo(userInfoUpdateReqDTO: UserInfoUpdateReqDTO, context: Context)
+        fun updateUserInfo(userInputInfoReqDTO: UserInputInfoReqDTO, context: Context)
     }
 }

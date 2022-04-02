@@ -35,9 +35,6 @@ class LoginPresenterImpl(override var view: LoginContract.View) : LoginPresenter
                         responseData.data.userId,
                         responseData.data.userCategoryList)
 
-                    prefs.setUserId(responseData.data.userId)
-                    prefs.setLoginType(responseData.data.type)
-
                     if(responseData.data.checked){
                         view.loginComplete("first login")
                     }else{
@@ -78,9 +75,6 @@ class LoginPresenterImpl(override var view: LoginContract.View) : LoginPresenter
                         responseData.data.userId,
                         responseData.data.userCategoryList)
 
-                    prefs.setUserId(responseData.data.userId)
-                    prefs.setLoginType(responseData.data.type)
-
                     if(responseData.data.checked){
                         view.loginComplete("first login")
                     }else{
@@ -99,9 +93,9 @@ class LoginPresenterImpl(override var view: LoginContract.View) : LoginPresenter
         })
     }
 
-    override fun autoNormalLogin(userId: String, type: String, context: Context) {
+    override fun autoLogin(context: Context) {
 
-        UserService().autoNormalLogin(userId, type, object :
+        UserService().autoLogin(object :
             RetrofitCallback<SingleResult<LoginResDTO>> {
             override fun onSuccess(code: Int, responseData: SingleResult<LoginResDTO>) {
                 if (responseData.output==1) {
@@ -120,9 +114,6 @@ class LoginPresenterImpl(override var view: LoginContract.View) : LoginPresenter
                         responseData.data.type,
                         responseData.data.userId,
                         responseData.data.userCategoryList)
-
-                    prefs.setUserId(responseData.data.userId)
-                    prefs.setLoginType(responseData.data.type)
 
                     if(responseData.data.checked){
                         view.loginComplete("first login")

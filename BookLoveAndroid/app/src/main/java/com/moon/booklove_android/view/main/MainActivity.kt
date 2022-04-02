@@ -1,5 +1,6 @@
 package com.moon.booklove_android.view.main
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -7,6 +8,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.moon.booklove_android.R
 import com.moon.booklove_android.config.toast
 import com.moon.booklove_android.databinding.ActivityMainBinding
+import com.moon.booklove_android.view.login.LoginActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,5 +32,12 @@ class MainActivity : AppCompatActivity() {
         } else {
             finish()
         }
+    }
+
+    fun logout() {
+        toast("로그아웃 했습니다.",applicationContext)
+        val intent = Intent(applicationContext, LoginActivity::class.java)
+        finishAffinity()
+        startActivity(intent)
     }
 }

@@ -125,17 +125,17 @@
             app:layout_constraintBaseline_toBaselineOf="@+id/password"
             app:layout_constraintStart_toStartOf="@+id/idTextView" />
 
-<!--        <Button-->
-<!--            android:id="@+id/passwordUpdateButton"-->
-<!--            android:layout_width="57dp"-->
-<!--            android:layout_height="40dp"-->
-<!--            android:layout_marginStart="24dp"-->
-<!--            android:backgroundTint="@color/dark_purple"-->
-<!--            android:text="@string/edit"-->
-<!--            android:textSize="12sp"-->
-<!--            app:layout_constraintBottom_toBottomOf="@+id/passwordTextView"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/passwordTextView"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/passwordTextView" />-->
+        <Button
+            android:id="@+id/passwordUpdateButton"
+            android:layout_width="57dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp"
+            android:backgroundTint="@color/dark_purple"
+            android:text="@string/edit"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/passwordTextView"
+            app:layout_constraintStart_toEndOf="@+id/passwordTextView"
+            app:layout_constraintTop_toTopOf="@+id/passwordTextView" />
 
         <TextView
             android:id="@+id/name"
@@ -151,7 +151,7 @@
             app:layout_constraintStart_toStartOf="@+id/password"
             app:layout_constraintTop_toBottomOf="@+id/password" />
 
-        <TextView
+        <EditText
             android:id="@+id/nameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -164,17 +164,17 @@
             app:layout_constraintBaseline_toBaselineOf="@+id/name"
             app:layout_constraintStart_toStartOf="@+id/passwordTextView" />
 
-<!--        <Button-->
-<!--            android:id="@+id/nameUpdateButton"-->
-<!--            android:layout_width="57dp"-->
-<!--            android:layout_height="40dp"-->
-<!--            android:layout_marginStart="24dp"-->
-<!--            android:backgroundTint="@color/dark_purple"-->
-<!--            android:text="@string/edit"-->
-<!--            android:textSize="12sp"-->
-<!--            app:layout_constraintBottom_toBottomOf="@+id/nameTextView"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/nameTextView"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/nameTextView" />-->
+        <Button
+            android:id="@+id/nameUpdateButton"
+            android:layout_width="57dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp"
+            android:backgroundTint="@color/dark_purple"
+            android:text="@string/edit"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/nameTextView"
+            app:layout_constraintStart_toEndOf="@+id/nameTextView"
+            app:layout_constraintTop_toTopOf="@+id/nameTextView" />
 
         <Button
             android:id="@+id/logoutButton"

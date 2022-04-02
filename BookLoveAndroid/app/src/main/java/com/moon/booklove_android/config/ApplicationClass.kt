@@ -7,6 +7,7 @@ import com.moon.booklove_android.data.model.User
 import com.moon.booklove_android.config.util.PreferenceUtil
 import com.moon.booklove_android.config.util.RetrofitInterceptor
 import com.moon.booklove_android.data.dto.*
+import com.moon.booklove_android.data.model.BookItem
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -34,6 +35,8 @@ class ApplicationClass : Application() {
         var bookInfoHeader: MutableList<String> = mutableListOf("저자 : ", "출판사 : ", "분류 : ", "가격 : ", "구매링크 : ")
         var bookRecommandAdapter: BookRecommAdapter?=null
         var bookRecommData: List<BookRecomm>?=null
+        var homeBannerAdapter: HomeBannerAdapter?=null
+        var homeBannerData: MutableList<BookListInfoResDTO>?=null
 
         fun initRetrofit(){
             retrofit = Retrofit.Builder()
