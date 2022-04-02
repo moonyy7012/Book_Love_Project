@@ -1,5 +1,8 @@
 
 BookLoveAndroid/.idea/misc.xml
+BookLove-BackEnd/FastAPI/.idea/misc.xml
+BookLove-BackEnd/FastAPI/.idea/workspace.xml
+BookLove-BackEnd/FastAPI/.idea/FastAPI.iml
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
