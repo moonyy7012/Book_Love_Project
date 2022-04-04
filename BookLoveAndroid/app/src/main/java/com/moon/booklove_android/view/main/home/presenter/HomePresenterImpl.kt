@@ -1,11 +1,9 @@
 package com.moon.booklove_android.view.main.home.presenter
 
 import android.content.Context
-import android.util.Log
 import com.moon.booklove_android.adapter.BookRecommAdapter
 import com.moon.booklove_android.adapter.HomeBannerAdapter
 import com.moon.booklove_android.config.ApplicationClass
-import com.moon.booklove_android.config.ApplicationClass.Companion.bookInfo
 import com.moon.booklove_android.config.ApplicationClass.Companion.bookRecommData
 import com.moon.booklove_android.config.ApplicationClass.Companion.bookRecommandAdapter
 import com.moon.booklove_android.config.ApplicationClass.Companion.homeBannerAdapter
@@ -13,7 +11,6 @@ import com.moon.booklove_android.config.ApplicationClass.Companion.homeBannerDat
 import com.moon.booklove_android.config.getRecomm
 import com.moon.booklove_android.config.toast
 import com.moon.booklove_android.config.util.RetrofitCallback
-import com.moon.booklove_android.data.dto.BookInfoResDTO
 import com.moon.booklove_android.data.dto.BookMainListResDTO
 import com.moon.booklove_android.data.dto.ReissuanceResDTO
 import com.moon.booklove_android.data.dto.SingleResult
@@ -22,7 +19,9 @@ import com.moon.booklove_android.service.TokenService
 import com.moon.booklove_android.view.main.home.HomeContract
 
 class HomePresenterImpl(override var view: HomeContract.View) : HomePresenter {
+
     override fun getBookListMain(context: Context) {
+
         BookService().getBookListMain(object :
             RetrofitCallback<SingleResult<BookMainListResDTO>> {
             override fun onSuccess(code: Int, res: SingleResult<BookMainListResDTO>) {
@@ -43,6 +42,7 @@ class HomePresenterImpl(override var view: HomeContract.View) : HomePresenter {
                     toast("문제가 발생하였습니다. 다시 시도해주세요.",context)
                 }
             }
+
             fun displayMainList(){
                 for(a in 0..4){
                     if(bookRecommData!![a].books.size==0){
@@ -50,6 +50,7 @@ class HomePresenterImpl(override var view: HomeContract.View) : HomePresenter {
                     }
                 }
             }
+
             fun addHomeBannerData(){
                 var idx = listOf<Int>(2, 3, 0)
                 for(i in idx){
@@ -59,13 +60,10 @@ class HomePresenterImpl(override var view: HomeContract.View) : HomePresenter {
                     }
                 }
             }
-            override fun onFailure(code: Int) {
-                toast("문제가 발생하였습니다. 다시 시도해주세요.",context)
-            }
 
-            override fun onError(t: Throwable) {
-                toast("문제가 발생하였습니다. 다시 시도해주세요.",context)
-            }
+            override fun onFailure(code: Int) { toast("문제가 발생하였습니다. 다시 시도해주세요.",context) }
+
+            override fun onError(t: Throwable) { toast("문제가 발생하였습니다. 다시 시도해주세요.",context) }
 
             override fun onExpired(code: Int) {
                 TokenService().reissuance(object :
@@ -88,7 +86,5 @@ class HomePresenterImpl(override var view: HomeContract.View) : HomePresenter {
 
             }
         })
-
     }
-
 }

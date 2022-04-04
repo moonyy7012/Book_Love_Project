@@ -25,4 +25,9 @@
         android:name="com.moon.booklove_android.view.main.category.CategoryFragment"
         android:label="GenreFragment"
         tools:layout="@layout/fragment_genre"/>
+    <fragment
+        android:id="@+id/recentFragment"
+        android:name="com.moon.booklove_android.view.main.recent.RecentFragment"
+        android:label="RecentFragment"
+        tools:layout="@layout/fragment_recent"/>
 </navigation>

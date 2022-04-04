@@ -15,10 +15,10 @@
         android:icon="@drawable/selector_bottom_list"
         android:title="@string/Category" />
 
-<!--    <item-->
-<!--        android:id="@id/thirdHomeScreen"-->
-<!--        android:icon="@drawable/selector_bottom_heart"-->
-<!--        android:title="@string/title_menu_third" />-->
+    <item
+        android:id="@id/recentFragment"
+        android:icon="@drawable/selector_bottom_heart"
+        android:title="@string/recent_bottom_list" />
 
     <item
         android:id="@id/myPageFragment"
