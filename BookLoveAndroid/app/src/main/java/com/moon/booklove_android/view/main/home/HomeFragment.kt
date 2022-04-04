@@ -1,18 +1,14 @@
 package com.moon.booklove_android.view.main.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.moon.booklove_android.config.ApplicationClass
-import com.moon.booklove_android.config.ApplicationClass.Companion.bookRecommData
+import com.moon.booklove_android.config.ApplicationClass.Companion.bookRecommandAdapter
 import com.moon.booklove_android.config.ApplicationClass.Companion.homeBannerAdapter
-import com.moon.booklove_android.config.ApplicationClass.Companion.homeBannerData
 import com.moon.booklove_android.databinding.FragmentHomeBinding
 import com.moon.booklove_android.view.main.home.presenter.HomePresenterImpl
-private const val TAG = "HomeFragment"
 
 class HomeFragment  : Fragment(), HomeView{
 
@@ -40,9 +36,10 @@ class HomeFragment  : Fragment(), HomeView{
     }
 
     override fun bindInfo() {
-        binding.outerRecyclerView.adapter = ApplicationClass.bookRecommandAdapter
+        binding.outerRecyclerView.adapter = bookRecommandAdapter
 
     }
+
     override fun bindBanner() {
         binding.vpHomeBanner.adapter = homeBannerAdapter
         binding.vpHomeBanner.setCurrentItem(0, false)

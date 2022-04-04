@@ -30,7 +30,7 @@
 
     <string name="search">검색</string>
     <string name="genre">카테고리별 조회</string>
-    <string name="favorite">찜</string>
+    <string name="recent">최근</string>
     <string name="mypage">내 정보</string>
 
     <string name="login_type">로그인 방식</string>
@@ -61,6 +61,9 @@
     <string name="banner1_header">요즘 이 책</string>
     <string name="prev_pw_text">이전 비밀번호</string>
     <string name="update_pw_text">바꿀 비밀번호</string>
+    <string name="recent_bottom_list">최근</string>
+    <string name="recent_book_text">최근 본 도서</string>
+    <string name="recent_similar_book_text">최근 본 도서와 비슷한 도서</string>
 
 
 </resources>

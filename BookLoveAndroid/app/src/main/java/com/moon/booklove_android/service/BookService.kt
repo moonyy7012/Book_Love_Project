@@ -78,10 +78,10 @@ class BookService {
             })
     }
 
-    fun getBookListSimilar(bookId: String, callback: RetrofitCallback<SingleResult<BookListCategoryResDTO>>) {
-        RetrofitUtil.bookService.getBookListSimilar(bookId)
-            .enqueue(object : Callback<SingleResult<BookListCategoryResDTO>> {
-                override fun onResponse(call: Call<SingleResult<BookListCategoryResDTO>>, response: Response<SingleResult<BookListCategoryResDTO>>) {
+    fun getBookListRecent(callback: RetrofitCallback<SingleResult<BookRecentListResDTO>>) {
+        RetrofitUtil.bookService.getBookListRecent()
+            .enqueue(object : Callback<SingleResult<BookRecentListResDTO>> {
+                override fun onResponse(call: Call<SingleResult<BookRecentListResDTO>>, response: Response<SingleResult<BookRecentListResDTO>>) {
                     val res = response.body()
                     if (response.code() == 200) {
                         if (res != null) {
@@ -94,7 +94,29 @@ class BookService {
                     }
                 }
 
-                override fun onFailure(call: Call<SingleResult<BookListCategoryResDTO>>, t: Throwable) {
+                override fun onFailure(call: Call<SingleResult<BookRecentListResDTO>>, t: Throwable) {
+                    callback.onError(t)
+                }
+            })
+    }
+
+    fun getBookListRecentSimilar(callback: RetrofitCallback<SingleResult<BookRecentSimilarListResDTO>>) {
+        RetrofitUtil.bookService.getBookListRecentSimilar()
+            .enqueue(object : Callback<SingleResult<BookRecentSimilarListResDTO>> {
+                override fun onResponse(call: Call<SingleResult<BookRecentSimilarListResDTO>>, response: Response<SingleResult<BookRecentSimilarListResDTO>>) {
+                    val res = response.body()
+                    if (response.code() == 200) {
+                        if (res != null) {
+                            callback.onSuccess(response.code(), res)
+                        }
+                    } else if(response.code() == 403){
+                        callback.onExpired(response.code())
+                    } else{
+                        callback.onFailure(response.code())
+                    }
+                }
+
+                override fun onFailure(call: Call<SingleResult<BookRecentSimilarListResDTO>>, t: Throwable) {
                     callback.onError(t)
                 }
             })

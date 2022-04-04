@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.mainBottomNavigation.setupWithNavController( findNavController(R.id.vp_ac_main_frag_pager))
+        binding.mainBottomNavigation.setupWithNavController(findNavController(R.id.vp_ac_main_frag_pager))
 
     }
 

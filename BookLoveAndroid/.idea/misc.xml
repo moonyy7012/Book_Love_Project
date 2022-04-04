@@ -18,8 +18,14 @@
         <entry key="..\:/Users/SSAFY/AndroidStudioProjects/S06P22D106/BookLoveAndroid/app/src/main/res/layout/fragment_edit_interest.xml" value="0.25" />
         <entry key="..\:/Users/SSAFY/AndroidStudioProjects/S06P22D106/BookLoveAndroid/app/src/main/res/layout/fragment_home.xml" value="0.2682291666666667" />
         <entry key="..\:/Users/SSAFY/AndroidStudioProjects/S06P22D106/BookLoveAndroid/app/src/main/res/layout/fragment_mypage.xml" value="0.5" />
+        <entry key="..\:/Users/SSAFY/AndroidStudioProjects/S06P22D106/BookLoveAndroid/app/src/main/res/layout/fragment_recent.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/SSAFY/AndroidStudioProjects/S06P22D106/BookLoveAndroid/app/src/main/res/layout/fragment_recentbook.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/SSAFY/AndroidStudioProjects/S06P22D106/BookLoveAndroid/app/src/main/res/layout/fragment_similarbook.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/SSAFY/AndroidStudioProjects/S06P22D106/BookLoveAndroid/app/src/main/res/layout/item_book.xml" value="0.18645833333333334" />
         <entry key="..\:/Users/SSAFY/AndroidStudioProjects/S06P22D106/BookLoveAndroid/app/src/main/res/layout/item_book_category.xml" value="0.1875" />
+        <entry key="..\:/Users/SSAFY/AndroidStudioProjects/S06P22D106/BookLoveAndroid/app/src/main/res/layout/item_book_detail.xml" value="0.22708333333333333" />
+        <entry key="..\:/Users/SSAFY/AndroidStudioProjects/S06P22D106/BookLoveAndroid/app/src/main/res/layout/item_book_recomm.xml" value="0.2734375" />
+        <entry key="..\:/Users/SSAFY/AndroidStudioProjects/S06P22D106/BookLoveAndroid/app/src/main/res/layout/item_bookitem.xml" value="0.2734375" />
         <entry key="..\:/Users/SSAFY/AndroidStudioProjects/S06P22D106/BookLoveAndroid/app/src/main/res/menu/nav_main.xml" value="0.31614583333333335" />
         <entry key="..\:/Users/SSAFY/Documents/BookLoveAndroid/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/SSAFY/Documents/BookLoveProject/BookLoveAndroid/app/src/main/res/drawable/dark_box_rectangle.xml" value="0.12" />
@@ -63,7 +69,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

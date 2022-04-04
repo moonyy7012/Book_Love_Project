@@ -10,7 +10,6 @@ interface BookApi {
     @GET("api/book/bestseller/main")
     fun getBookListMain(): Call<SingleResult<BookMainListResDTO>>
 
-
     // 검색 결과 리스트
     @GET("api/book/search/{keyword}")
     fun getBookListSearch(@Path("keyword") search: String): Call<ListResult<List<BookListInfoResDTO>>>
@@ -19,9 +18,15 @@ interface BookApi {
     @GET("api/book/bestseller")
     fun getBookListCategory(@Query("categoryName") categoryName: String): Call<ListResult<BookListInfoResDTO>>
 
-    // 책 상세 정보 비슷한 책 리스트
-    @GET("api/user/idcheck/{id}")
-    fun getBookListSimilar(@Query("bookId") bookId: String): Call<SingleResult<BookListCategoryResDTO>>
+    // 최근 리스트
+    @GET("api/book/bestseller/main")
+    fun getBookListRecent(): Call<SingleResult<BookRecentListResDTO>>
+
+    // 최근 본 책과 관련된 책 리스트
+    @GET("api/book/bestseller/main")
+    fun getBookListRecentSimilar(): Call<SingleResult<BookRecentSimilarListResDTO>>
+
+
 
     // //책 상세 정보
     @GET("api/book/{bookId}")

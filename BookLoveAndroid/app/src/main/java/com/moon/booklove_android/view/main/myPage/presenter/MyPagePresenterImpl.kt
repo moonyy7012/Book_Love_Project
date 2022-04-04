@@ -1,7 +1,6 @@
 package com.moon.booklove_android.view.main.myPage.presenter
 
 import android.content.Context
-import android.util.Log
 import com.moon.booklove_android.config.ApplicationClass.Companion.initRetrofit
 import com.moon.booklove_android.config.ApplicationClass.Companion.prefs
 import com.moon.booklove_android.config.toast
@@ -19,21 +18,15 @@ class MyPagePresenterImpl(override var view: MyPageContract.View) : MyPagePresen
             RetrofitCallback<SingleResult<Any>> {
             override fun onSuccess(code: Int, responseData: SingleResult<Any>) {
                 if (responseData.output==1) {
-                    Log.d("당당", "responseData.data==true: ")
                     toast("닉네임을 수정했습니다", context)
                 } else {
-                    Log.d("당당", "responseData.data==true else: ")
                     toast("문제가 발생하였습니다. 다시 시도해주세요.", context)
                 }
             }
 
-            override fun onFailure(code: Int) {
-                Log.d("당당", "onFailure: ")
-                toast( "문제가 발생하였습니다. 다시 시도해주세요.",context) }
+            override fun onFailure(code: Int) { toast( "문제가 발생하였습니다. 다시 시도해주세요.",context) }
 
-            override fun onError(t: Throwable) {
-                Log.d("당당", "onError: ")
-                toast("문제가 발생하였습니다. 다시 시도해주세요.", context) }
+            override fun onError(t: Throwable) { toast("문제가 발생하였습니다. 다시 시도해주세요.", context) }
 
             override fun onExpired(code: Int) {
                 super.onExpired(code)
