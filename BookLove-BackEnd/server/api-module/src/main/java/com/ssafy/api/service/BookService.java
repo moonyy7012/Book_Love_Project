@@ -71,30 +71,6 @@ public class BookService {
         return resultList;
     }
 
-    public List<BookListInfoResDTO> findRecentSimilarBooks(Long userId, Long userClickCnt) {
-        if (userClickCnt == 0) {
-            return new ArrayList<>();
-        }
-
-        List<PyBooksResDTO> similarBooks = WebClient.create().get()
-                .uri("http://localhost:8000/recommend/books/" + userId)
-                .accept(MediaType.APPLICATION_JSON)
-                .retrieve()
-                .onStatus(HttpStatus::is5xxServerError, response -> Mono.error(new ApiMessageException("내부 서버 에러")))
-                .bodyToFlux(PyBooksResDTO.class)
-                .toStream()
-                .collect(Collectors.toList());
-
-        List<BookListInfoResDTO> resultList = IntStream.range(0, similarBooks.size())
-                .mapToObj(i -> BookListInfoResDTO.builder()
-                        .title(similarBooks.get(i).getTitle())
-                        .cover(similarBooks.get(i).getCover())
-                        .bookId(similarBooks.get(i).getBook_id()).build())
-                .collect(Collectors.toList());
-
-        return resultList;
-    }
-
     @Transactional(readOnly = false)
     public List<BookListInfoResDTO> findMainBestseller(){
         List<Book> bestseller = bookRepository.findMainBestseller();
@@ -164,7 +140,6 @@ public class BookService {
         return clickLogRepository.save(clickLog);
     }
 
-
     public List<BookListInfoResDTO> findBookByGenderAndAgeClickLog(String gender, int age) {
        List<Book> bookList = clickLogRepository.findBookByClickLog(gender, age);
 
@@ -178,14 +153,11 @@ public class BookService {
         return resultList;
     }
 
-    public long getUserClickCnt(Long userId) {
-        return clickLogRepository.getUserBookClickCnt(userId);
-    }
-
     @Transactional(readOnly = false)
-    public List<BookListInfoResDTO> findBestsellerByCategoryList(User user, Long userClickCnt) {
+    public List<BookListInfoResDTO> findBestsellerByCategoryList(User user) {
         List<BookListInfoResDTO> resultList;
         List<Book> bestseller;
+        Long userClickCnt = clickLogRepository.getUserBookClickCnt(user.getUserId());
 
         if (userClickCnt >= 10) {
             List<Category> categories = clickLogRepository.findCategoryByClickLog(user.getUserId());
@@ -203,21 +175,4 @@ public class BookService {
 
         return resultList;
     }
-
-    @Transactional(readOnly = false)
-    public List<BookListInfoResDTO> findBookRecentList(Long userId) {
-        List<BookListInfoResDTO> resultList;
-        List<Book> recentList;
-        recentList = clickLogRepository.findBookRecentList(userId);
-        resultList = IntStream.range(0, recentList.size())
-                .mapToObj(i -> BookListInfoResDTO.builder()
-                        .title(recentList.get(i).getTitle())
-                        .cover(recentList.get(i).getCover())
-                        .bookId(recentList.get(i).getBookId()).build())
-                .collect(Collectors.toList());
-
-        return resultList;
-    }
-
-
 }

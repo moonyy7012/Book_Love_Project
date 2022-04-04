@@ -14,4 +14,6 @@ public class PyBooksResDTO {
     private String cover;
 
     private long book_id;
+
+    private String description;
 }

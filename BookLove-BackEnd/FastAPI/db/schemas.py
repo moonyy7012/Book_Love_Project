@@ -54,6 +54,15 @@ class BookBase(BaseModel):
     class Config:
         orm_mode = True
 
+class BookDescBase(BaseModel):
+    book_id: int
+    title: str
+    cover: str
+    description: str
+
+    class Config:
+        orm_mode = True
+
 class ClickLog(BaseModel):
     log_id: int
     update_time: str
