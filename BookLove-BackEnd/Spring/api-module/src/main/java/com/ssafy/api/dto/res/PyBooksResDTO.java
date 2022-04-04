@@ -1,6 +1,5 @@
 package com.ssafy.api.dto.res;
 
-
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
@@ -9,7 +8,12 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserInfoResDTO {
-    @ApiModelProperty(value = "회원 아이디", required = true, example = "1")
-    private long id;
+public class PyBooksResDTO {
+    private String title;
+
+    private String cover;
+
+    private long book_id;
+
+    private String description;
 }
