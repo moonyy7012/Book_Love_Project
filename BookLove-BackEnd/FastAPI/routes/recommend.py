@@ -33,7 +33,7 @@ async def get_book_recommend(book_id: int, db: Session = Depends(get_db)) -> Non
 
     return recommend_books(idx, df)
 
-@router.get("/books/{user_id}", response_model=List[schemas.BookBase])
+@router.get("/books/{user_id}", response_model=List[schemas.BookDescBase])
 async def get_books_recommend(user_id: int, db: Session = Depends(get_db)) -> None:
     if not os.path.isfile(dir + '../file/db_books.csv'):
         await data.store_books_in_dir(db)
@@ -85,9 +85,10 @@ def recommend_books(idx, df):
     recommend_books = []
 
     for (key, score) in sim_scores_all:
-        recommend_book = schemas.BookBase(book_id=int(df.loc[key]['book_id']),
+        recommend_book = schemas.BookDescBase(book_id=int(df.loc[key]['book_id']),
                                           title=df.loc[key]['title'],
-                                          cover=df.loc[key]['cover'])
+                                          cover=df.loc[key]['cover'],
+                                          description=df.loc[key]['description'])
         recommend_books.append(recommend_book)
 
     return recommend_books

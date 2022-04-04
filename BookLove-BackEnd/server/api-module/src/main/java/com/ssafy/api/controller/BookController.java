@@ -84,15 +84,11 @@ public class BookController {
 
         User user = signService.findUserByIdWithCategory(Long.parseLong(userPk));
 
-        Long userClickCnt = bookService.getUserClickCnt(user.getUserId());
-
         BookMainListResDTO bookMainListResDTO = BookMainListResDTO.builder()
                 .bookBestSellerList(bookService.findMainBestseller())
                 .bookNewList(bookService.findNewBook())
-                .bookCategoryList(bookService.findBestsellerByCategoryList(user, userClickCnt))
+                .bookCategoryList(bookService.findBestsellerByCategoryList(user))
                 .bookGenderAgeList(bookService.findBookByGenderAndAgeClickLog(user.getGender(), user.getAge()))
-                .bookRecentSimilarList(bookService.findRecentSimilarBooks(user.getUserId(), userClickCnt))
-                .bookRecentList(bookService.findBookRecentList(user.getUserId()))
                 .build();
 
         return responseService.getSingleResult(bookMainListResDTO);
