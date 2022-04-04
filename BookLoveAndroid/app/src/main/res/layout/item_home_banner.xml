@@ -52,7 +52,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:setBookCover="@{book.cover}" />
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

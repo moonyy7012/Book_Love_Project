@@ -28,9 +28,7 @@ class MyPageFragment  : Fragment(), MyPageView{
     private lateinit var presenter: MyPagePresenterImpl
     private lateinit var binding: FragmentMypageBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = FragmentMypageBinding.inflate(inflater, container, false)
         return binding.root
@@ -40,7 +38,6 @@ class MyPageFragment  : Fragment(), MyPageView{
         super.onViewCreated(view, savedInstanceState)
 
         presenter = MyPagePresenterImpl(this)
-
         init()
 
         val pagerAdapter = ScreenSlidePagerAdapter(childFragmentManager)
@@ -92,7 +89,6 @@ class MyPageFragment  : Fragment(), MyPageView{
     }
 
     private inner class ScreenSlidePagerAdapter(fa: FragmentManager) : FragmentStatePagerAdapter(fa) {
-
         override fun getCount(): Int {
             return NUM_PAGES
         }

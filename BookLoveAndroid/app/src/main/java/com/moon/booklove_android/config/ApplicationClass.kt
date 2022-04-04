@@ -7,7 +7,6 @@ import com.moon.booklove_android.data.model.User
 import com.moon.booklove_android.config.util.PreferenceUtil
 import com.moon.booklove_android.config.util.RetrofitInterceptor
 import com.moon.booklove_android.data.dto.*
-import com.moon.booklove_android.data.model.BookItem
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -62,7 +61,6 @@ class ApplicationClass : Application() {
         super.onCreate()
 
         KakaoSdk.init(this, "d4e7ef1673fec6a777393689a82748d7")
-
         prefs = PreferenceUtil(applicationContext)
 
         // 앱이 처음 생성되는 순간, retrofit 인스턴스를 생성

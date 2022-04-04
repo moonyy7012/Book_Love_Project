@@ -5,10 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.moon.booklove_android.adapter.RecentBookAdapter
-import com.moon.booklove_android.config.ApplicationClass
 import com.moon.booklove_android.config.ApplicationClass.Companion.bookRecentAdapter
-import com.moon.booklove_android.config.getGenre
 import com.moon.booklove_android.databinding.FragmentSimilarbookBinding
 import com.moon.booklove_android.view.main.recent.similarbook.presenter.SimilarBookPresenterImpl
 

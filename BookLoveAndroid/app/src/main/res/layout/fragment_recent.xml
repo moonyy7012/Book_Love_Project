@@ -51,22 +51,6 @@
             android:text="@string/recent_similar_book_text" />
     </com.google.android.material.tabs.TabLayout>
 
-
-
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/outerRecyclerView"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="@dimen/fragment_height"-->
-<!--        android:orientation="vertical"-->
-<!--        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.0"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat"-->
-<!--        app:layout_constraintVertical_bias="0.0"-->
-<!--        tools:listitem="@layout/item_book_category" />-->
-
     <FrameLayout
         android:id="@+id/frame"
         android:layout_width="match_parent"
@@ -76,19 +60,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabs" />
-
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/outerRecyclerView"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="@dimen/fragment_height"-->
-<!--        android:orientation="vertical"-->
-<!--        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.0"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/tabs"-->
-<!--        app:layout_constraintVertical_bias="0.0"-->
-<!--        tools:listitem="@layout/favorite_item_book" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

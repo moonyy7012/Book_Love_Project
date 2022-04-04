@@ -36,7 +36,6 @@ class EditGenderFragment  : Fragment(), EditGenderView{
         super.onViewCreated(view, savedInstanceState)
 
         presenter = EditGenderPresenterImpl(this)
-
         init()
 
         binding.maleButton.apply {

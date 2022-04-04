@@ -9,6 +9,7 @@ import com.moon.booklove_android.databinding.ItemBookCategoryBinding
 import com.moon.booklove_android.data.dto.BookCategory
 
 class BookCategoryAdapter : ListAdapter<BookCategory, CustomViewHolder>(Companion) {
+
     private val viewPool = RecyclerView.RecycledViewPool()
 
     companion object : DiffUtil.ItemCallback<BookCategory>() {
