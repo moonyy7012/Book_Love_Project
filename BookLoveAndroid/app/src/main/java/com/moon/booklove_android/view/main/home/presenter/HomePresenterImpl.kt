@@ -44,7 +44,7 @@ class HomePresenterImpl(override var view: HomeContract.View) : HomePresenter {
             }
 
             fun displayMainList(){
-                for(a in 0..4){
+                for(a in 0..3){
                     if(bookRecommData!![a].books.size==0){
                         bookRecommData!![a].header=""
                     }
