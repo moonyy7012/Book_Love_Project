@@ -1,5 +1,4 @@
 import asyncio
-# ttbpmw71301115001
 import requests
 import json
 import pandas as pd
@@ -11,12 +10,11 @@ async def save_book():
     max_result = 50
     query_type = ["Bestseller", "ItemNewSpecial"]
     key = "ttbsmy042991037001"
-    #"ttbpmw71301115001"
     data_list = ['title', 'description', 'link', 'pubDate', 'priceStandard', 'cover', 'publisher',
                  'priceSales', 'isbn', 'author', 'categoryName', 'salesPoint', 'customerReviewRank']
     data_len = len(data_list)
     page_num = 20 #가져올 페이지
-    book_result= []
+    book_result = []
     category_list = (pd.read_csv(dir + 'file/category_all.csv', encoding='cp949')['CID'].values.tolist())
 
 
@@ -48,9 +46,8 @@ async def save_book():
 
                 book_result += book_list
 
-                if len(item_list['item']) < 50 :
+                if len(item_list['item']) < 50:
                     break
-
 
         df = pd.DataFrame(book_result,
                           columns=['title', 'description', 'link', 'pub_date', 'price_standard', 'cover', 'publisher',

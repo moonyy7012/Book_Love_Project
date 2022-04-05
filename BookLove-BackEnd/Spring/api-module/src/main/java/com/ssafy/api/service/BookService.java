@@ -33,15 +33,14 @@ public class BookService {
     private final UserRepository userRepository;
 
     @Transactional(readOnly = false)
-    public List<Book> findBestseller(String categoryName){
+    public List<Book> findBestseller(String categoryName) {
         List<Book> bestseller = bookRepository.findBestsellerByCategoryName(categoryName);
 
         return bestseller;
-
     }
 
     @Transactional(readOnly = false)
-    public Book findBook(long bookId){
+    public Book findBook(long bookId) {
         Book book = bookRepository.findBookInfoByBookId(bookId);
 
         if (book == null) {
@@ -72,7 +71,7 @@ public class BookService {
     }
 
     @Transactional(readOnly = false)
-    public List<BookListInfoResDTO> findMainBestseller(){
+    public List<BookListInfoResDTO> findMainBestseller() {
         List<Book> bestseller = bookRepository.findMainBestseller();
 
         List<BookListInfoResDTO> infoLIst = new ArrayList<>();
@@ -86,11 +85,10 @@ public class BookService {
         }
 
         return infoLIst;
-
     }
 
     @Transactional(readOnly = false)
-    public List<BookListInfoResDTO> findNewBook(){
+    public List<BookListInfoResDTO> findNewBook() {
         List<Book> newBook = bookRepository.findNewBook();
 
         List<BookListInfoResDTO> infoLIst = new ArrayList<>();
@@ -107,19 +105,17 @@ public class BookService {
     }
 
     @Transactional(readOnly = false)
-    public List<Book> findBookByTitle(String Title){
+    public List<Book> findBookByTitle(String Title) {
         List<Book> titleList = bookRepository.findBookByTitle(Title);
 
         return titleList;
-
     }
 
     @Transactional(readOnly = false)
-    public List<Book> findBookByAuthor(String author){
+    public List<Book> findBookByAuthor(String author) {
         List<Book> titleList = bookRepository.findBookByAuthor(author);
 
         return titleList;
-
     }
 
     @Transactional(readOnly = false)

@@ -21,12 +21,10 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class JwtTokenProvider { // JWT 토큰을 생성 및 검증 모듈
-
     // application yml 설정파일에 설정한 값 사용
     @Value("${spring.jwt.secret}")
     private String secretKey;
 
-//    private long accessTokenValidMilisecond = 1000L * 60 * 60 * 24 * 1; // 1일만 토큰 유효
     private long accessTokenValidMilisecond = 1000L * 60 * 60 * 24 * 1; // 1일만 토큰 유효
     private long refreshTokenValidMilisecond = 1000L * 60 * 60 * 24 * 10; // 10일만 토큰 유효
 
@@ -90,8 +88,4 @@ public class JwtTokenProvider { // JWT 토큰을 생성 및 검증 모듈
     public List<String> getUserRoles(String token) {
         return (List<String>)Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().get("roles");
     }
-
-
-
-
 }

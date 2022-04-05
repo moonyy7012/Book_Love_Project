@@ -11,7 +11,6 @@ import os
 dir = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/') + '/'
 models.Base.metadata.create_all(bind=engine)
 
-router = APIRouter(prefix="/data")
 
 async def store_categories_in_db(db):
     db_cate = crud.get_categories(db)
@@ -66,7 +65,7 @@ async def store_books_in_db(db):
 
     db.commit()
 
-    return "success"
+    return
 
 async def get_click_log_by_user_id(db, user_id):
     db_click_log = crud.get_click_log_by_user_id(db, user_id)

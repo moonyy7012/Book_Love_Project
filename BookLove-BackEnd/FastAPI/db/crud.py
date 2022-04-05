@@ -2,7 +2,6 @@ from sqlalchemy.orm import Session
 
 import db.models as models
 
-
 def get_books(db: Session):
     return db.query(models.Book).filter().all()
 

@@ -30,7 +30,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/api/book")
 public class BookController {
     private final ResponseService responseService;
     private final BookService bookService;
@@ -39,7 +39,7 @@ public class BookController {
 
     @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "JWT Token", required = true, dataType = "string", paramType = "header")})
     @ApiOperation(value = "책 상세정보", notes = "책 상세정보")
-    @GetMapping(value = "/book/{bookId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{bookId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody SingleResult<BookInfoResDTO> getBookDetail(@PathVariable long bookId, HttpServletRequest request) throws Exception {
         BookInfoResDTO bookInfoResDTO = BookInfoResDTO.builder().build();
 
@@ -57,9 +57,9 @@ public class BookController {
 
     @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "JWT Token", required = true, dataType = "string", paramType = "header")})
     @ApiOperation(value = "베스트셀러", notes = "베스트셀러")
-    @GetMapping(value = "/book/bestseller", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/bestseller", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    ListResult<BookListInfoResDTO> getBestSeller(@RequestParam(value="categoryName") String categoryName)throws Exception{
+    ListResult<BookListInfoResDTO> getBestSeller(@RequestParam(value="categoryName") String categoryName) throws Exception{
         List<Book> bestseller = bookService.findBestseller(categoryName);
         List<BookListInfoResDTO> infoLIst = new ArrayList<>();
 
@@ -77,7 +77,7 @@ public class BookController {
 
     @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "JWT Token", required = true, dataType = "string", paramType = "header")})
     @ApiOperation(value = "메인 리스트", notes = "메인 베스트셀러")
-    @GetMapping(value = "/book/bestseller/main", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/bestseller/main", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody SingleResult<BookMainListResDTO> getBestSeller(HttpServletRequest request) throws Exception {
         String token = jwtTokenProvider.resolveToken(request);
         String userPk = jwtTokenProvider.getUserPk(token);
@@ -96,7 +96,7 @@ public class BookController {
 
     @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "JWT Token", required = true, dataType = "string", paramType = "header")})
     @ApiOperation(value = "검색결과", notes = "검색결과")
-    @GetMapping(value = "/book/search/{keyword}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/search/{keyword}", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     ListResult<List<BookListInfoResDTO>> getSearchList(@PathVariable String keyword) throws Exception{
         List<Book> searchResultByTitle = bookService.findBookByTitle(keyword);

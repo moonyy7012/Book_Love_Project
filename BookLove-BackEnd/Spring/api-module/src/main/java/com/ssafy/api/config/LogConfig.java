@@ -50,8 +50,6 @@ public class LogConfig {
         return result;
     }
 
-
-
   private String getBody(@RequestBody HttpServletRequest request) throws IOException {
      
       
@@ -100,6 +98,5 @@ public class LogConfig {
     }
 
     return params;
-
   }
 }
