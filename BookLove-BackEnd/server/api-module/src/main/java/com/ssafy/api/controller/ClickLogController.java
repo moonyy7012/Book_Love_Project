@@ -2,6 +2,7 @@ package com.ssafy.api.controller;
 
 import com.ssafy.api.config.security.JwtTokenProvider;
 import com.ssafy.api.dto.res.BookRecentListResDTO;
+import com.ssafy.api.dto.res.BookRecentSimilarListResDTO;
 import com.ssafy.api.service.ClickLogService;
 import com.ssafy.api.service.SignService;
 import com.ssafy.api.service.common.ResponseService;
@@ -44,12 +45,39 @@ public class ClickLogController {
                 .bookRecentList(clickLogService.findBookRecentList(user.getUserId()))
                 .build();
 
-        if (bookRecentListResDTO.getBookRecentList().size() != 0){
-            bookRecentListResDTO.setBookRecentSimilarList(clickLogService.findRecentSimilarBooks(user.getUserId()));
-        } else {
-            bookRecentListResDTO.setBookRecentSimilarList(new ArrayList<>());
-        }
+//        if (bookRecentListResDTO.getBookRecentList().size() != 0){
+//            bookRecentListResDTO.setBookRecentSimilarList(clickLogService.findRecentSimilarBooks(user.getUserId()));
+//        } else {
+//            bookRecentListResDTO.setBookRecentSimilarList(new ArrayList<>());
+//        }
 
         return responseService.getSingleResult(bookRecentListResDTO);
+    }
+
+    @ApiImplicitParams({@ApiImplicitParam(name = "X-Auth-Token", value = "JWT Token", required = true, dataType = "string", paramType = "header")})
+    @ApiOperation(value = "최근 본 책", notes = "최근 본 책")
+    @GetMapping(value = "/similar", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    SingleResult<BookRecentSimilarListResDTO> getClickLogSimilar(HttpServletRequest request) throws Exception {
+        String token = jwtTokenProvider.resolveToken(request);
+        String userPk = jwtTokenProvider.getUserPk(token);
+
+        User user = signService.findUserByIdWithCategory(Long.parseLong(userPk));
+
+        BookRecentListResDTO bookRecentListResDTO = BookRecentListResDTO.builder()
+                .bookRecentList(clickLogService.findBookRecentList(user.getUserId()))
+                .build();
+
+        BookRecentSimilarListResDTO bookRecentSimilarListResDTO;
+
+        if (bookRecentListResDTO.getBookRecentList().size() != 0){
+            bookRecentSimilarListResDTO = BookRecentSimilarListResDTO.builder()
+                    .bookRecentSimilarList(clickLogService.findRecentSimilarBooks(user.getUserId())).build();
+        } else {
+            bookRecentSimilarListResDTO = BookRecentSimilarListResDTO.builder()
+                    .bookRecentSimilarList(new ArrayList<>()).build();
+        }
+
+        return responseService.getSingleResult(bookRecentSimilarListResDTO);
     }
 }

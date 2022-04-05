@@ -19,11 +19,11 @@ interface BookApi {
     fun getBookListCategory(@Query("categoryName") categoryName: String): Call<ListResult<BookListInfoResDTO>>
 
     // 최근 리스트
-    @GET("api/book/bestseller/main")
+    @GET("api/clicklog")
     fun getBookListRecent(): Call<SingleResult<BookRecentListResDTO>>
 
     // 최근 본 책과 관련된 책 리스트
-    @GET("api/book/bestseller/main")
+    @GET("api/clicklog/similar")
     fun getBookListRecentSimilar(): Call<SingleResult<BookRecentSimilarListResDTO>>
 
 
