@@ -123,15 +123,6 @@ public class UserController {
         return responseService.getSingleResult(isOverlapped);
     }
 
-    @ApiOperation(value = "회원 정보 삭제", notes = "회원 정보 삭제")
-    @DeleteMapping(value = "/delete/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody
-    CommonResult deleteUser(@PathVariable long userId) throws Exception {
-        User user = userService.findUserById(userId);
-        userService.deleteUser(user);
-        return responseService.getSuccessResult();
-    }
-
     @ApiOperation(value = "로그인", notes = "로그인")
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody SingleResult<LoginResDTO> userLogin(@Valid LoginReqDTO req) throws Exception {
