@@ -122,6 +122,8 @@ ubuntu : 20.04 LTS
 
    
 
-### server 배포
+### server 배포 시 특이사항
 
 > > gitlab webhook과  jenkins 연동 후 develop 브랜치에 merge 생길때 빌드 후 run 수행하게 하여 ci/cd 구축
+> > nohup을 이용해 백그라운드에서 동작 시키므로 새로 빌드 후 동작시키려면 ps -e 명령어를 통해 java 와 python3 PID를 알아낸후
+> > kill -9 {PID} 를 통해 종료시킨 후 빌드
