@@ -52,7 +52,7 @@ public class BookService {
 
     public List<BookListInfoResDTO> findSimilarBooks(long bookId) {
         List<PyBooksResDTO> similarBooks = WebClient.create().get()
-                .uri("http://localhost:8000/recommend/book/" + bookId)
+                .uri("http://j6d106.p.ssafy.io:8000/recommend/book/" + bookId)
                 .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
                 .onStatus(HttpStatus::is5xxServerError, response -> Mono.error(new ApiMessageException("내부 서버 에러")))
