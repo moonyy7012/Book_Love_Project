@@ -28,42 +28,24 @@ public class UserService {
     private final UserRepository userRepository;
     private final CategoryRepository categoryRepository;
 
-    /**
-     * id로 회원정보 조회
-     * @param id
-     * @return
-     * @throws Exception
-     */
     @Transactional(readOnly = false)
-    public User findUserById(long id) throws Exception{
-        User user = userRepository.findById(id).orElseThrow( () -> new ApiMessageException("존재하지 않는 회원정보입니다.") );
+    public User findUserById(long userId) throws Exception {
+        User user = userRepository.findById(userId).orElseThrow( () -> new ApiMessageException("존재하지 않는 회원정보입니다.") );
         return user;
     }
 
     @Transactional(readOnly = false)
-    public User findUserByIdWithCategory(Long userId) throws Exception{
+    public User findUserByIdWithCategory(Long userId) throws Exception {
         User user = userRepository.findUserWithCategory(userId);
         return user;
     }
 
-    /**
-     * uid로 user 조회
-     * @param id
-     * @return
-     * @throws Exception
-     */
-    public User findById(String id) throws Exception{
+    public User findById(String id) throws Exception {
         return userRepository.findById(id);
     }
 
-
-    /**
-     * 회원가입 후 userId 리턴
-     * @param user
-     * @return
-     */
     @Transactional(readOnly = false)
-    public long userSignUp(User user){
+    public long userSignUp(User user) {
         User signUpUser = userRepository.save(user);
         return signUpUser.getUserId();
     }
@@ -73,7 +55,7 @@ public class UserService {
     }
 
     @Transactional(readOnly = false)
-    public void saveUser(User user){
+    public void saveUser(User user) {
         User result = userRepository.save(user);
         if (result == null) {
             throw new ApiMessageException("저장에 실패하였습니다.");
@@ -81,7 +63,7 @@ public class UserService {
     }
 
     @Transactional(readOnly = false)
-    public User updateUserNickname(long userId, UpdateNicknameReqDTO req){
+    public User updateUserNickname(long userId, UpdateNicknameReqDTO req) {
         User user = userRepository.findById(userId).orElseThrow(() -> new ApiMessageException("존재하지 않는 회원정보입니다."));
         user.updateNickname(req.getNickname());
         saveUser(user);
@@ -90,16 +72,17 @@ public class UserService {
     }
 
     @Transactional(readOnly = false)
-    public User enrollUserInfo(long userId, UserInfoReqDTO req){
+    public User enrollUserInfo(long userId, UserInfoReqDTO req) {
         User user = userRepository.findById(userId).orElseThrow( () -> new ApiMessageException("존재하지 않는 회원정보입니다.") );
 
-        if(!req.getCategories().isEmpty()){
+        if (!req.getCategories().isEmpty()){
             user.updateIsChecked(true);
         }
+
         user.updateAge(req.getAge());
         user.updateGender(req.getGender());
         List<Category> categoryList = new ArrayList<>();
-        for(int i = 0 ; i < req.getCategories().size() ; i++){
+        for (int i = 0 ; i < req.getCategories().size() ; i++) {
             categoryList.add(
                     categoryRepository.findCategoryByName(req.getCategories().get(i))
             );
@@ -125,8 +108,6 @@ public class UserService {
                 .bodyToMono(SocialUserResDTO.class)
                 .block();
 
-        System.out.print("socialUser.getId() : " + socialUser.getId());
-
         User user = userRepository.findUserLogin(socialUser.getId(), JoinCode.KAKAO);
 
         if (user == null) {
@@ -151,8 +132,6 @@ public class UserService {
 
         return user;
     }
-
-
 }
 
 

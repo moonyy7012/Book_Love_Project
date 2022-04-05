@@ -1,13 +1,8 @@
 package com.ssafy.core.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ssafy.core.converter.JoinCodeConverter;
-import com.ssafy.core.converter.MFCodeConverter;
-import com.ssafy.core.converter.YNCodeConverter;
 import com.ssafy.core.code.JoinCode;
-import com.ssafy.core.code.MFCode;
-import com.ssafy.core.code.YNCode;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

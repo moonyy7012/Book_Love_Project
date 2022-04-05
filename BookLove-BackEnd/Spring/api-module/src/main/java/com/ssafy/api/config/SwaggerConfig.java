@@ -20,7 +20,6 @@ import java.util.ArrayList;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
-
     private String version;
     private String title;
 
@@ -44,11 +43,10 @@ public class SwaggerConfig {
 
     }
 
-
     private ApiInfo apiInfo(String title, String version) {
         return new ApiInfo(
                 title,
-                "SSAFY API",
+                "BOOKLOVE API",
                 version,
                 "www.example.com",
                 new Contact("Contact Me", "www.example.com", "test@example.com"),

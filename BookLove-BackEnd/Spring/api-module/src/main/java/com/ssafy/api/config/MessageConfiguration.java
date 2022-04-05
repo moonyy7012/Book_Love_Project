@@ -17,7 +17,6 @@ import java.util.ResourceBundle;
 
 @Configuration
 public class MessageConfiguration implements WebMvcConfigurer {
-
     @Bean // 세션에 지역설정. default는 KOREAN = 'ko'
     public LocaleResolver localeResolver() {
         SessionLocaleResolver slr = new SessionLocaleResolver();

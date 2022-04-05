@@ -14,7 +14,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserInfoReqDTO {
-
     @NotBlank
     @ApiModelProperty(value = "gender", required = true, example = "남자")
     private String gender;

@@ -13,7 +13,6 @@ repositories {
     mavenCentral()
 }
 
-
 dependencies {
     implementation("com.querydsl:querydsl-jpa") // querydsl
     implementation("com.querydsl:querydsl-apt") // querydsl
@@ -37,7 +36,3 @@ configurations {
 compileQuerydsl {
     options.annotationProcessorPath = configurations.querydsl
 }
-//compileQuerydsl.doFirst {
-//    if(file(querydslDir).exists())
-//        delete(file(querydslDir))
-//}

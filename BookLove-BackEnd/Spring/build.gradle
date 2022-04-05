@@ -67,12 +67,8 @@ project(":core-module") {
         implementation 'org.springframework.boot:spring-boot-starter-actuator'
         implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5'
         implementation group: 'org.apache.httpcomponents', name: 'httpmime', version: '4.3.1'
-//        // S3
-//        implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-aws', version: '2.2.1.RELEASE'
-
 
         runtimeOnly 'mysql:mysql-connector-java'
-//        testImplementation("org.springframework.boot:spring-boot-starter-test")
 
         implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -80,7 +76,6 @@ project(":core-module") {
         implementation 'com.querydsl:querydsl-jpa'
         //querydsl 추가
         implementation 'com.querydsl:querydsl-apt'
-
     }
 }
 
@@ -109,7 +104,6 @@ project(":api-module") {
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
         implementation 'net.rakugakibox.util:yaml-resource-bundle:1.1'
-//        implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-aws', version: '2.2.1.RELEASE'
 
         implementation 'com.google.firebase:firebase-admin:6.8.1'
         implementation 'com.google.gms:google-services:3.0.0'
