@@ -130,4 +130,5 @@ ubuntu : 20.04 LTS
 
 
 ### Test계정
-> > 
+> > id : testid
+> > pw : 1234
