@@ -7,7 +7,6 @@ import com.moon.booklove_android.data.model.User
 import com.moon.booklove_android.config.util.PreferenceUtil
 import com.moon.booklove_android.config.util.RetrofitInterceptor
 import com.moon.booklove_android.data.dto.*
-import com.moon.booklove_android.data.model.BookItem
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -27,7 +26,7 @@ class ApplicationClass : Application() {
             , "전집/중고전집", "종교/역학", "좋은부모", "중학교참고서", "청소년", "초등학교참고서", "컴퓨터/모바일"
         )
         var recommand: MutableList<String> = mutableListOf("같은 성별/나이대의 사람들이 관심 있어요", "좋아하는 카테고리의 책들이에요",
-        "베스트셀러 도서를 만나보세요", "신간 도서를 만나보세요", "당신의 요즘 최향을 알아봤어요")
+        "베스트셀러 도서를 만나보세요", "신간 도서를 만나보세요")
         var search: MutableList<String> = mutableListOf("책 제목으로 검색했어요!", "작가 이름으로 검색했어요!", "장르로 검색했어요!")
         var bookInfoHeader: MutableList<String> = mutableListOf("저자 : ", "출판사 : ", "분류 : ", "가격 : ", "구매링크 : ")
 
@@ -62,7 +61,6 @@ class ApplicationClass : Application() {
         super.onCreate()
 
         KakaoSdk.init(this, "d4e7ef1673fec6a777393689a82748d7")
-
         prefs = PreferenceUtil(applicationContext)
 
         // 앱이 처음 생성되는 순간, retrofit 인스턴스를 생성

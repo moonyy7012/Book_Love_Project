@@ -6,7 +6,6 @@ interface HomeContract {
     interface View {
         fun bindInfo()
         fun bindBanner()
-
     }
 
     interface Presenter {

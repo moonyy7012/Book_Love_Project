@@ -29,20 +29,16 @@ class HomeFragment  : Fragment(), HomeView{
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         presenter = HomePresenterImpl(this)
         presenter.getBookListMain(requireContext())
-
     }
 
     override fun bindInfo() {
         binding.outerRecyclerView.adapter = bookRecommandAdapter
-
     }
 
     override fun bindBanner() {
         binding.vpHomeBanner.adapter = homeBannerAdapter
         binding.vpHomeBanner.setCurrentItem(0, false)
     }
-
 }

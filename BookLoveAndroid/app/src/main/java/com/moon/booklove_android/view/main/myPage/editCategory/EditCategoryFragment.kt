@@ -38,7 +38,6 @@ class EditCategoryFragment  : Fragment(), EditCategoryView{
         super.onViewCreated(view, savedInstanceState)
 
         presenter = EditCategoryPresenterImpl(this)
-
         init()
 
         binding.nextStepButton.setOnClickListener {
@@ -55,7 +54,6 @@ class EditCategoryFragment  : Fragment(), EditCategoryView{
         for(chip in interest){
             binding.chipGroup.addView(
                 Chip(context).apply{
-
                     text = chip
                     tag = chip
                     isCheckable = true

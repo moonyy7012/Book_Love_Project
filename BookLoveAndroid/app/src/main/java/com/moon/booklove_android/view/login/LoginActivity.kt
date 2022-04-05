@@ -31,10 +31,6 @@ class LoginActivity : AppCompatActivity(), LoginView {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-
-    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -46,8 +42,8 @@ class LoginActivity : AppCompatActivity(), LoginView {
             presenter.autoLogin(this@LoginActivity)
         }
 
-        val keyHash = Utility.getKeyHash(this)//onCreate 안에 입력해주자
-        Log.d("Hash", keyHash)
+//        val keyHash = Utility.getKeyHash(this)//onCreate 안에 입력해주자
+//        Log.d("Hash", keyHash)
 
         binding.loginButton.setOnClickListener {
             presenter.normalLogin(binding.idEditText.text.toString()

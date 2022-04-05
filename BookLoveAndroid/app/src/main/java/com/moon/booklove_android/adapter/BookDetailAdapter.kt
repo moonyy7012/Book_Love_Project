@@ -35,7 +35,6 @@ class BookDetailAdapter : ListAdapter<String, DetailViewHolder>(Companion) {
         val bookDetail = getItem(position)
         val itemBinding = holder.binding as ItemBookDetailBinding
 
-        Log.d("리스트", "onBindViewHolder: ${bookInfoHeader[position]}, ${bookDetail}")
         itemBinding.detailTitle.text = bookInfoHeader[position]
         itemBinding.detailTextView.text = bookDetail
         itemBinding.executePendingBindings()

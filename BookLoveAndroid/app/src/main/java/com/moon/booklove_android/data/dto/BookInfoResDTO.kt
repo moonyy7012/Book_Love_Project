@@ -16,5 +16,4 @@ data class BookInfoResDTO(
     var salesPoint: Int,
     var customerReviewRank: Int,
     var similarBooks: List<BookListInfoResDTO>
-
 )

@@ -7,6 +7,7 @@ interface MyPageContract {
         fun init()
         fun logout()
     }
+
     interface Presenter {
         var view: View
         fun userUpdateNickName(nickname: String, context: Context)
