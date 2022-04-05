@@ -44,7 +44,7 @@ public class ClickLogService {
 
     public List<BookRecentInfoResDTO> findRecentSimilarBooks(Long userId) {
         List<PyBooksResDTO> similarBooks = WebClient.create().get()
-                .uri("http://localhost:8000/recommend/books/" + userId)
+                .uri("http://j6d106.p.ssafy.io:8000/recommend/books/" + userId)
                 .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
                 .onStatus(HttpStatus::is5xxServerError, response -> Mono.error(new ApiMessageException("내부 서버 에러")))
