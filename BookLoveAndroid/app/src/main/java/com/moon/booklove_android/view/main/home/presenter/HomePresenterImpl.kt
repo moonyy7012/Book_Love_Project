@@ -83,7 +83,6 @@ class HomePresenterImpl(override var view: HomeContract.View) : HomePresenter {
 
                     override fun onExpired(code: Int) {}
                 })
-
             }
         })
     }

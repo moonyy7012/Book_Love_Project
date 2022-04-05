@@ -12,6 +12,7 @@ import com.moon.booklove_android.view.main.recent.recentbook.RecentBookFragment
 import com.moon.booklove_android.view.main.recent.similarbook.SimilarBookFragment
 
 class RecentFragment  : Fragment(){
+
     private lateinit var binding: FragmentRecentBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

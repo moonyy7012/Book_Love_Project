@@ -35,13 +35,9 @@ class SearchPresenterImpl(override var view: SearchContract.View) : SearchPresen
                 }
             }
 
-            override fun onFailure(code: Int) {
-                toast("문제가 발생하였습니다. 다시 시도해주세요.",context)
-            }
+            override fun onFailure(code: Int) { toast("문제가 발생하였습니다. 다시 시도해주세요.",context) }
 
-            override fun onError(t: Throwable) {
-                toast("문제가 발생하였습니다. 다시 시도해주세요.",context)
-            }
+            override fun onError(t: Throwable) { toast("문제가 발생하였습니다. 다시 시도해주세요.",context) }
 
             override fun onExpired(code: Int) {
                 TokenService().reissuance(object :

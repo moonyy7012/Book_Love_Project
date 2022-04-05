@@ -36,23 +36,16 @@ class CategoryFragment  : Fragment(), CategoryView{
         presenter = CategoryPresenterImpl(this)
 
         val myAdapter = ArrayAdapter(requireContext(), R.layout.simple_spinner_dropdown_item, interest)
-
         binding.spinner.adapter = myAdapter
 
         binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
-                parent: AdapterView<*>,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-
+                parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 presenter.getBookListCategory(requireContext(), interest[position])
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
                 presenter.getBookListCategory(requireContext(), interest[0])
-
             }
         }
     }

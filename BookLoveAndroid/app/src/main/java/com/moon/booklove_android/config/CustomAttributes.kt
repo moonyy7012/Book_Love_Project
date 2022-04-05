@@ -10,13 +10,11 @@ import com.moon.booklove_android.adapter.BookItemAdapter
 import com.moon.booklove_android.config.ApplicationClass.Companion.bookCategoryAdapter
 import com.moon.booklove_android.data.dto.BookListInfoResDTO
 
-
 @BindingAdapter(value = ["setBooks"])
 fun RecyclerView.setBooks(books: List<BookListInfoResDTO>?) {
     if (books != null) {
         bookCategoryAdapter = BookItemAdapter()
         bookCategoryAdapter!!.submitList(books)
-
         adapter = bookCategoryAdapter
     }
 }
@@ -31,15 +29,13 @@ fun setBookCover(imageView: ImageView, url: String?){
             .apply(RequestOptions().fitCenter())
             .into(imageView)
     }
-
-
 }
+
 @BindingAdapter(value = ["setRecommBooks"])
 fun RecyclerView.setRecommBooks(books: List<BookListInfoResDTO>?) {
     if (books != null) {
         val bookAdapter = BookItemAdapter()
         bookAdapter.submitList(books)
-
         adapter = bookAdapter
     }
 }

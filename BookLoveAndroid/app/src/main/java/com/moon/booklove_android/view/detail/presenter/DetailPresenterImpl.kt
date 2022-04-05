@@ -17,6 +17,7 @@ import com.moon.booklove_android.view.detail.DetailContract
 class DetailPresenterImpl(override var view: DetailContract.View) : DetailPresenter {
 
     private var bookDetailValueList = mutableListOf<String>()
+
     override fun getBookInfo(context: Context, bookId: Long) {
         BookService().getBookInfo(bookId, object :
             RetrofitCallback<SingleResult<BookInfoResDTO>> {
@@ -26,8 +27,6 @@ class DetailPresenterImpl(override var view: DetailContract.View) : DetailPresen
                     bookInfo = responseData
                     bookDetailAdapter = BookDetailAdapter()
                     createBookDetailValueList(bookInfo!!.data)
-
-
                 } else {
                     toast("문제가 발생하였습니다. 다시 시도해주세요.",context)
                 }

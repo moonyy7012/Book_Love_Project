@@ -28,7 +28,5 @@ class DetailActivity : AppCompatActivity(), DetailView {
         binding.title.text = book.title
         binding.bookInfoRecyclerView.adapter = bookDetailAdapter
         binding.recyclerView.adapter = bookSimilarAdapter
-
     }
-
 }

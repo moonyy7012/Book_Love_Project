@@ -80,6 +80,7 @@ class EditAgeFragment  : Fragment(), EditAgeView{
             50 -> binding.fiftiesButton.setBackgroundResource(R.drawable.dark_box_rectangle)
         }
     }
+
     override fun clickButton(clickedButton: AppCompatButton){
         isClicked = true
         binding.teenagerButton.setBackgroundResource(R.drawable.light_box_rectangle)
@@ -94,5 +95,4 @@ class EditAgeFragment  : Fragment(), EditAgeView{
     override fun selectComplete() {
         binding.nextStepButton.setBackgroundResource(R.drawable.dark_box_rectangle)
     }
-
 }

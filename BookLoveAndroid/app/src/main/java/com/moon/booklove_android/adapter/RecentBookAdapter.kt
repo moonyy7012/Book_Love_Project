@@ -8,7 +8,6 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.moon.booklove_android.databinding.FavoriteItemBookBinding
 import com.moon.booklove_android.data.dto.BookRecentListInfoResDTO
 import com.moon.booklove_android.view.detail.DetailActivity
@@ -40,11 +39,10 @@ class RecentBookAdapter : ListAdapter<BookRecentListInfoResDTO, RecentViewHolder
         itemBinding.bookRecentListInfoResDTO = currentBook
         itemBinding.executePendingBindings()
 
-        //Glide.with(holder.itemView.context).load(currentBook.cover).into(itemBinding.imageView)
-
         holder.itemView.apply{
             setOnClickListener{
                 val intent = Intent(context, DetailActivity::class.java)
+                intent.putExtra("bookId", currentBook.bookId)
                 ContextCompat.startActivity(context, intent, null)
             }
         }

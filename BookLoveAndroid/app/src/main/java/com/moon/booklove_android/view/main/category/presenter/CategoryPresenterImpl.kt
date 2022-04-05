@@ -16,7 +16,6 @@ import com.moon.booklove_android.view.main.category.CategoryContract
 
 class CategoryPresenterImpl(override var view: CategoryContract.View) : CategoryPresenter {
 
-
     override fun getBookListCategory(context: Context, categoryName:String) {
 
         BookService().getBookListCategory(categoryName, object :

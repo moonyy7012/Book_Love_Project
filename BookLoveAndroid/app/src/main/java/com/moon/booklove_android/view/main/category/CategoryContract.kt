@@ -10,6 +10,5 @@ interface CategoryContract {
     interface Presenter {
         var view: View
         fun getBookListCategory(context: Context, category:String)
-
     }
 }

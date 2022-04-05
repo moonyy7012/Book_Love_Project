@@ -1,14 +1,11 @@
 package com.moon.booklove_android.service
 
-import android.util.Log
 import com.moon.booklove_android.data.dto.*
 import com.moon.booklove_android.config.util.RetrofitCallback
 import com.moon.booklove_android.config.util.RetrofitUtil
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-
-private const val TAG = "BookService"
 
 class BookService {
 

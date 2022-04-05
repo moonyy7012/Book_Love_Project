@@ -13,16 +13,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BookLoveAndroid"
-        android:usesCleartextTraffic="true" >
+        android:usesCleartextTraffic="true">
 
         <activity
             android:name="com.moon.booklove_android.view.login.LoginActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
             android:exported="true">
@@ -36,23 +38,29 @@
                     android:scheme="kakaod4e7ef1673fec6a777393689a82748d7"  />
             </intent-filter>
         </activity>
+
         <activity
             android:name="com.moon.booklove_android.view.main.MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
         </activity>
 
         <activity
             android:name="com.moon.booklove_android.view.collect.CollectActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
         </activity>
 
         <activity
             android:name="com.moon.booklove_android.view.signup.SignUpActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
         </activity>
+
         <activity
             android:name="com.moon.booklove_android.view.detail.DetailActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
         </activity>
 
     </application>

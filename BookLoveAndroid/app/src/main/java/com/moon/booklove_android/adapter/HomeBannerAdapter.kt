@@ -37,12 +37,14 @@ class HomeBannerAdapter : ListAdapter<BookListInfoResDTO, CustomViewHolder>(Comp
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         val bookListInfoResDTO = getItem(position)
         val itemBinding = holder.binding as ItemHomeBannerBinding
+
         when(position) {
             0 -> displayFirstBanner(itemBinding, bookListInfoResDTO)
             1 -> displaySecondBanner(itemBinding, bookListInfoResDTO)
             2 -> displayThirdBanner(itemBinding, bookListInfoResDTO)
             else -> displayFirstBanner(itemBinding, bookListInfoResDTO)
         }
+
         itemBinding.executePendingBindings()
         holder.itemView.apply{
             setOnClickListener{
@@ -51,8 +53,8 @@ class HomeBannerAdapter : ListAdapter<BookListInfoResDTO, CustomViewHolder>(Comp
                 ContextCompat.startActivity(context, intent, null)
             }
         }
-
     }
+
     fun displayFirstBanner(itemBinding :ItemHomeBannerBinding, bookListInfoResDTO :BookListInfoResDTO){
         itemBinding.header.text = "요즘 이 책"
         itemBinding.itemBanner.setBackgroundResource(R.color.light_purple)
@@ -88,5 +90,4 @@ class HomeBannerAdapter : ListAdapter<BookListInfoResDTO, CustomViewHolder>(Comp
             }
         }
     }
-
 }
