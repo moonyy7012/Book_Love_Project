@@ -44,12 +44,7 @@ public class ClickLogController {
         BookRecentListResDTO bookRecentListResDTO = BookRecentListResDTO.builder()
                 .bookRecentList(clickLogService.findBookRecentList(user.getUserId()))
                 .build();
-//
-//        if (bookRecentListResDTO.getBookRecentList().size() != 0){
-//            bookRecentListResDTO.setBookRecentSimilarList(clickLogService.findRecentSimilarBooks(user.getUserId()));
-//        } else {
-//            bookRecentListResDTO.setBookRecentSimilarList(new ArrayList<>());
-//        }
+
 
         return responseService.getSingleResult(bookRecentListResDTO);
     }
