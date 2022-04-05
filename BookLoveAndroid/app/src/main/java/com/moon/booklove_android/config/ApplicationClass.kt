@@ -14,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class ApplicationClass : Application() {
 
     companion object{
-        const val SERVER_URL = "http://192.168.0.9:8185/"
+        const val SERVER_URL = "http://j6d106.p.ssafy.io:8185/"
 
         lateinit var retrofit: Retrofit
         lateinit var prefs: PreferenceUtil
