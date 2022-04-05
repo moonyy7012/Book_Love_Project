@@ -130,5 +130,8 @@ ubuntu : 20.04 LTS
 
 
 ### Test계정
-> > id : testid
-> > pw : 1234
+> > id : testid    pw : 1234
+
+### DB접속정보
+접속 주소 : j6d106.p.ssafy.io:3306
+>> id : ssafy pw : ssafy 
