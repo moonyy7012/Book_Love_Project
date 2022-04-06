@@ -34,7 +34,7 @@ class SignUpPresenterImpl(override var view: SignUpContract.View) : SignUpPresen
 
         UserService().checkID(userId,object : RetrofitCallback<SingleResult<Any>> {
             override fun onSuccess(code: Int, responseData: SingleResult<Any>) {
-                if (responseData.output==1) {
+                if (responseData.data==true) {
                     view.idCheck(true)
                     toast( "사용 가능한 아이디 입니다.",context)
                 } else {
