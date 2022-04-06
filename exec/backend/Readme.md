@@ -66,7 +66,7 @@ ubuntu : 20.04 LTS
      # 데이터 베이스 연결 설정
      datasource:
    
-       url: jdbc:mysql://j6d106.p.ssafy.io:3306/test1?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+       url: jdbc:mysql://j6d106.p.ssafy.io:3306/bookdb?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
        driver-class-name: com.mysql.jdbc.Driver
        username: ssafy
        password: ssafy
