@@ -28,8 +28,7 @@ sudo docker pull jenkins/jenkins:lts
 ```
 4. 젠킨스 컨테이너 실행
 ```
-sudo docker run -d -p 8080:8080 -v /app/book:/var/jenkins_home --name
-book -u root jenkins/jenkins:lts
+sudo docker run -d -p 8080:8080 -v /app/book:/var/jenkins_home --name book -u root jenkins/jenkins:lts
 
 ```
 5.  application.yml
