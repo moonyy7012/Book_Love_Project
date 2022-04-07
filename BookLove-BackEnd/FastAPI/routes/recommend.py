@@ -74,8 +74,11 @@ async def get_books_recommend(user_id: int, db: Session = Depends(get_db)) -> No
     df_click_log = df_click_log.sort_values(by='update_date', ascending=False)
     df = pandas.merge(df_click_log, df_book, on="book_id")
 
+    indexes = []
+    for i in range(0, 10):
+        indexes.append([df_book.index[df_book['book_id'] == df['book_id'][i]][0]])
+
     df_book = pandas.concat([df_book, df_click_log])
-    indexes = df_book.index[df_book.duplicated(['book_id'], keep='last')]
     df_book.drop_duplicates(['book_id'], keep=False, inplace=True)
 
     if not os.path.isfile(dir + '../file/tfidf_matrix_des.pkl'):
@@ -101,10 +104,9 @@ async def get_books_recommend(user_id: int, db: Session = Depends(get_db)) -> No
         sim_scores_all = []
 
         for i in range(len(sim_scores_des)):
-            if i not in df_book.index:
-                continue
-            sim_scores_all.append((i, (sim_scores_des[i][1] * 0.9 + sim_scores_cate[i][1] * 0.05 + sim_scores_title[i][1] * 0.05)
-                                   / math.sqrt(index + 1)))
+            if i in df_book.index:
+                sim_scores_all.append((i, (sim_scores_des[i][1] * 0.9 + sim_scores_cate[i][1] * 0.05 + sim_scores_title[i][1] * 0.05)
+                                            / math.sqrt(index + 1)))
 
         sim_scores_all = sorted(sim_scores_all, key=lambda x: x[1], reverse=True)
 
