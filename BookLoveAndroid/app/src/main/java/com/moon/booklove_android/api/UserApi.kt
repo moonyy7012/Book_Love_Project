@@ -22,7 +22,7 @@ interface UserApi {
 
     // 아이디 중복체크 (일반 로그인)
     @GET("api/user/idcheck/{id}")
-    fun checkID(@Query("id") id: String?): Call<SingleResult<Any>>
+    fun checkID(@Path("id") id: String?): Call<SingleResult<Boolean>>
 
     //회원정보 입력 받기
     @PATCH("api/user/info")

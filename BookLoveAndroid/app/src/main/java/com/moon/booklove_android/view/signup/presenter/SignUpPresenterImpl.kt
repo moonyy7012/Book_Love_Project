@@ -32,13 +32,13 @@ class SignUpPresenterImpl(override var view: SignUpContract.View) : SignUpPresen
 
     override fun checkID(userId: String, context: Context) {
 
-        UserService().checkID(userId,object : RetrofitCallback<SingleResult<Any>> {
-            override fun onSuccess(code: Int, responseData: SingleResult<Any>) {
-                if (responseData.data==true) {
-                    view.idCheck(true)
+        UserService().checkID(userId,object : RetrofitCallback<SingleResult<Boolean>> {
+            override fun onSuccess(code: Int, responseData: SingleResult<Boolean>) {
+                if (responseData.data==false) {
+                    view.idCheck(false)
                     toast( "사용 가능한 아이디 입니다.",context)
                 } else {
-                    view.idCheck(false)
+                    view.idCheck(true)
                     toast( "중복 되는 아이디 입니다. ",context)
                 }
             }

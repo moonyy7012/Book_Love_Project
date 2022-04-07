@@ -75,10 +75,10 @@ class UserService {
             })
     }
 
-    fun checkID(userId: String, callback: RetrofitCallback<SingleResult<Any>>) {
+    fun checkID(userId: String, callback: RetrofitCallback<SingleResult<Boolean>>) {
         RetrofitUtil.userService.checkID(userId)
-            .enqueue(object : Callback<SingleResult<Any>> {
-                override fun onResponse(call: Call<SingleResult<Any>>, response: Response<SingleResult<Any>>) {
+            .enqueue(object : Callback<SingleResult<Boolean>> {
+                override fun onResponse(call: Call<SingleResult<Boolean>>, response: Response<SingleResult<Boolean>>) {
                     val res = response.body()
                     if (response.code() == 200) {
                         if (res != null) {
@@ -91,7 +91,7 @@ class UserService {
                     }
                 }
 
-                override fun onFailure(call: Call<SingleResult<Any>>, t: Throwable) {
+                override fun onFailure(call: Call<SingleResult<Boolean>>, t: Throwable) {
                     callback.onError(t)
                 }
             })

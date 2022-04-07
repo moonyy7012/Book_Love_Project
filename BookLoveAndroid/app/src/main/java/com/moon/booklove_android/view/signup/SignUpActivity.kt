@@ -38,7 +38,7 @@ class SignUpActivity : AppCompatActivity(), SignUpView {
         if(binding.idEditText.text.toString()=="" || binding.nickNameEditText.text.toString()=="" ||
             binding.pwEditText.text.toString()=="" || binding.pwConfEditText.text.toString()==""){
             toast("회원정보를 입력해주세요.",applicationContext)
-        }else if(!checkId) {
+        }else if(checkId) {
             toast("아이디 중복을 확인하세요.",applicationContext)
         }else if(binding.pwEditText.text.toString() != binding.pwConfEditText.text.toString()) {
             toast("비밀번호와 비밀번호 확인이 다릅니다.",applicationContext)
