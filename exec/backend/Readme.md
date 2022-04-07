@@ -22,8 +22,17 @@ ubuntu : 20.04 LTS
    ```
    CREATE SCHEMA 'bookdb'
    ```
+3. 도커로 젠킨스 설치
+```
+sudo docker pull jenkins/jenkins:lts
+```
+4. 젠킨스 컨테이너 실행
+```
+sudo docker run -d -p 8080:8080 -v /app/book:/var/jenkins_home --name
+book -u root jenkins/jenkins:lts
 
-3.  application.yml
+```
+5.  application.yml
 > 로컬에서할때는 application-local.yml 작성하고 activa : local 로 변경 
 
    ```
@@ -33,7 +42,7 @@ ubuntu : 20.04 LTS
        active: local
    ```
 
-4. application-alpha.yml
+6. application-alpha.yml
 
    ```
    # 기본 로그 레벨 설정
@@ -66,7 +75,7 @@ ubuntu : 20.04 LTS
      # 데이터 베이스 연결 설정
      datasource:
    
-       url: jdbc:mysql://j6d106.p.ssafy.io:3306/bookdb?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+       url: jdbc:mysql://{domain}:3306/bookdb?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
        driver-class-name: com.mysql.jdbc.Driver
        username: ssafy
        password: ssafy
@@ -94,17 +103,17 @@ ubuntu : 20.04 LTS
    
    # swagger에서 테스트 할 때의 host
    swagger:
-     host: j6d106.p.ssafy.io:8185
+     host: {domain}:8185
    ```
    
 
-5. . yml 파일 team11/server/api-module/src/main/resources 경로에 만들거나 복사
+7. . yml 파일 team11/server/api-module/src/main/resources 경로에 만들거나 복사
 
    ```
    cp application.yml /workspace/team11/server/api-module/src/main/resources/application.yml
    ```
 
-6.  local 
+8.  local 
     java
    ```
     cd BookLove-BackEnd/Spring
@@ -133,5 +142,5 @@ ubuntu : 20.04 LTS
 > > id : testid    pw : 1234
 
 ### DB접속정보
-접속 주소 : j6d106.p.ssafy.io:3306
+접속 주소 : {domain}:3306
 >> id : ssafy pw : ssafy 
