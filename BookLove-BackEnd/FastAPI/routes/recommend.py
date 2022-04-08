@@ -74,8 +74,9 @@ async def get_books_recommend(user_id: int, db: Session = Depends(get_db)) -> No
     df_click_log = df_click_log.sort_values(by='update_date', ascending=False)
     df = pandas.merge(df_click_log, df_book, on="book_id")
 
+
     indexes = []
-    for i in range(0, 10):
+    for i in range(0, min(len(df), 10)):
         indexes.append([df_book.index[df_book['book_id'] == df['book_id'][i]][0]])
 
     df_book = pandas.concat([df_book, df_click_log])
