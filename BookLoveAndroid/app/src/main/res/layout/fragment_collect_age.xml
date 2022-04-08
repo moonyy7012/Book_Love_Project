@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_size_48"
+        android:layout_marginTop="@dimen/dp_size_10"
+        android:fontFamily="@font/cafe24surround"
+        android:text="@string/step2"
+        android:textColor="@color/dark_purple"
+        android:textSize="@dimen/default_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_size_16"
+        android:fontFamily="@font/kopubworld_dotum_bold"
+        android:text="@string/guide_age"
+        android:textSize="@dimen/edittext_text_size"
+        app:layout_constraintStart_toEndOf="@+id/textView5"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_size_450"
+        android:layout_marginTop="@dimen/dp_size_20"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/dp_size_20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/teenagerButton"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_size_50"
+            android:layout_marginVertical="@dimen/dp_size_4"
+            android:background="@drawable/light_box_rectangle"
+            android:fontFamily="@font/kopubworld_dotum_medium"
+            android:text="@string/teenager"
+            android:textSize="@dimen/button_text_size"
+            tools:layout_editor_absoluteX="@dimen/dp_size_40"
+            tools:layout_editor_absoluteY="@dimen/dp_size_200" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/twentiesButton"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_size_50"
+            android:layout_marginVertical="@dimen/dp_size_4"
+            android:background="@drawable/light_box_rectangle"
+            android:fontFamily="@font/kopubworld_dotum_medium"
+            android:text="@string/twenties"
+            android:textSize="@dimen/button_text_size"
+            tools:layout_editor_absoluteX="@dimen/dp_size_40"
+            tools:layout_editor_absoluteY="@dimen/dp_size_200" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/thirtiesButton"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_size_50"
+            android:layout_marginVertical="@dimen/dp_size_4"
+            android:background="@drawable/light_box_rectangle"
+            android:fontFamily="@font/kopubworld_dotum_medium"
+            android:text="@string/thirties"
+            android:textSize="@dimen/button_text_size"
+            tools:layout_editor_absoluteX="@dimen/dp_size_40"
+            tools:layout_editor_absoluteY="@dimen/dp_size_200" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/fourtiesButton"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_size_50"
+            android:layout_marginVertical="@dimen/dp_size_4"
+            android:background="@drawable/light_box_rectangle"
+            android:fontFamily="@font/kopubworld_dotum_medium"
+            android:text="@string/fourties"
+            android:textSize="@dimen/button_text_size"
+            tools:layout_editor_absoluteX="@dimen/dp_size_40"
+            tools:layout_editor_absoluteY="@dimen/dp_size_200" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/fiftiesButton"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_size_50"
+            android:layout_marginVertical="@dimen/dp_size_4"
+            android:background="@drawable/light_box_rectangle"
+            android:fontFamily="@font/kopubworld_dotum_medium"
+            android:text="@string/fifties"
+            android:textSize="@dimen/button_text_size"
+            tools:layout_editor_absoluteX="@dimen/dp_size_40"
+            tools:layout_editor_absoluteY="@dimen/dp_size_200" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

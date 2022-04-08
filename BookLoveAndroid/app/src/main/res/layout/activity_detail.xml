@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/similarHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_size_10"
+        android:layout_marginTop="@dimen/dp_size_10"
+        android:fontFamily="@font/kopubworld_dotum_medium"
+        android:text="@string/similar_header"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/default_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bookInfoRecyclerView" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linearLayoutCompat"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_size_70"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/some_id6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginVertical="@dimen/dp_size_16"
+            android:layout_marginStart="@dimen/dp_size_16"
+            android:fontFamily="@font/cafe24surround"
+            android:gravity="center"
+            android:text="@string/Detail"
+            android:textColor="@color/dark_purple"
+            android:textSize="@dimen/title_text_size" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <ImageView
+        android:id="@+id/cover"
+        android:layout_width="@dimen/dp_size_140"
+        android:layout_height="@dimen/dp_size_200"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_size_16"
+        android:layout_marginHorizontal="@dimen/dp_size_10"
+        android:fontFamily="@font/kopubworld_dotum_bold"
+        android:textSize="@dimen/default_text_size"
+        app:layout_constraintTop_toBottomOf="@+id/cover"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/bookInfoRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fragment_height"
+        android:layout_marginStart="@dimen/dp_size_4"
+        android:layout_marginTop="@dimen/dp_size_4"
+        android:layout_marginEnd="@dimen/dp_size_4"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        tools:listitem="@layout/item_book_detail" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_size_200"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/similarHeader"
+        app:spanCount="3"
+        tools:listitem="@layout/item_book" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

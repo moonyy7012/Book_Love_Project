@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="09cac4fe-c8a7-43ed-821b-ccf2493aad13" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FastAPI/.idea/FastAPI.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FastAPI/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FastAPI/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/api-module/src/main/resources/application-alpha.yml" beforeDir="false" afterPath="$PROJECT_DIR$/server/api-module/src/main/resources/application-alpha.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/.idea/deploymentTargetDropDown.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/.idea/deploymentTargetDropDown.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/adapter/BookAdapter.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/adapter/BookCategoryAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/adapter/BookCategoryAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/adapter/BookDetailAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/adapter/BookDetailAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/adapter/BookItemAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/adapter/BookItemAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/adapter/BookRecommAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/adapter/BookRecommAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/adapter/HomeBannerAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/adapter/HomeBannerAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/adapter/RecentBookAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/adapter/RecentBookAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/api/BookApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/api/BookApi.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/api/TokenApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/api/TokenApi.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/api/UserApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/api/UserApi.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/config/ApplicationClass.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/config/ApplicationClass.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/config/CustomAttributes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/config/CustomAttributes.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/config/Util.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/config/Util.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/config/util/PreferenceUtil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/config/util/PreferenceUtil.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/config/util/RetrofitCallback.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/config/util/RetrofitCallback.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/config/util/RetrofitUtil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/config/util/RetrofitUtil.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/data/dto/Book.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/data/dto/BookInfoResDTO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/data/dto/BookInfoResDTO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/data/dto/BookListCategoryResDTO.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/data/dto/BookListMainResDTO.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/data/dto/BookListSearchResDTO.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/data/dto/BookListSimilarResDTO.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/data/dto/BookRecentListInfoResDTO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/data/dto/BookRecentListInfoResDTO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/data/dto/BookRecentSimilarListResDTO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/data/dto/BookRecentSimilarListResDTO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/data/dto/LoginResDTO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/data/dto/LoginResDTO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/data/dto/NormalSignUpReqDTO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/data/dto/NormalSignUpReqDTO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/data/dto/ReissuanceResDTO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/data/dto/ReissuanceResDTO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/data/dto/SingleResult.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/data/dto/SingleResult.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/data/dto/UpdateNicknameReqDTO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/data/dto/UpdateNicknameReqDTO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/data/dto/UpdatePasswordReqDTO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/data/dto/UpdatePasswordReqDTO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/data/dto/UserInputInfoReqDTO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/data/dto/UserInputInfoReqDTO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/data/model/User.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/data/model/User.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/service/BookService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/service/BookService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/service/TokenService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/service/TokenService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/service/UserService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/service/UserService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/detail/DetailActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/detail/DetailActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/detail/DetailView.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/detail/DetailView.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/detail/presenter/DetailPresenter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/detail/presenter/DetailPresenter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/detail/presenter/DetailPresenterImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/detail/presenter/DetailPresenterImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/login/LoginActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/login/LoginActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/category/CategoryContract.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/category/CategoryContract.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/category/CategoryFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/category/CategoryFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/category/presenter/CategoryPresenter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/category/presenter/CategoryPresenter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/category/presenter/CategoryPresenterImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/category/presenter/CategoryPresenterImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/home/HomeContract.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/home/HomeContract.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/home/HomeFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/home/HomeFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/home/presenter/HomePresenterImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/home/presenter/HomePresenterImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/myPage/MyPageContract.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/myPage/MyPageContract.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/myPage/MyPageFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/myPage/MyPageFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/myPage/editAge/EditAgeFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/myPage/editAge/EditAgeFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/myPage/editCategory/EditCategoryFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/myPage/editCategory/EditCategoryFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/myPage/editGender/EditGenderFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/myPage/editGender/EditGenderFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/recent/RecentFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/recent/RecentFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/recent/similarbook/SimilarBookFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/recent/similarbook/SimilarBookFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/search/SearchFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/search/SearchFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/search/SearchView.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/search/SearchView.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/search/presenter/SearchPresenterImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/java/com/moon/booklove_android/view/main/search/presenter/SearchPresenterImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/res/layout/dialog_password.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/res/layout/dialog_password.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/res/layout/fragment_recent.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/res/layout/fragment_recent.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/res/layout/item_book_recomm.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/res/layout/item_book_recomm.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/res/layout/item_home_banner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/res/layout/item_home_banner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/res/mipmap-hdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/res/mipmap-hdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/res/mipmap-mdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/res/mipmap-mdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/res/mipmap-xhdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/res/mipmap-xxhdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BookLoveAndroid/app/src/main/res/values/strings.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/Spring">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/server">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$/Spring">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/server">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="ssafy" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="ssafy" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="ssafy" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="application" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="ssafy" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="querydsl" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="design/dimen" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="26iimQ4Jng0GWPs1trY6vUnW0vM" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../S06P12D208/RollingPictures-Backend" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.ssafy.api.dto.res" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Gradle.server [bootRun]">
+    <configuration name="server [bootRun]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/server" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="bootRun" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="server [cleanQuerydslSourcesDir]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/server" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="cleanQuerydslSourcesDir" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="ApiApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="Spring.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.ssafy.ApiApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ApiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="ssafy.api-module.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.ssafy.api.ApiApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.server [bootRun]" />
+        <item itemvalue="Gradle.server [cleanQuerydslSourcesDir]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="09cac4fe-c8a7-43ed-821b-ccf2493aad13" name="Changes" comment="" />
+      <created>1647912968017</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1647912968017</updated>
+      <workItem from="1648299423543" duration="27257000" />
+      <workItem from="1648472433681" duration="10488000" />
+      <workItem from="1648553130430" duration="2385000" />
+      <workItem from="1648569752649" duration="4173000" />
+      <workItem from="1648632699245" duration="13343000" />
+      <workItem from="1648709184784" duration="7720000" />
+      <workItem from="1648789592922" duration="110000" />
+      <workItem from="1648789725633" duration="2024000" />
+      <workItem from="1648792611593" duration="1804000" />
+      <workItem from="1648794452111" duration="21473000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

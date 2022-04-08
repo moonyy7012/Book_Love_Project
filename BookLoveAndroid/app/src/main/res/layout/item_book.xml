@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="androidx.core.content.ContextCompat" />
+        <variable
+            name="book"
+            type="com.moon.booklove_android.data.dto.BookListInfoResDTO" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="@dimen/dp_size_110"
+            android:layout_height="@dimen/dp_size_150"
+            android:layout_marginStart="@dimen/dp_size_4"
+            android:layout_marginEnd="@dimen/dp_size_4"
+            android:scaleType="centerCrop"
+            app:setBookCover="@{book.cover}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_size_4"
+            android:layout_marginBottom="@dimen/dp_size_10"
+            android:text="@{book.title}"
+            android:textSize="@dimen/logout_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

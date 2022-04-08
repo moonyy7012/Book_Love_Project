@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginHorizontal="@dimen/dp_size_4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/detailTitle"
+            android:layout_width="@dimen/dp_size_80"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/kopubworld_dotum_medium"
+            android:textSize="@dimen/logout_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/detailTextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/detailTextView"
+            android:layout_width="@dimen/fragment_height"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/kopubworld_dotum_medium"
+            android:textSize="@dimen/logout_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/detailTitle"
+            app:layout_constraintTop_toTopOf="parent"
+            android:linksClickable="true"
+            android:autoLink="web"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

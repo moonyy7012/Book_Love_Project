@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.moon.booklove_android.view.main.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home"/>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.moon.booklove_android.view.main.search.SearchFragment"
+        android:label="SearchFragment"
+        tools:layout="@layout/fragment_search"/>
+    <fragment
+        android:id="@+id/myPageFragment"
+        android:name="com.moon.booklove_android.view.main.myPage.MyPageFragment"
+        android:label="MyPageFragment"
+        tools:layout="@layout/fragment_mypage"/>
+    <fragment
+        android:id="@+id/genreFragment"
+        android:name="com.moon.booklove_android.view.main.category.CategoryFragment"
+        android:label="GenreFragment"
+        tools:layout="@layout/fragment_genre"/>
+    <fragment
+        android:id="@+id/recentFragment"
+        android:name="com.moon.booklove_android.view.main.recent.RecentFragment"
+        android:label="RecentFragment"
+        tools:layout="@layout/fragment_recent"/>
+</navigation>

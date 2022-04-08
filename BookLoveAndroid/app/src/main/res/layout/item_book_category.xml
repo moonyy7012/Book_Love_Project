@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+<!--   item_book_category는  홈 프래그먼트의 리사이클러뷰의 한 item -->
+<!--  어댑터 데이터는 getRecomm() 반환 값 arrayList<BookCategory>  -->
+<!--   리스트의 한 항목인 BookCategory가 아래 data bookCategory  -->
+    <data>
+        <import type="androidx.core.content.ContextCompat" />
+        <variable
+            name="bookCategory"
+            type="com.moon.booklove_android.data.dto.BookCategory" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_size_20"
+            android:layout_marginTop="@dimen/dp_size_16"
+            android:fontFamily="@font/kopubworld_dotum_medium"
+            android:text="@{bookCategory.header}"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/default_text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/nestedRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_size_8"
+            android:layout_marginTop="@dimen/dp_size_8"
+            android:layout_marginEnd="@dimen/dp_size_8"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:setBooks="@{bookCategory.books}"
+            tools:itemCount="10"
+            tools:listitem="@layout/item_book" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
